@@ -1,0 +1,16 @@
+{
+  "users": [
+    {
+      "name": "이현동",
+      "gitAddr": "https://github.com/minesp3164/"
+    },
+    {
+      "name": "박덕수",
+      "gitAddr": "https://github.com/zopc1548/"
+    },
+    {
+      "name": "추병윤",
+      "gitAddr": "https://github.com/cby0320/"
+    }
+  ]
+}

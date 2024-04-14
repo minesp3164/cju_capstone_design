@@ -6,9 +6,9 @@ const Main = () =>{
     navigate('/start');
   }
   return(
-    <>
-      <button onClick={goToNextPage}>시작하시려면 절 눌러주세요</button>
-    </>
+    <div className="text-center pt-20">
+      <button className="text-black font-bold lg:text-6xl sm:text-3xl bg-gray-100 hover:text-gray-600 active:text-gray-400" onClick={goToNextPage}>시작하시려면 눌러주세요</button>
+    </div>
   )
 };
 

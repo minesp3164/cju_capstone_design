@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
 
@@ -19,22 +19,36 @@ const GenderCheck = () =>{
       return <div>당신의 성별은 남성입니다.</div>
     }
     else{
-      return <div>성별을 선택해 주세요.</div>
+      return <div className="flex text-lg ">성별을 선택해 주세요.</div>
     }
   }
 
-  const goToUploadPage = () =>{
+  const goToUploadPage = async() =>{
+    axios.post('/genderCheck',
+      "user"
+    ).then(res => {
+      console.log(res.data)
+    })
     navigate('/upLoad')
   }
 
   return(
-    <div>
-      성별 확인 페이지입니다.
-      <h2> 당신의 성별을 알려주세요</h2>
-      <button id="female" onClick={onClick}>여성</button>
-      <button id="male" onClick={onClick}>남성</button>
+    <div className="py-6 px-10">
+      <div className="text-lg text-gray-800"> 당신의 성별을 알려주세요</div>
+      <ul className="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex ">
+        <li className= "w-full border-b border-gray-200 sm:border-b-0 sm:border-r  hover:bg-gray-100 active:bg-gray-200">
+          <div>
+            <button id="female" onClick={onClick} className="w-full ms-2 text-sm font-medium text-gray-900 hover:text-gray-800">여성</button>
+          </div>
+        </li>
+        <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r hover:bg-gray-100 active:bg-gray-200">
+          <div>
+            <button id="male" onClick={onClick} className="w-full ms-2 text-sm font-medium text-gray-900 ">남성</button>
+          </div>
+        </li>
+      </ul>
       <ShowGender/>
-      <button disabled={!userGender} onClick={genderCheck}>다음으로</button>
+      <button disabled={!userGender} onClick={goToUploadPage}>다음으로</button>
     </div>
   )
 }

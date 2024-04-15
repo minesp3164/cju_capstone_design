@@ -5,6 +5,7 @@ import axios from "axios";
 const GenderCheck = () =>{
   const navigate = useNavigate();
   const [userGender, setUserGender] = React.useState();
+  const [response, setResponse] = React.useState('');
 
   const onClick = (e) =>{
     console.log(e.target.id)
@@ -13,42 +14,56 @@ const GenderCheck = () =>{
 
   const ShowGender = () => {
     if (userGender === 'female'){
-      return <div>당신의 성별은 여성입니다.</div>
+      return <div className="text-2xl pb-20">당신의 성별은 여성입니다.</div>
     }
     else if(userGender ==='male'){
-      return <div>당신의 성별은 남성입니다.</div>
+      return <div className="text-2xl pb-20">당신의 성별은 남성입니다.</div>
     }
     else{
-      return <div className="flex text-lg ">성별을 선택해 주세요.</div>
+      return <div className="text-2xl pb-20">성별을 선택해 주세요.</div>
     }
   }
 
   const goToUploadPage = async() =>{
-    axios.post('/genderCheck',
-      "user"
-    ).then(res => {
-      console.log(res.data)
-    })
-    navigate('/upLoad')
+    try {
+      const response = await axios.post('/genderCheck', {
+        gender:userGender, // 보낼 데이터
+      });
+      setResponse(response.data);
+      console.log(response.data)// 받은 응답 처리
+    } catch (error) {
+      console.error('Error sending data to Flask:', error);
+    }
+    navigate('../upLoad')
   }
 
   return(
-    <div className="py-6 px-10">
-      <div className="text-lg text-gray-800"> 당신의 성별을 알려주세요</div>
-      <ul className="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex ">
-        <li className= "w-full border-b border-gray-200 sm:border-b-0 sm:border-r  hover:bg-gray-100 active:bg-gray-200">
+    <div className="py-6 px-10 text-center">
+      <div className="text-4xl font-bold  text-center text-gray-800 pb-32"> 확인하실 성별을 선택해 주세요</div>
+      <ul className="pb-20 h-full w-full text-2xl font-medium text-gray-900 bg-white rounded-lg sm:flex ">
+        <li className= "w-full py-10 bg-pink-200  hover:bg-pink-100 active:bg-gray-50" onClick={onClick} id="female">
           <div>
-            <button id="female" onClick={onClick} className="w-full ms-2 text-sm font-medium text-gray-900 hover:text-gray-800">여성</button>
+            <button
+              onClick={onClick}
+              id="female"
+              className="w-full h-full font-bold text-gray-900 hover:text-gray-800">
+                여성<i id="female"  onClick={onClick} className="fa-solid fa-person-dress text-3xl text-pink-500"/>
+            </button>
           </div>
         </li>
-        <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r hover:bg-gray-100 active:bg-gray-200">
+        <li id="male"  onClick={onClick} className="w-full  border-b py-10 bg-sky-200 border-gray-200 border-2  hover:bg-sky-100 active:bg-gray-50">
           <div>
-            <button id="male" onClick={onClick} className="w-full ms-2 text-sm font-medium text-gray-900 ">남성</button>
+            <button
+              id="male"
+              onClick={onClick}
+                    className="w-full h-full font-bold text-gray-900 ">
+              남성 <i id="male" onClick={onClick} className="fa-solid fa-person text-blue-300 text-3xl"/>
+            </button>
           </div>
         </li>
       </ul>
       <ShowGender/>
-      <button disabled={!userGender} onClick={goToUploadPage}>다음으로</button>
+      <button disabled={!userGender} onClick={goToUploadPage} className="w-96 h-32 text-2xl font-bold bg-blue-300 hover:bg-blue-200 active:bg-blue-50 disabled:bg-blue-300">다음으로</button>
     </div>
   )
 }

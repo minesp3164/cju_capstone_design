@@ -13,16 +13,12 @@ const Start = () => {
   }
   return(
     <div className="">
-      <div className="font-bold text-xl sm:text-2xl pb-10">
-        이것은 여러분들께 어울리는 헤어스타일을 추천해드리는 딥러닝 프로그램입니다.
-        <p/>
-      </div>
-      <div className="pb-10">
-        <input className="accent-amber-300 form-checkbox h-8 w-8" type="checkbox" id="checkbox" onChange={() => setService(!service)}/>
-        <label for="checkbox" className="text-4xl">다음 서비스를 이용하시겠습니까?</label><p/>
+      <div className="text-center font-bold lg:text-5xl sm:text-2xl pb-10 ">
+        <input className="accent-amber-300 form-checkbox lg:h-8 lg:w-8 sm:h-6 sm:w-6" type="checkbox" id="checkbox" onChange={() => setService(!service)}/>
+        <label for="checkbox" className="lg:text-4xl sm:text-2xl ">서비스를 이용하시려면 눌러주세요</label><p/>
       </div>
       <div className="text-center ">
-        <button disabled={!service} onClick={goToGenderPage} className="bg-gray-100 text-2xl hover:bg-gray-200 active:bg-gray-300 form-button  w-96 h-32">다음으로</button>
+        <button disabled={!service} onClick={goToGenderPage} className="bg-gray-100 text-2xl hover:bg-gray-200 active:bg-gray-300 form-button  lg:w-96 lg:h-32 sm:w-64 sm:h-24 sm: disabled:bg-gray-100 ">다음으로</button>
       </div>
     </div>
   )

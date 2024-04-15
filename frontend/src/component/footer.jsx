@@ -14,7 +14,7 @@ const Footer = () => {
               <div className="text-xl">참여한 개발자</div>
               {devData.users.map(
                 user => (
-                  <ul className="px-2">{user.name}
+                  <ul className="px-2 text-gray-600">{user.name}
                     <a href={user.gitAddr}><i className="fa-brands fa-github"/></a>
                   </ul>
                 ))}

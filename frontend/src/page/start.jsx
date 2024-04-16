@@ -6,11 +6,12 @@ const Start = () => {
   const navigate = useNavigate();
   const [service, setService] = useState(false);
   const goToGenderPage = () => {
-    navigate("/genderCheck");
+    navigate("/upload");
   }
-  const onClick = () =>{
 
+  const onClick = () =>{
   }
+
   return(
     <div className="">
       <div className="text-center font-bold lg:text-5xl sm:text-2xl pb-10 ">

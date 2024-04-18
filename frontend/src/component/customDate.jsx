@@ -6,7 +6,7 @@ const CustomDate = () => {
   const formatDate = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
 
   return (
-    <div>
+    <div className="">
       <div>{formatDate}</div>
     </div>
   )

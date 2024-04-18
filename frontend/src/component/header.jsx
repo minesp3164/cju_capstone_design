@@ -8,11 +8,12 @@ const Header = () =>{
     navigate('/')
   }
   return(
-    <div className="py-20">
-      <div className="text-center lg:text-8xl sm:text-6xl  pb-32 py-15">
+    <div className="py-12 flex justify-center w-full ">
+      <div className="text-center lg:text-8xl sm:text-6xl  pb-32 py-5">
+
         <button onClick={toMainPage} className="hover:text-gray-600 ">Hair Selector</button>
       </div>
-      <div className="text-center text-black text-3xl font-bold w-full h-full py-10">
+      <div className="text-center text-black text-xl font-bold py-4">
         <CustomDate />
       </div>
     </div>

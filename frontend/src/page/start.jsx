@@ -9,9 +9,6 @@ const Start = () => {
     navigate("/upload");
   }
 
-  const onClick = () =>{
-  }
-
   return(
     <div className="">
       <div className="text-center font-bold lg:text-5xl sm:text-2xl pb-10 ">
@@ -19,7 +16,7 @@ const Start = () => {
         <label for="checkbox" className="lg:text-4xl sm:text-2xl ">서비스를 이용하시려면 눌러주세요</label><p/>
       </div>
       <div className="text-center ">
-        <button disabled={!service} onClick={goToGenderPage} className="bg-gray-100 text-2xl hover:bg-gray-200 active:bg-gray-300 form-button  lg:w-96 lg:h-32 sm:w-64 sm:h-24 sm: disabled:bg-gray-100 ">다음으로</button>
+        <button disabled={!service} onClick={goToGenderPage} className="bg-gray-100 text-2xl hover:bg-gray-200 active:bg-gray-300 form-button  lg:w-72 lg:h-24 sm:w-64 sm:h-24 sm: disabled:bg-gray-100 ">다음으로</button>
       </div>
     </div>
   )

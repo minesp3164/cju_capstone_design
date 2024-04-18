@@ -12,7 +12,6 @@ picture = None
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
-    global file
     try:
         file = request.files['file']  # 'file'이라는 키로 파일 가져오기
         print(file)

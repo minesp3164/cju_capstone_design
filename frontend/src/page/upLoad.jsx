@@ -17,6 +17,7 @@ const UpLoad = () => {
   const [canNext, setCanNext] = React.useState(false);
   const [checked, setChecked] = React.useState("");
   const [selectedFile, setSelectedFile] = React.useState(null);
+  const [showImage,setShowImage] = React.useState(null);
 
   const navigate = useNavigate();
 
@@ -28,19 +29,36 @@ const UpLoad = () => {
     }
   };
 
+  const ShowImages = () =>{
+    if(selectedFile){
+      return <img src={showImage} alt="이미지" className="w-max h-max "/>
+    }
+    else{
+        return null
+    }
+  }
+
   const goToNextPage = () => {
     navigate('/result');
   };
 
   const onChangeImageUpload = (e) => {
-    setSelectedFile(e.target.files[0]);
+    setSelectedFile(e.target.files[0])
+    const file = e.target.files[0];
+    if(file){
+      const reader = new FileReader();
+      reader.onload = () => {
+        setShowImage(reader.result);
+      }
+      reader.readAsDataURL(file);
+    }
     setCanNext(true);
   };
 
   const handleUpload = async () => {
     try {
       const formData = new FormData();
-      formData.append("file", selectedFile); // 'file'이라는 키로 파일 추가
+      formData.append("file", selectedFile);
       const response = await axios.post('/upload', formData, {
         headers: {
           "Content-Type": "multipart/form-data",
@@ -65,11 +83,14 @@ const UpLoad = () => {
           <i className="text-3xl fa-solid fa-video"></i>
         </button>
       </div>
-      <div className="flex justify-center">
+      <div className="flex justify-center pb-20">
         <Item checked={checked} onChange={onChangeImageUpload} />
       </div>
-      <p></p>
-      <button onClick={handleUpload} disabled={!canNext}>다음으로</button>
+      <div className="flex justify-center items-center">
+        <ShowImages/>
+      </div>
+        <button className="bg-gray-200 w-36 h-16"
+                onClick={handleUpload} disabled={!canNext}>다음으로</button>
     </div>
   );
 };

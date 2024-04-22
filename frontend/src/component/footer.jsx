@@ -3,8 +3,8 @@ import devData from "../data/devData.json";
 
 const Footer = () => {
   return (
-    <div className="bottom-0 pt-72">
-      <div className="relative h-32  my-2 md:mx-auto bg-gray-100 items-center" >
+    <div className="fixed bottom-0 w-full">
+      <div className="relative h-32  md:mx-auto bg-gray-100 items-center" >
         <div className="absolute grid gird-cols-2 bottom-0 inset-x-10 inset-y-5 items-center">
           <div id="팀 로고" className="text-xl font-bold">
             사진의 마술사

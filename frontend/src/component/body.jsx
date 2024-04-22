@@ -10,7 +10,7 @@ const Body = () =>{
 
   return (
     <div>
-      <div className="px-32">
+      <div className="pb-72">
         <Routes>
           <Route path="/howToUse" element={<HowToUse/>} />
           <Route path="/" element={<Main/>}/>

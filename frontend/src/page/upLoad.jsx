@@ -34,7 +34,14 @@ const UpLoad = () => {
 
   const Item = (props) => {
     if (props.checked === "사진") {
-      return <input type="file" id="image" accept="image/*" onChange={props.onChange} />;
+      return <div className="pt-10">
+        <label className="block mb-2 text-sm font-medium" for="image">업로드 할 이미지</label>
+        <input
+          className="block w-full mb-5 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+          aria-describedby="file_input_help" type="file" id="image" accept="image/*" onChange={props.onChange}/>
+        <p className="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG or GIF (MAX.
+          800x400px).</p>
+      </div>
     } else if (props.checked === "캠") {
       return <WebcamCapture toUpload={handleDataFromCapture}/>
     } else {
@@ -102,7 +109,7 @@ const UpLoad = () => {
           <i className="text-3xl fa-solid fa-video"></i>
         </button>
       </div>
-      <div className="flex justify-center pb-20">
+      <div className="flex justify-center pb-10">
         <Item checked={checked} onChange={onChangeImageUpload}/>
       </div>
       <div className="flex justify-center items-center">

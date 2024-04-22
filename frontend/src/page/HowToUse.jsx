@@ -4,7 +4,8 @@ import {useNavigate} from "react-router-dom";
 const HowToUse = () => {
   const navigate = useNavigate();
   const returnToMain = () => {
-    localStorage.setItem('HowToUse', JSON.stringify(returnToMain))
+    localStorage.setItem('HowToUse', "aa")
+    console.log(localStorage.getItem('HowToUse'))
     navigate('/')
   }
   return(

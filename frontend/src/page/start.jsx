@@ -1,12 +1,12 @@
 import React from "react";
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
-
 const Start = () => {
   const navigate = useNavigate();
   const [service, setService] = useState(false);
   const goToGenderPage = () => {
     navigate("/upload");
+    localStorage.setItem("start","start")
   }
 
   return(

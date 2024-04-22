@@ -1,42 +1,61 @@
 import React from "react";
-import Webcam from "react-webcam";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import WebcamCapture from "../component/WebcamCapture";
 
-const Item = (props) => {
-  if (props.checked === "사진") {
-    return <input type="file" id="image" accept="image/*" onChange={props.onChange} />;
-  } else if (props.checked === "캠") {
-    return <Webcam height="32" width="32" />;
-  } else {
-    return "위 중 하나 선택해주세요";
-  }
-};
+
 
 const UpLoad = () => {
   const [canNext, setCanNext] = React.useState(false);
   const [checked, setChecked] = React.useState("");
   const [selectedFile, setSelectedFile] = React.useState(null);
   const [showImage,setShowImage] = React.useState(null);
-
+  const [camCapture,setCamCapture] = React.useState(null);
   const navigate = useNavigate();
+
 
   const onClick = (e) => {
     if (e.target.id === "사진") {
       setChecked("사진");
+      setSelectedFile(null)
+      setCanNext(false)
     } else {
       setChecked("캠");
+      setSelectedFile(null)
+      setCanNext(false)
+    }
+  };
+
+  const handleDataFromCapture = (data) =>{
+    setSelectedFile(data)
+    setCanNext(data)
+    setCamCapture(data)
+  }
+
+  const Item = (props) => {
+    if (props.checked === "사진") {
+      return <input type="file" id="image" accept="image/*" onChange={props.onChange} />;
+    } else if (props.checked === "캠") {
+      return <WebcamCapture toUpload={handleDataFromCapture}/>
+    } else {
+      return "위 중 하나 선택해주세요";
     }
   };
 
   const ShowImages = () =>{
     if(selectedFile){
-      return <img src={showImage} alt="이미지" className="w-max h-max "/>
+      if(checked === "사진"){
+        return <img src={showImage} alt="이미지" className="w-96 h-64"/>
+      }
+      if(checked==="캠"){
+        return <img src={camCapture} alt="웹캠캡처" className="w-96 h-64"/>
+      }
     }
     else{
         return null
     }
   }
+
 
   const goToNextPage = () => {
     navigate('/result');
@@ -84,7 +103,7 @@ const UpLoad = () => {
         </button>
       </div>
       <div className="flex justify-center pb-20">
-        <Item checked={checked} onChange={onChangeImageUpload} />
+        <Item checked={checked} onChange={onChangeImageUpload}/>
       </div>
       <div className="flex justify-center items-center">
         <ShowImages/>

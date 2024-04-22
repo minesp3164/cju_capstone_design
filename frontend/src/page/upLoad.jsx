@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import WebcamCapture from "../component/WebcamCapture";
+import swal from "sweetalert";
 
 
 
@@ -12,7 +13,23 @@ const UpLoad = () => {
   const [showImage,setShowImage] = React.useState(null);
   const [camCapture,setCamCapture] = React.useState(null);
   const navigate = useNavigate();
+  const goToMainPage = () =>{
+    navigate("/");
+  }
+  if(!localStorage.getItem("start")){
+    swal({
+      title:"에러",
+      text:"이전 단계는 모두 끝내고 오셨나요?",
+      icon:"warning",
+      button:"처음으로 돌아가기"
+    }).then((result) => {
+      goToMainPage()
+      localStorage.clear()
+    })
+    localStorage.clear()
 
+
+  }
 
   const onClick = (e) => {
     if (e.target.id === "사진") {
@@ -39,8 +56,7 @@ const UpLoad = () => {
         <input
           className="block w-full mb-5 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
           aria-describedby="file_input_help" type="file" id="image" accept="image/*" onChange={props.onChange}/>
-        <p className="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG or GIF (MAX.
-          800x400px).</p>
+        <p className="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">본인의 얼굴이 제대로 나온 사진</p>
       </div>
     } else if (props.checked === "캠") {
       return <WebcamCapture toUpload={handleDataFromCapture}/>
@@ -65,6 +81,7 @@ const UpLoad = () => {
 
 
   const goToNextPage = () => {
+    localStorage.setItem("upload","upload")
     navigate('/result');
   };
 
@@ -103,10 +120,10 @@ const UpLoad = () => {
       <h2 className="text-2xl pb-12"> 어떤 유형의 파일을 보내시나요</h2>
       <div className="flex lg:px-80 md:px-20 sm:px-12 justify-between items-stretch">
         <button id="사진" className="w-36 h-24 bg-gray-200 hover:bg-gray-100" onClick={onClick}>
-          <i className="text-3xl fa-solid fa-image"></i>
+          <i id="사진" className="text-3xl fa-solid fa-image" onClick={onClick}/>
         </button>
         <button id="캠" className="w-36 h-24 bg-gray-200 hover:bg-gray-100" onClick={onClick}>
-          <i className="text-3xl fa-solid fa-video"></i>
+          <i id="캠" className="text-3xl fa-solid fa-video" onClick={onClick}/>
         </button>
       </div>
       <div className="flex justify-center pb-10">

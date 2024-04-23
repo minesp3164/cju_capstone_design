@@ -33,16 +33,19 @@ const UpLoad = () => {
 
   const onClick = (e) => {
     if (e.target.id === "사진") {
-      setChecked("사진");
-      setSelectedFile(null)
-      setCanNext(false)
+      if (checked !== "사진") {
+        setChecked("사진");
+        setSelectedFile(null)
+        setCanNext(false)
+      }
     } else {
-      setChecked("캠");
-      setSelectedFile(null)
-      setCanNext(false)
-    }
-  };
-
+      if (checked !== "캠") {
+        setChecked("캠");
+        setSelectedFile(null)
+        setCanNext(false)
+      }
+    };
+  }
   const handleDataFromCapture = (data) =>{
     setSelectedFile(data)
     setCanNext(data)

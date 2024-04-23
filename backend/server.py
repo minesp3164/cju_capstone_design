@@ -1,3 +1,5 @@
+import base64
+
 from flask import Flask, render_template, request, redirect, url_for, send_file, jsonify
 
 
@@ -14,7 +16,7 @@ picture = None
 def upload_file():
     try:
         file = request.files['file']  # 'file'이라는 키로 파일 가져오기
-        print(file)
+        file.save("image/test.jpg")
         return jsonify({'filename': file.filename})
     except KeyError:
 
@@ -24,15 +26,11 @@ def upload_file():
 @app.route('/result', methods=['GET', 'POST'])
 def get_image():
     try:
-        # 이미지 파일 경로 설정
-        image_path = 'path/to/your/image.jpg'  # 이미지 파일 경로를 적절히 수정해주세요
-
-        # 파일이 존재하는지 확인
-        if os.path.exists(image_path):
-            # 이미지 파일을 클라이언트로 보냄
-            return send_file(image_path, mimetype='image/jpg')
-        else:
-            return jsonify({'error': 'Image not found'}), 404
+        with open('image/1.jpg', 'rb') as img_file:
+            encoded_image = base64.b64encode(img_file.read()).decode('utf-8')
+        return jsonify({'image': encoded_image})
+    except FileNotFoundError:
+        return jsonify({'error': 'Image file not found'}), 404
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 

@@ -4,14 +4,17 @@ import swal from "sweetalert";
 import {useNavigate} from "react-router-dom";
 
 const Result = () => {
-  const [imageUrl, setImageUrl] = useState('');
+  const [image, setImage] = useState('');
   const navigate = useNavigate();
+
   const goToMainPage = () => {
     navigate("/");
   }
+
   const goToUpLoadPage = () => {
     navigate("/upLoad");
   }
+
   if(!localStorage.getItem("upload")){
     if(localStorage.getItem("start")){
       swal({
@@ -35,9 +38,30 @@ const Result = () => {
     }
   }
 
+  useEffect(() => {
+    const fetchImage = async () => {
+      try {
+        const response = await axios.get('/result');
+        setImage(response.data.image);
+      } catch (error) {
+        console.error('Error fetching image:', error);
+      }
+    };
+    fetchImage();
+  }, []);
+
 
   return (
-    <div>
+    <div className="h-full w-full">
+      <div className="flex justify-center">
+        당신의 얼굴형은 ? 이며 그에 어울리는 헤어스타일 입니다.
+      </div>
+      <div className="flex justify-center">
+        {image && <img
+                      className=""
+                       src={`data:image/jpeg;base64,${image}`}
+                       alt="image"/>}
+      </div>
     </div>
   );
 }

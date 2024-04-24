@@ -11,7 +11,6 @@ const UpLoad = () => {
   const [checked, setChecked] = React.useState("");
   const [selectedFile, setSelectedFile] = React.useState(null);
   const [showImage,setShowImage] = React.useState(null);
-  const [camCapture,setCamCapture] = React.useState(null);
   const navigate = useNavigate();
   const goToMainPage = () =>{
     navigate("/");
@@ -24,33 +23,33 @@ const UpLoad = () => {
       button:"처음으로 돌아가기"
     }).then((result) => {
       goToMainPage()
-      localStorage.clear()
+      localStorage.clear();
     })
-    localStorage.clear()
-
-
+    localStorage.clear();
   }
 
   const onClick = (e) => {
     if (e.target.id === "사진") {
       if (checked !== "사진") {
         setChecked("사진");
-        setSelectedFile(null)
-        setCanNext(false)
+        setSelectedFile(null);
+        setShowImage(null);
+        setCanNext(false);
       }
     } else {
       if (checked !== "캠") {
         setChecked("캠");
-        setSelectedFile(null)
-        setCanNext(false)
+        setSelectedFile(null);
+        setShowImage(null);
+        setCanNext(false);
       }
-    };
+    }
   }
-  const handleDataFromCapture = (data) =>{
-    setSelectedFile(data)
-    setCanNext(data)
-    setCamCapture(data)
-  }
+
+  const handleDataFromCapture = (data) => {
+    setSelectedFile(data);
+    setCanNext(true); // 다음 단계로 진행 가능하도록 설정
+  };
 
   const Item = (props) => {
     if (props.checked === "사진") {
@@ -64,17 +63,21 @@ const UpLoad = () => {
     } else if (props.checked === "캠") {
       return <WebcamCapture toUpload={handleDataFromCapture}/>
     } else {
-      return "위 중 하나 선택해주세요";
+      return "위 중 하나 선택해주세요"
     }
   };
 
   const ShowImages = () =>{
     if(selectedFile){
       if(checked === "사진"){
+        console.log(showImage)
+
         return <img src={showImage} alt="이미지" className="w-96 h-64"/>
       }
       if(checked==="캠"){
-        return <img src={camCapture} alt="웹캠캡처" className="w-96 h-64"/>
+        console.log(showImage)
+        onChangeCaptureShow()
+        return <img src={showImage} alt="웹캠캡처" className="w-96 h-64"/>
       }
     }
     else{
@@ -84,12 +87,22 @@ const UpLoad = () => {
 
 
   const goToNextPage = () => {
-    localStorage.setItem("upload","upload")
+    localStorage.setItem("upload","upload");
     navigate('/result');
   };
-
+  const onChangeCaptureShow = () => {
+    const file = selectedFile;
+    if(file){
+      const reader = new FileReader();
+      reader.onload = () => {
+        setShowImage(reader.result);
+      }
+      reader.readAsDataURL(file);
+    }
+  }
   const onChangeImageUpload = (e) => {
-    setSelectedFile(e.target.files[0])
+    setSelectedFile(e.target.files[0]);
+    console.log(e.target.files[0]);
     const file = e.target.files[0];
     if(file){
       const reader = new FileReader();

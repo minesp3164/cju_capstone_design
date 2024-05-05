@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import WebcamCapture from "../component/WebcamCapture";
+import { Button, Tooltip } from "react-daisyui";
 import swal from "sweetalert";
 import axiosServer from "../component/Instance";
 
@@ -52,13 +53,20 @@ const UpLoad = () => {
   };
 
   const Item = (props) => {
+    const inputRef = useRef()
+
     if (props.checked === "사진") {
       return <div className="pt-10">
-        <label className="block mb-2 text-sm font-medium" for="image">업로드 할 이미지</label>
-        <input
-          className="block w-full mb-5 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-          aria-describedby="file_input_help" type="file" id="image" accept="image/*" onChange={props.onChange}/>
-        <p className="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">본인의 얼굴이 제대로 나온 사진</p>
+        <label className="block mb-2 text-sm font-bold text-violet-50" for="image">업로드 할 이미지</label>
+        <Tooltip message="본인의 얼굴이 제대로 나온 사진을 첨부해주세요" position="bottom">
+          <Button
+            onClick={() => inputRef.current?.click()}
+            >
+              파일 업로드
+            </Button>
+            <input type="file" id="image" accept="image/*" onChange={props.onChange} style={{ display: "none" }} ref={inputRef} />
+        </Tooltip>
+
       </div>
     } else if (props.checked === "캠") {
       return <WebcamCapture toUpload={handleDataFromCapture}/>
@@ -71,8 +79,7 @@ const UpLoad = () => {
     if(selectedFile){
       if(checked === "사진"){
         console.log(showImage)
-
-        return <img src={showImage} alt="이미지" className="w-96 h-64"/>
+        return <img src={showImage} alt="이미지" className="w-96 h-64 rounded-lg box-shadow-md"/>
       }
       if(checked==="캠"){
         console.log(showImage)
@@ -133,7 +140,7 @@ const UpLoad = () => {
 
   return (
     <div className="space-y-4 p-4 text-center items-center">
-      <h2 className="text-2xl pb-12"> 어떤 유형의 파일을 보내시나요</h2>
+      <h2 className="text-2xl pb-12 text-white">업로드 할 파일 유형을 선택하세요</h2>
       <div className="flex lg:px-80 md:px-20 sm:px-12 justify-between items-stretch">
         <button id="사진" className="w-36 h-24 bg-gray-200 hover:bg-gray-100" onClick={onClick}>
           <i id="사진" className="text-3xl fa-solid fa-image" onClick={onClick}/>
@@ -148,8 +155,8 @@ const UpLoad = () => {
       <div className="flex justify-center items-center">
         <ShowImages/>
       </div>
-        <button className="bg-gray-200 w-36 h-16"
-                onClick={handleUpload} disabled={!canNext}>다음으로</button>
+        <Button className="bg-gray-200 w-36 h-16" glass
+                onClick={handleUpload} disabled={!canNext}>다음으로</Button>
     </div>
   );
 };

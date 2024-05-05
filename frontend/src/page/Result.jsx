@@ -56,9 +56,9 @@ const Result = () => {
       <div className="flex justify-center">
         당신의 얼굴형은 ? 이며 그에 어울리는 헤어스타일 입니다.
       </div>
-      <div className="flex justify-center">
+      <div className="flex justify-center mt-[50px]">
         {image && <img
-                      className=""
+                      className="w-[350px] h-[350px] rounded-md shadow-lg"
                        src={`data:image/jpeg;base64,${image}`}
                        alt="image"/>}
       </div>

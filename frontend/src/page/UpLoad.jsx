@@ -13,9 +13,12 @@ const UpLoad = () => {
   const [selectedFile, setSelectedFile] = React.useState(null);
   const [showImage,setShowImage] = React.useState(null);
   const navigate = useNavigate();
+
   const goToMainPage = () =>{
     navigate("/");
   }
+
+  let data = {};
   if(!localStorage.getItem("start")){
     swal({
       title:"에러",
@@ -95,7 +98,13 @@ const UpLoad = () => {
 
   const goToNextPage = () => {
     localStorage.setItem("upload","upload");
-    navigate('/result');
+    navigate('/result', {state: {
+        desc : data.desc,
+        name : data.name,
+        shape : data.shape,
+        sex : data.sex,
+      }});
+
   };
   const onChangeCaptureShow = () => {
     const file = selectedFile;
@@ -129,9 +138,19 @@ const UpLoad = () => {
         headers: {
           "Content-Type": "multipart/form-data",
         },
-      });
-      console.log(response);
-      goToNextPage();
+      }
+    ).then(response => {
+          const responseData = response.data.recommendation
+          console.log(responseData.sex);
+          data = {
+            desc: responseData.desc,
+            name: responseData.name,
+            shape: responseData.shape,
+            sex: responseData.sex
+          };
+        }
+      );
+        goToNextPage();
     } catch (error) {
       console.log(error);
     }

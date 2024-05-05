@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import swal from "sweetalert";
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 
 const Result = () => {
   const [image, setImage] = useState('');
   const navigate = useNavigate();
+  const location = useLocation();
+  const desc = location.state.desc;
+  const name = location.state.name;
+  const shape = location.state.shape;
 
   const goToMainPage = () => {
     navigate("/");
@@ -54,7 +58,7 @@ const Result = () => {
   return (
     <div className="h-full w-full">
       <div className="flex justify-center">
-        당신의 얼굴형은 ? 이며 그에 어울리는 헤어스타일 입니다.
+        {desc}{shape}{name}
       </div>
       <div className="flex justify-center mt-[50px]">
         {image && <img

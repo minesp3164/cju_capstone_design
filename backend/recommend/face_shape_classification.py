@@ -6,6 +6,15 @@ from .data import recommendations
 from .gender_classification import get_gender
 
 
+shape = {
+    "Round": "둥근형 얼굴",
+    "Heart": "하트형 얼굴",
+    "Oblong": "직사각형 얼굴",
+    "Square": "정사각형 얼굴",
+    "Oval": "타원형 얼굴"
+}
+
+
 def rand(n):
     return random.randint(0, n - 1)
 
@@ -22,6 +31,7 @@ def get_recommend_hairstyle(image):
     face_name: str = get_face_shape(image)
     gender = get_gender(image)
     print(f'gender: {gender}')
+    shape_name = shape[face_name]
 
     recommends: List[Dict[str, str]] = recommendations[face_name]
     results = list(
@@ -31,5 +41,7 @@ def get_recommend_hairstyle(image):
         )
     )
     item_len = len(results)
+    result = results[rand(item_len)]
+    result['shape'] = shape_name
 
-    return results[rand(item_len)]
+    return result

@@ -1,4 +1,3 @@
-from transformers import pipeline
 from typing import Dict, List
 
 
@@ -45,10 +44,10 @@ oval_face_recommendations: List[Dict[str, str]] = [
     {'name': "레이어드 펌", 'desc': '레이어드 스타일에 파마를 넣어서 얼굴을 더욱 둥글고 부드럽게 만들어줍니다.', 'sex': 'female'}
 ]
 
-
-def face_shape(image):
-    # 이미지 분류 모델 불러오기
-    pipe = pipeline("image-classification", model="metadome/face_shape_classification")
-    result = pipe(image)
-    predicted_labels = [[item['label'], item['score']] for item in result]
-    return max(predicted_labels, key=lambda x: x[1])[0] # Round, Heart, Oblong, Square, Oval
+recommendations = {
+    'Round': round_face_recommendations,
+    'Heart': heart_face_recommendations,
+    'Oblong': oblong_face_recommendations,
+    'Square': square_face_recommendations,
+    'Oval': oval_face_recommendations
+}

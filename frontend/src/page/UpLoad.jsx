@@ -1,8 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import WebcamCapture from "../component/WebcamCapture";
 import swal from "sweetalert";
+import axiosServer from "../component/Instance";
 
 
 
@@ -118,7 +118,7 @@ const UpLoad = () => {
     try {
       const formData = new FormData();
       formData.append("file", selectedFile);
-      const response = await axios.post('/upload', formData, {
+      const response = await axiosServer.post('/upload', formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

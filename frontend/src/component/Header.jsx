@@ -8,13 +8,17 @@ const Header = () =>{
     navigate('/')
   }
   return(
-    <div className="py-12 flex justify-center w-full ">
-      <div className="text-center lg:text-8xl sm:text-6xl  pb-32 py-5">
-
-        <button onClick={toMainPage} className="hover:text-gray-600 font-poet">StarTip</button>
-      </div>
-      <div className="text-center text-black text-xl font-bold py-4">
-        <CustomDate />
+    <div className="py-12 flex justify-center w-full">
+      <div className="text-center lg:text-8xl sm:text-6xl pb-32 py-5 flex flex-col gap-y-[20px]">
+        <button 
+          onClick={toMainPage}
+          className="text-white font-poet transition duration-150 hover:text-violet-200"
+        >
+          StarTip
+        </button>
+        <span className="font-poet text-[18px] text-violet-200">
+          Get hairstyle Recommendations that work for you
+        </span>
       </div>
     </div>
   )

@@ -6,7 +6,7 @@ import './input.css';
 
 const App = () => {
   return (
-      <div>
+      <div className="rootDiv">
         <Header/>
         <Body/>
         <Footer/>

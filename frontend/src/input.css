@@ -13,3 +13,13 @@
 .font-poet {
     font-family: 'Poetsen One', serif;
 }
+
+.back-purple {
+    background: rgb(139,92,246);
+    background: linear-gradient(90deg, rgba(139,92,246,1) 7%, rgba(141,111,255,1) 61%, rgba(196,181,253,1) 100%);
+}
+
+html {
+    height: 100vh;
+    background: #8b5cf6;
+}

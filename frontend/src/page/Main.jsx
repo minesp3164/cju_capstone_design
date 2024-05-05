@@ -1,5 +1,7 @@
 import React from "react";
 import {useNavigate} from "react-router-dom";
+import { Button } from "react-daisyui";
+
 const Main = () =>{
   const navigate = useNavigate();
   const goTOStartPage = () =>{
@@ -28,7 +30,12 @@ const Main = () =>{
         <HandleHowToUse/>
       </div>
       <div className="pt-20">
-        <button className="text-black font-bold lg:text-6xl sm:text-3xl bg-gray-100 hover:text-gray-600 active:text-gray-400" onClick={goTOStartPage}>시작하시려면 눌러주세요</button>
+        <Button
+          onClick={goTOStartPage}
+          className="text-2xl text-slate-700"
+        >
+            시작하시려면 눌러주세요
+          </Button>
       </div>
     </div>
   )

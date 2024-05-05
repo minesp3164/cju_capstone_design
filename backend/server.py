@@ -8,6 +8,11 @@ app = Flask(__name__)
 picture = None
 
 
+@app.route('/', methods=['GET'])
+def health_test():
+    return 'OK'
+
+
 @app.route('/upload', methods=['POST'])
 def upload_file():
     file = request.files['file']

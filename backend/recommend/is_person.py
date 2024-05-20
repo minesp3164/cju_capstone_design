@@ -1,7 +1,7 @@
 from transformers import DetrImageProcessor, DetrForObjectDetection
 import torch
 
-def get_is_person_num_people(image):
+def get_is_person(image):
     # 모델과 프로세서 로드
     processor = DetrImageProcessor.from_pretrained("facebook/detr-resnet-50", revision="no_timm")
     model = DetrForObjectDetection.from_pretrained("facebook/detr-resnet-50", revision="no_timm")
@@ -24,7 +24,7 @@ def get_is_person_num_people(image):
         if label_name == 'person':
             num_people += 1
 
-    if num_people > 0:
+    if num_people == 1:
         is_person = True
 
-    return is_person, num_people
+    return is_person

@@ -1,7 +1,7 @@
 from transformers import DetrImageProcessor, DetrForObjectDetection
 import torch
 
-def get_detr_resent_50(image):
+def get_is_person_num_people(image):
     # 모델과 프로세서 로드
     processor = DetrImageProcessor.from_pretrained("facebook/detr-resnet-50", revision="no_timm")
     model = DetrForObjectDetection.from_pretrained("facebook/detr-resnet-50", revision="no_timm")
@@ -16,7 +16,7 @@ def get_detr_resent_50(image):
     results = processor.post_process_object_detection(outputs, target_sizes=target_sizes, threshold=0.9)[0]
 
     # 결과 출력
-    is_people = False
+    is_person = False
     num_people = 0
     for score, label, box in zip(results["scores"], results["labels"], results["boxes"]):
         box = [round(i, 2) for i in box.tolist()]
@@ -25,6 +25,6 @@ def get_detr_resent_50(image):
             num_people += 1
 
     if num_people > 0:
-        is_people = True
+        is_person = True
 
-    return is_people, num_people
+    return is_person, num_people

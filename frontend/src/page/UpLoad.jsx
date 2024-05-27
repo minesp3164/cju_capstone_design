@@ -60,7 +60,7 @@ const UpLoad = () => {
 
     if (props.checked === "사진") {
       return <div className="pt-10">
-        <label className="block mb-2 text-sm font-bold text" for="image">업로드 할 이미지</label>
+        <label className="block mb-2 text-sm font-bold text-gray-300" for="image">정면을 보고 있으며 한 사람만 나와야 합니다</label>
         <Tooltip message="본인의 얼굴이 제대로 나온 사진을 첨부해주세요" position="bottom">
           <Button className="w-32 h-16"
             onClick={() => inputRef.current?.click()}
@@ -147,7 +147,7 @@ const UpLoad = () => {
             name: responseData.name,
             shape: responseData.shape,
             sex: responseData.sex,
-            is_person: responseData.is_person,
+            // is_person: responseData.is_person,
           };
         }
       );
@@ -161,13 +161,13 @@ const UpLoad = () => {
   return (
     <div className="space-y-4 p-4 text-center items-center">
       <h2 className="text-2xl pb-12 text-white">업로드 할 파일 유형을 선택하세요</h2>
-      <div className="flex lg:px-80 md:px-20 sm:px-12 justify-between items-stretch">
-        <button id="사진" className="w-36 h-24 rounded-xl bg-gray-100 hover:bg-gray-200" onClick={onClick}>
+      <div className="flex lg:px-80 md:px-20 sm:px-28 justify-between items-stretch">
+        <Button id="사진" className="w-36 h-24 rounded-xl bg-gray-100 hover:bg-gray-200" onClick={onClick}>
           <i id="사진" className="text-3xl fa-solid fa-image" onClick={onClick}/>
-        </button>
-        <button id="캠" className="w-36 h-24 rounded-xl bg-gray-100 hover:bg-gray-200" onClick={onClick}>
+        </Button>
+        <Button id="캠" className="w-36 h-24 rounded-xl bg-gray-100 hover:bg-gray-200" onClick={onClick}>
           <i id="캠" className="text-3xl fa-solid fa-video" onClick={onClick}/>
-        </button>
+        </Button>
       </div>
       <div className="flex justify-center pb-10">
         <Item checked={checked} onChange={onChangeImageUpload}/>

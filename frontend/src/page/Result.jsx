@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import swal from "sweetalert";
 import {useLocation, useNavigate} from "react-router-dom";
+import { Button } from 'react-daisyui';
 
 const Result = () => {
   const [image, setImage] = useState('');
@@ -13,7 +14,6 @@ const Result = () => {
   const is_person = location.state.is_person;
   const goToMainPage = () => navigate("/");
   const goToUpLoadPage = () => navigate("/upLoad");
-
   if(!localStorage.getItem("upload")){
     if(localStorage.getItem("start")){
       swal({
@@ -63,7 +63,7 @@ const Result = () => {
           {is_person}
         </h3>
         <h4 className=''>
-          설명 : {desc}
+          헤어스타일 설명 : {desc}
         </h4>
       </div>
       <div className="flex justify-center mt-[50px]">
@@ -71,6 +71,11 @@ const Result = () => {
           className="w-[350px] h-[350px] rounded-md shadow-lg"
           src={`data:image/jpeg;base64,${image}`}
           alt="image"/>}
+      </div>
+      <div className='flex justify-center pt-10'>
+          <Button className='font-bold w-[150px] h-[50px]'>
+            처음으로 돌아가기
+          </Button>
       </div>
     </div>
   );

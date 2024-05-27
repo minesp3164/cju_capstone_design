@@ -162,10 +162,10 @@ const UpLoad = () => {
     <div className="space-y-4 p-4 text-center items-center">
       <h2 className="text-2xl pb-12 text-white">업로드 할 파일 유형을 선택하세요</h2>
       <div className="flex lg:px-80 md:px-20 sm:px-12 justify-between items-stretch">
-        <button id="사진" className="w-36 h-24 bg-gray-100 hover:bg-gray-200" onClick={onClick}>
+        <button id="사진" className="w-36 h-24 rounded-xl bg-gray-100 hover:bg-gray-200" onClick={onClick}>
           <i id="사진" className="text-3xl fa-solid fa-image" onClick={onClick}/>
         </button>
-        <button id="캠" className="w-36 h-24 bg-gray-100 hover:bg-gray-200" onClick={onClick}>
+        <button id="캠" className="w-36 h-24 rounded-xl bg-gray-100 hover:bg-gray-200" onClick={onClick}>
           <i id="캠" className="text-3xl fa-solid fa-video" onClick={onClick}/>
         </button>
       </div>

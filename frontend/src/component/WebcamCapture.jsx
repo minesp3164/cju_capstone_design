@@ -30,7 +30,7 @@ const WebcamCapture = ({ toUpload }) => {
         videoConstraints={videoConstraints}
       />
       <button onClick={capture} className="h-full w-full border-2 bg-gray-200">캡처하기</button>
-      <p className="pt-10 text-xl"><i className="text-gray-700  fa-regular fa-circle-down"/>올라갈 사진<i className="text-gray-700 fa-regular fa-circle-down"/></p>
+      <p className="pt-10 text-xl"></p>
     </div>
   );
 };

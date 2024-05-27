@@ -1,5 +1,4 @@
 import React from "react";
-import CustomDate from "./CustomDate";
 import {useNavigate} from "react-router-dom";
 
 const Header = () =>{

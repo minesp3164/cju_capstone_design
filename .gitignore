@@ -20,7 +20,7 @@ yarn-error.log*
 image/*
 /result/
 backend/recommend/photo_composition/image/*
+backend/image
 backend/recommend/photo_composition/result/*
 *.pyc
-*/*.pyc
-__pycache__
+__pycache__/

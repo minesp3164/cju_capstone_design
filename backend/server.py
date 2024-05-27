@@ -1,26 +1,21 @@
 import base64
 
-from flask import Flask, render_template, request, redirect, url_for, send_file, jsonify
-
-
-app = Flask(__name__)
-
-
 from flask import Flask, request, jsonify
+from flask_cors import CORS
+from recommend.face_shape_classification import get_recommend_hairstyle
+
 
 app = Flask(__name__)
+CORS(app)
+CORS(app,resource={r'*':{'origins':'*'}})
 picture = None
 
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
-    try:
-        file = request.files['file']
-        file.save("image/test.jpg")
-        return jsonify({'filename': file.filename})
-    except KeyError:
-
-        return jsonify({'error': 'No file part'}), 400
+    file = request.files['file']
+    file.save("image/test.jpg")
+    return jsonify({'recommendation': get_recommend_hairstyle('image/test.jpg')})
 
 
 @app.route('/result', methods=['GET', 'POST'])
@@ -36,4 +31,4 @@ def get_image():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5000, host='0.0.0.0')

@@ -18,3 +18,9 @@ yarn-debug.log*
 yarn-error.log*
 
 image/*
+/result/
+backend/recommend/photo_composition/image/*
+backend/recommend/photo_composition/result/*
+*.pyc
+*/*.pyc
+__pycache__

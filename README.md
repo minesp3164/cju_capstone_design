@@ -11,9 +11,11 @@
 ---
 ⚙️ 개발
 -   작성 언어 
-       - JavaScript,python 
+       - JavaScript
+       - python 
 -   프레임워크
        - React.js
+       - tailwindcss
 -   작성하는데 사용한 모델
        - facebook/detr-resnet-50 : 사람 인원 수 분석 - [모델 보기](https://huggingface.co/facebook/detr-resnet-50)
        - rizvandwiki/gender-classification: 성별 분석 [모델 보기](https://huggingface.co/rizvandwiki/gender-classification)

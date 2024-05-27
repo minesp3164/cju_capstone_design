@@ -25,11 +25,11 @@ const Start = () => {
         />
         <label for="checkbox" className="lg:text-4xl sm:text-2xl text-white font-medium cursor-pointer">서비스를 이용하시려면 눌러주세요</label><p/>
       </div>
-      <div className="text-center ">
+      <div className="text-center pt-5">
         <Button
           disabled={!service}
           onClick={goToGenderPage}
-          className="w-[200px] h-[75px]"
+          className="w-[150px] h-[75px]"
           >
             다음으로
           </Button>

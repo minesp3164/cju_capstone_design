@@ -10,14 +10,9 @@ const Result = () => {
   const desc = location.state.desc;
   const name = location.state.name;
   const shape = location.state.shape;
-
-  const goToMainPage = () => {
-    navigate("/");
-  }
-
-  const goToUpLoadPage = () => {
-    navigate("/upLoad");
-  }
+  const is_person = location.state.is_person;
+  const goToMainPage = () => navigate("/");
+  const goToUpLoadPage = () => navigate("/upLoad");
 
   if(!localStorage.getItem("upload")){
     if(localStorage.getItem("start")){
@@ -57,14 +52,25 @@ const Result = () => {
 
   return (
     <div className="h-full w-full">
-      <div className="flex justify-center">
-        {desc}{shape}{name}
+      <div className="text-center font-bold">
+        <h2 className=''>
+          당신의 얼굴형은 
+          <div className='text-lg pt-1'>{shape}</div>
+        </h2>
+        <h3 className='p-4'>
+          어울리는 헤어스타일 
+          <div className='text-lg pt-1'>{name}</div>
+          {is_person}
+        </h3>
+        <h4 className=''>
+          설명 : {desc}
+        </h4>
       </div>
       <div className="flex justify-center mt-[50px]">
         {image && <img
-                      className="w-[350px] h-[350px] rounded-md shadow-lg"
-                       src={`data:image/jpeg;base64,${image}`}
-                       alt="image"/>}
+          className="w-[350px] h-[350px] rounded-md shadow-lg"
+          src={`data:image/jpeg;base64,${image}`}
+          alt="image"/>}
       </div>
     </div>
   );

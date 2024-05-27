@@ -4,9 +4,7 @@ import {useNavigate} from "react-router-dom";
 const HowToUse = () => {
   const navigate = useNavigate();
   const returnToMain = () => {
-    localStorage.setItem('HowToUse', "aa")
-    console.log(localStorage.getItem('HowToUse'))
-    navigate('/')
+    navigate('/Start')
   }
   return(
     <div>
@@ -14,7 +12,7 @@ const HowToUse = () => {
         이 사이트는 사진을 통한 사람의 얼굴형 분석과 그에 맞는 헤어타일을 추천해드립니다.
       </div>
       <div className="flex items-center justify-center font-bold w-full pb-10 pt-20">
-        <div className=" text-center  text-xl border-4 border-gray-300">
+        <div className=" text-center rounded-lg text-xl border-4 bg-gray-50 border-gray-50">
           이용방법
         </div>
       </div>
@@ -24,7 +22,7 @@ const HowToUse = () => {
         <li>다음 사이트에선 이미지를 이용해 어울리는 헤어스타일을 찾으실 수 있습니다.</li>
       </ul>
       <div className="flex items-center justify-center font-bold w-full">
-        <button className="font-bold border-2 border-gray-300 p-2 bg-gray-300 hover:bg-gray-200 hover:border-gray-200" onClick={returnToMain}>
+        <button className="font-bold border-2 border-gray-50 p-2 bg-gray-50 hover:bg-gray-100 hover:border-gray-100" onClick={returnToMain}>
           시작하기
         </button>
       </div>

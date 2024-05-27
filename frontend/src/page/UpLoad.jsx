@@ -60,9 +60,9 @@ const UpLoad = () => {
 
     if (props.checked === "사진") {
       return <div className="pt-10">
-        <label className="block mb-2 text-sm font-bold text-violet-50" for="image">업로드 할 이미지</label>
+        <label className="block mb-2 text-sm font-bold text" for="image">업로드 할 이미지</label>
         <Tooltip message="본인의 얼굴이 제대로 나온 사진을 첨부해주세요" position="bottom">
-          <Button
+          <Button className="w-32 h-16"
             onClick={() => inputRef.current?.click()}
             >
               파일 업로드
@@ -146,7 +146,8 @@ const UpLoad = () => {
             desc: responseData.desc,
             name: responseData.name,
             shape: responseData.shape,
-            sex: responseData.sex
+            sex: responseData.sex,
+            is_person: responseData.is_person,
           };
         }
       );
@@ -161,21 +162,27 @@ const UpLoad = () => {
     <div className="space-y-4 p-4 text-center items-center">
       <h2 className="text-2xl pb-12 text-white">업로드 할 파일 유형을 선택하세요</h2>
       <div className="flex lg:px-80 md:px-20 sm:px-12 justify-between items-stretch">
-        <button id="사진" className="w-36 h-24 bg-gray-200 hover:bg-gray-100" onClick={onClick}>
+        <button id="사진" className="w-36 h-24 bg-gray-100 hover:bg-gray-200" onClick={onClick}>
           <i id="사진" className="text-3xl fa-solid fa-image" onClick={onClick}/>
         </button>
-        <button id="캠" className="w-36 h-24 bg-gray-200 hover:bg-gray-100" onClick={onClick}>
+        <button id="캠" className="w-36 h-24 bg-gray-100 hover:bg-gray-200" onClick={onClick}>
           <i id="캠" className="text-3xl fa-solid fa-video" onClick={onClick}/>
         </button>
       </div>
       <div className="flex justify-center pb-10">
         <Item checked={checked} onChange={onChangeImageUpload}/>
       </div>
+      <div className="text-gray-50">
+        <i className="fa-regular fa-circle-down"/>올라갈 사진<i className="fa-regular fa-circle-down"/>
+      </div>
       <div className="flex justify-center items-center">
         <ShowImages/>
       </div>
-        <Button className="bg-gray-200 w-36 h-16" glass
-                onClick={handleUpload} disabled={!canNext}>다음으로</Button>
+      <div className="pt-5">
+        <Button className="w-36 h-16  font-medium"
+          onClick={handleUpload} disabled={!canNext}>다음으로
+        </Button>
+      </div>
     </div>
   );
 };

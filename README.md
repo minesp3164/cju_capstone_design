@@ -7,7 +7,7 @@
 |[박덕수](https://github.com/zopc1548)| 2019011309| 
 |[추병윤](https://github.com/cby0320)|2019011780|
 
-담당 교수: [노기섭 교수님](https://www.cju.ac.kr/cie/viewTnHaksaProfessor.do?userId=01505&sc1=2000001532&sa1=2000001532&key=2975)
+담당 교수: [노기섭 교수님](https://prof.acin.kr/)
 ---
 ⚙️ 개발
 -   작성 언어 

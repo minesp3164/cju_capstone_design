@@ -5,7 +5,7 @@ import { Button } from "react-daisyui";
 const Main = () =>{
   const navigate = useNavigate();
   const goTOStartPage = () =>{
-    navigate('/start');
+    navigate('/upload');
   }
 
   const goToHowToUsePage = () => {

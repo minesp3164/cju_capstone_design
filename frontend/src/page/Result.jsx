@@ -73,7 +73,7 @@ const Result = () => {
           alt="image"/>}
       </div>
       <div className='flex justify-center pt-10'>
-          <Button className='font-bold w-[150px] h-[50px]'>
+          <Button className='font-bold w-[150px] h-[50px]' onClick={goToMainPage}>
             처음으로 돌아가기
           </Button>
       </div>

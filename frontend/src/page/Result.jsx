@@ -8,10 +8,10 @@ const Result = () => {
   const [image, setImage] = useState('');
   const navigate = useNavigate();
   const location = useLocation();
-  const desc = location.state.desc;
-  const name = location.state.name;
-  const shape = location.state.shape;
-  const is_person = location.state.is_person;
+  const first_response = location.state.data[0]
+  const second_response = location.state.data[1]
+  const third_response = location.state.data[2]
+  console.log(first_response)
   const goToMainPage = () => navigate("/");
   const goToUpLoadPage = () => navigate("/upLoad");
   if(!localStorage.getItem("upload")){
@@ -55,15 +55,13 @@ const Result = () => {
       <div className="text-center font-bold">
         <h2 className=''>
           당신의 얼굴형은 
-          <div className='text-lg pt-1'>{shape}</div>
+          <div className='text-lg pt-1'></div>
         </h2>
         <h3 className='p-4'>
           어울리는 헤어스타일 
-          <div className='text-lg pt-1'>{name}</div>
-          {is_person}
+          <div className='text-lg pt-1'></div>
         </h3>
         <h4 className=''>
-          헤어스타일 설명 : {desc}
         </h4>
       </div>
       <div className="flex justify-center mt-[50px]">

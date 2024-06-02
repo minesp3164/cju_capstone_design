@@ -61,7 +61,7 @@ const UpLoad = () => {
     if (props.checked === "사진") {
       return <div className="pt-10">
         <label className="block mb-2 text-sm font-bold text-gray-300" for="image">정면을 보고 있으며 한 사람만 나와야 합니다</label>
-        <Tooltip message="본인의 얼굴이 제대로 나온 사진을 첨부해주세요" position="bottom">
+        <Tooltip message="본인의 얼굴이 제대로 나오고 혼자 있는 사진을 첨부해주세요" position="bottom">
           <Button className="w-32 h-16"
             onClick={() => inputRef.current?.click()}
             >
@@ -98,12 +98,7 @@ const UpLoad = () => {
 
   const goToNextPage = () => {
     localStorage.setItem("upload","upload");
-    navigate('/result', {state: {
-        desc : data.desc,
-        name : data.name,
-        shape : data.shape,
-        sex : data.sex,
-      }});
+    navigate('/result', {data:data});
 
   };
   const onChangeCaptureShow = () => {
@@ -140,18 +135,28 @@ const UpLoad = () => {
         },
       }
     ).then(response => {
-          const responseData = response.data.recommendation
-          console.log(responseData.sex);
-          data = {
-            desc: responseData.desc,
-            name: responseData.name,
-            shape: responseData.shape,
-            sex: responseData.sex,
-            // is_person: responseData.is_person,
-          };
+          const recommendation = response.data.recommendation
+          const is_person = response.data.person
+          data = [
+          {
+            recommendation: recommendation[0]
+          },
+          {
+            recommendation: recommendation[1]
+          },
+          {
+            recommendation: recommendation[2]
+          },
+          {
+            is_person: is_person
+          }
+        ];
+        console.log(data)
+        console.log(is_person)
+        goToNextPage()
         }
       );
-        goToNextPage();
+        // goToNextPage();
     } catch (error) {
       console.log(error);
     }

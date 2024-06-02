@@ -5,7 +5,7 @@ round_face_recommendations: List[Dict[str, str]] = [
     {'name': "롱 보브", 'desc': '길이가 있는 보브 컷은 머리카락이 얼굴을 감싸면서 얼굴을 좀 더 슬림하게 보이게 해줍니다.', 'sex': 'male', 'path': '../image/male_hairstyle/round/long_bob.jpg'},
     {'name': "사이드 파트", 'desc': '한쪽으로 스타일링한 파트가 얼굴을 좀 더 길게 보이도록 도와줍니다.', 'sex': 'male', 'path': '../image/male_hairstyle/round/side_part.jpg'},
     {'name': "웨이브 펌", 'desc': '약간의 웨이브를 넣은 스타일은 둥근 얼굴형에 잘 어울리며, 얼굴을 길어 보이게 해줄 수 있어요.', 'sex': 'male', 'path': '../image/male_hairstyle/round/wave_perm.jpg'},
-    {'name': "볼륨 펌", 'desc': '', 'sex': 'male', 'path': '../image/male_hairstyle/round/volume_perm.jpg'},
+    {'name': "볼륨 펌", 'desc': '볼륨펌은 자연스러운 볼륨을 더해 머리가 풍성해 보이도록 하는 펌 스타일로, 얇거나 가는 머리카락에 특히 효과적입니다.', 'sex': 'male', 'path': '../image/male_hairstyle/round/volume_perm.jpg'},
     {'name': "에그 펌", 'desc': '머리카락을 약간 곱슬하게 말아내어 부드럽고 우아한 웨이브를 연출합니다. 이 스타일은 자연스럽고 곡선적인 형태를 보이며, 고급스러운 분위기를 연출할 수 있습니다.', 'sex': 'male', 'path': '../image/male_hairstyle/round/egg_perm.jpg'},
     {'name': "버즈 컷", 'desc': '반삭과도 같은 윗 기장감에 짧게 다듬은 옆,뒤로 형태를 완성합니다. 버즈컷은 모험심이 강하거나 그와 맞는 스타일을 갖춘 사람만이 소화해낼 수 있는 헤어컷입니다.', 'sex': 'male', 'path': '../image/male_hairstyle/round/buzz.jpg'},
     {'name': "페이드 컷", 'desc': '머리 옆과 뒤를 점차 짧게 깎아 위쪽으로 갈수록 길어지게 하는 남성 헤어스타일로, 깔끔하고 세련된 느낌을 줍니다.', 'sex': 'male', 'path': '../image/male_hairstyle/round/fade_cut.jpg'},
@@ -33,7 +33,7 @@ round_face_recommendations: List[Dict[str, str]] = [
 
 heart_face_recommendations: List[Dict[str, str]] = [
     {'name': "사이드 파트", 'desc': '한쪽으로 스타일링한 파트가 얼굴을 좀 더 길게 보이도록 도와줍니다.', 'sex': 'male', 'path': '../image/male_hairstyle/heart/side_part.jpg'},
-    {'name': "풀 보브", 'desc': '양쪽으로 볼륨 있는 보브 컷은 얼굴의 하트 모양을 부드럽게 잡아주면서 매력을 더해줍니다.', 'sex': 'male', 'path': '../image/male_hairstyle/heart/full_bob.jpg'},
+    {'name': "풀 보브", 'desc': '풀 보브 컷은 긴 머리를 가지고 양 옆과 뒷부분을 다소 짧게 자르고, 머리 위쪽을 길게 자른 후 보브 스타일로 스타일링하는 헤어컷입니다.', 'sex': 'male', 'path': '../image/male_hairstyle/heart/full_bob.jpg'},
     {'name': "미디움 레이어드 컷", 'desc': '중간 정도의 길이의 머리카락에 층을 내어 스타일링하는 헤어컷입니다. 이 스타일은 보통 어깨 아래까지의 길이의 머리를 가지고 층을 자르는데, 이를 통해 머리카락이 자연스럽게 움직이며 볼륨감이 살아나는 효과를 얻을 수 있습니다.', 'sex': 'male', 'path': '../image/male_hairstyle/heart/midium_layered_cut.jpg'},
     {'name': "에그 펌", 'desc': '머리카락을 약간 곱슬하게 말아내어 부드럽고 우아한 웨이브를 연출합니다. 이 스타일은 자연스럽고 곡선적인 형태를 보이며, 고급스러운 분위기를 연출할 수 있습니다.', 'sex': 'male', 'path': '../image/male_hairstyle/heart/egg_perm.jpg'},
     {'name': "애즈 컷", 'desc': '머리를 짧게 깎은 후 위쪽으로 스타일링하는 헤어컷으로, 전반적으로 길이가 짧고 균일하며, 옆부분이나 뒷부분을 살짝 길게 남겨 스타일을 연출합니다.', 'sex': 'male', 'path': '../image/male_hairstyle/heart/adze_cut.jpg'},
@@ -49,7 +49,7 @@ heart_face_recommendations: List[Dict[str, str]] = [
     {'name': "보더 펌", 'desc': '부드럽고 자연스러운 웨이브를 연출하는 헤어스타일로, 헤어 끝에 경사를 주어 자연스러운 곡선을 형성합니다. 부드럽고 우아한 느낌을 주며, 머리카락을 풍성하게 보이게 합니다.', 'sex': 'female', 'path': '../image/female_hairstyle/heart/boder.jpg'},
     {'name': "레아 펌", 'desc': '자연스러운 컬과 볼륨감을 강조한 헤어스타일로, 얼굴 윤곽을 부드럽게 보이게 하고 우아하면서도 캐주얼한 느낌을 줍니다.', 'sex': 'female', 'path': '../image/female_hairstyle/heart/lea_perm.jpg'},
     {'name': "러플 펌", 'desc': '부드럽고 자연스러운 웨이브를 강조하는 헤어스타일로, 머리카락을 부드럽게 풀어 풍성한 볼륨을 연출합니다. ', 'sex': 'female', 'path': '../image/female_hairstyle/heart/ruffle_perm.jpg'},
-    {'name': "풀 보브", 'desc': '양쪽으로 볼륨 있는 보브 컷은 얼굴의 하트 모양을 부드럽게 잡아주면서 매력을 더해줍니다.', 'sex': 'female', 'path': '../image/female_hairstyle/heart/full_bob.jpg'},
+    {'name': "풀 보브", 'desc': '풀 보브 컷은 머리 길이를 균일하게 자르고 턱선까지 내려오는 길이로 스타일링하여 세련되고 단정한 느낌을 주는 여성 헤어스타일입니다. 이 스타일은 다양한 얼굴형에 어울리며 관리가 비교적 쉬운 것이 특징입니다.', 'sex': 'female', 'path': '../image/female_hairstyle/heart/full_bob.jpg'},
     {'name': "미디움 레이어드 컷", 'desc': '중간 길이의 머리카락에 층을 내어 자연스럽고 부드러운 웨이브를 연출하는 헤어스타일입니다. 다양한 얼굴형에 어울리며, 세련되고 현대적인 느낌을 연출합니다.', 'sex': 'female', 'path': '../image/female_hairstyle/heart/midium_layered_cut.jpg'},
     {'name': "에그 펌", 'desc': '부드러운 곡선과 자연스러운 볼륨감을 강조한 웨이브 펌으로, 달걀형 얼굴처럼 부드럽고 둥근 느낌을 연출합니다.', 'sex': 'female', 'path': '../image/female_hairstyle/heart/egg_perm.jpg'}
 ]

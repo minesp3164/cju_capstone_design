@@ -7,9 +7,12 @@ from .gender_classification import get_gender
 from transformers import DetrImageProcessor, DetrForObjectDetection
 import torch
 
+from PIL import Image
 
 #사람 인지 아닌지 혹은 한명인지
-def get_is_person(image):
+def get_is_person(image_path: str) -> bool:
+    image = Image.open(image_path)
+
     # 모델과 프로세서 로드
     processor = DetrImageProcessor.from_pretrained("facebook/detr-resnet-50", revision="no_timm")
     model = DetrForObjectDetection.from_pretrained("facebook/detr-resnet-50", revision="no_timm")
@@ -27,9 +30,7 @@ def get_is_person(image):
     is_person = False
     num_people = 0
     for score, label, box in zip(results["scores"], results["labels"], results["boxes"]):
-        box = [round(i, 2) for i in box.tolist()]
-        label_name = model.config.id2label[label.item()]
-        if label_name == 'person':
+        if model.config.id2label[label.item()] == 'person':
             num_people += 1
 
     if num_people == 1:

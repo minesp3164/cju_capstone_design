@@ -14,8 +14,13 @@ picture = None
 @app.route('/upload', methods=['POST'])
 def upload_file():
     file = request.files['file']
-    file.save("image/test.jpg")
-    return jsonify({'recommendation': get_recommend_hairstyle('image/test.jpg'), 'person': get_is_person('image/test.jpg')})
+    file_path = "image/test.jpg"
+    file.save(file_path)
+
+    recommendations = get_recommend_hairstyle(file_path)
+    is_person = get_is_person(file_path)
+
+    return jsonify({'recommendation': recommendations, 'person': is_person})
 
 @app.route('/result', methods=['GET', 'POST'])
 def get_image():

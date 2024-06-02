@@ -2,7 +2,7 @@ import base64
 
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from recommend.face_shape_classification import get_recommend_hairstyle
+from recommend.face_shape_classification import get_recommend_hairstyle, get_is_person
 
 
 app = Flask(__name__)
@@ -15,15 +15,25 @@ picture = None
 def upload_file():
     file = request.files['file']
     file.save("image/test.jpg")
-    return jsonify({'recommendation': get_recommend_hairstyle('image/test.jpg')})
-
+    return jsonify({'recommendation': get_recommend_hairstyle('image/test.jpg'), 'person': get_is_person('image/test.jpg')})
 
 @app.route('/result', methods=['GET', 'POST'])
 def get_image():
     try:
-        with open('image/test.jpg', 'rb') as img_file:
-            encoded_image = base64.b64encode(img_file.read()).decode('utf-8')
-        return jsonify({'image': encoded_image})
+        image_paths = get_recommend_hairstyle('image/test.jpg')
+
+        encoded_images = []
+        for rec in image_paths:
+            path = rec['path']
+            with open(path, 'rb') as img_file:
+                encoded_image = base64.b64encode(img_file.read()).decode('utf-8')
+                encoded_images.append({
+                    'name': rec['name'],
+                    'desc': rec['desc'],
+                    'image': encoded_image
+                })
+
+        return jsonify({'images': encoded_images})
     except FileNotFoundError:
         return jsonify({'error': 'Image file not found'}), 404
     except Exception as e:

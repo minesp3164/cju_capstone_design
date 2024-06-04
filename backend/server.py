@@ -10,7 +10,6 @@ CORS(app)
 CORS(app, resources={r'*': {'origins': '*'}})
 
 
-
 def read_image(file_path):
     try:
         with open(file_path, 'rb') as img_file:
@@ -22,24 +21,16 @@ def read_image(file_path):
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
-    global recommendations
     file = request.files['file']
     file_path = os.path.join('image', 'test.jpg')
     file.save(file_path)
 
-    recommendations = get_recommend_hairstyle(file_path)
-    is_person = get_is_person(file_path)
-
-    return jsonify({'recommendation': recommendations, 'person': is_person})
-
-
-@app.route('/result', methods=['GET'])
-def get_image():
     try:
-        image_paths = get_recommend_hairstyle('image/test.jpg')
-        encoded_images = []
+        recommendations = get_recommend_hairstyle(file_path)
+        is_person = get_is_person(file_path)
 
-        for rec in image_paths:
+        encoded_images = []
+        for rec in recommendations:
             encoded_image = read_image(rec['path'])
             if encoded_image is None:
                 return jsonify({'error': f"Image file '{rec['name']}' not found"}), 404
@@ -49,10 +40,10 @@ def get_image():
                 'image': encoded_image
             })
 
-        return jsonify({'images': encoded_images})
+        return jsonify({'images': encoded_images, 'person': is_person})
     except Exception as e:
         return jsonify({'error': str(e)}), 500
-
+    
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000, host='0.0.0.0')

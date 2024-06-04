@@ -4,6 +4,7 @@ import Main from "../page/Main";
 import UpLoad from "../page/UpLoad";
 import Result from "../page/Result";
 import HowToUse from "../page/HowToUse";
+import Detail from "../page/Detail"
 
 const Body = () =>{
 
@@ -15,6 +16,7 @@ const Body = () =>{
           <Route path="/" element={<Main/>}/>
           <Route path="/upLoad" element={<UpLoad/>}/>
           <Route path="/result" element={<Result/>}/>
+          <Route path="/detail/:id" element={<Detail/>}/>
         </Routes>
       </div>
     </div>

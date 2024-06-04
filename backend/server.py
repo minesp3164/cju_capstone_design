@@ -34,7 +34,6 @@ def get_image():
                 encoded_image = base64.b64encode(img_file.read()).decode('utf-8')
                 encoded_images.append({
                     'name': rec['name'],
-                    'desc': rec['desc'],
                     'image': encoded_image
                 })
 

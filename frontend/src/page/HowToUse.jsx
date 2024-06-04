@@ -14,7 +14,7 @@ const HowToUse = () => {
         이 사이트는 사진을 통한 사람의 얼굴형 분석과 그에 맞는 헤어타일을 추천해드립니다.
       </div>
       <div className="flex items-center justify-center font-bold w-full pb-10 pt-20">
-        <div className=" text-center py-5 px-2 rounded-lg text-xl border-4 bg-gray-200 border-gray-50">
+        <div className=" text-center py-5                            px-2 rounded-lg text-xl border-4 bg-gray-200 border-gray-50">
           이용방법
         </div>
       </div>

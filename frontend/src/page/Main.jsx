@@ -12,10 +12,6 @@ const Main = () =>{
     navigate('/howToUse')
   }
 
-  const HandleHowToUse = () =>{
-   
-      return
-  }
 
   return (
     <div className="text-center">

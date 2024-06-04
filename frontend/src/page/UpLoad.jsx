@@ -4,6 +4,7 @@ import WebcamCapture from "../component/WebcamCapture";
 import { Button, Tooltip } from "react-daisyui";
 import swal from "sweetalert";
 import axiosServer from "../component/Instance";
+import axios from "axios";
 
 
 
@@ -98,7 +99,8 @@ const UpLoad = () => {
 
   const goToNextPage = () => {
     localStorage.setItem("upload","upload");
-    navigate('/result', {data:data});
+    console.log(data)
+    navigate('/result', {state: data});
 
   };
   const onChangeCaptureShow = () => {
@@ -113,7 +115,6 @@ const UpLoad = () => {
   }
   const onChangeImageUpload = (e) => {
     setSelectedFile(e.target.files[0]);
-    console.log(e.target.files[0]);
     const file = e.target.files[0];
     if(file){
       const reader = new FileReader();
@@ -129,7 +130,7 @@ const UpLoad = () => {
     try {
       const formData = new FormData();
       formData.append("file", selectedFile);
-      const response = await axiosServer.post('/upload', formData, {
+      const response = await axios.post('/upload', formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -139,20 +140,18 @@ const UpLoad = () => {
           const is_person = response.data.person
           data = [
           {
-            recommendation: recommendation[0]
+            first: recommendation[0]
           },
           {
-            recommendation: recommendation[1]
+            second: recommendation[1]
           },
           {
-            recommendation: recommendation[2]
+            third: recommendation[2]
           },
           {
             is_person: is_person
           }
         ];
-        console.log(data)
-        console.log(is_person)
         goToNextPage()
         }
       );

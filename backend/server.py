@@ -1,5 +1,5 @@
+import os
 import base64
-
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from recommend.face_shape_classification import get_recommend_hairstyle, get_is_person
@@ -7,14 +7,23 @@ from recommend.face_shape_classification import get_recommend_hairstyle, get_is_
 
 app = Flask(__name__)
 CORS(app)
-CORS(app,resource={r'*':{'origins':'*'}})
-picture = None
+CORS(app, resources={r'*': {'origins': '*'}})
+
+
+
+def read_image(file_path):
+    try:
+        with open(file_path, 'rb') as img_file:
+            return base64.b64encode(img_file.read()).decode('utf-8')
+    except FileNotFoundError:
+        return None
 
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
+    global recommendations
     file = request.files['file']
-    file_path = "image/test.jpg"
+    file_path = os.path.join('image', 'test.jpg')
     file.save(file_path)
 
     recommendations = get_recommend_hairstyle(file_path)
@@ -22,24 +31,23 @@ def upload_file():
 
     return jsonify({'recommendation': recommendations, 'person': is_person})
 
-@app.route('/result', methods=['GET', 'POST'])
+
+@app.route('/result', methods=['GET'])
 def get_image():
     try:
-        image_paths = get_recommend_hairstyle('image/test.jpg')
-
+        image_paths = recommendations['path']
         encoded_images = []
+
         for rec in image_paths:
-            path = rec['path']
-            with open(path, 'rb') as img_file:
-                encoded_image = base64.b64encode(img_file.read()).decode('utf-8')
-                encoded_images.append({
-                    'name': rec['name'],
-                    'image': encoded_image
-                })
+            encoded_image = read_image(rec['path'])
+            if encoded_image is None:
+                return jsonify({'error': f"Image file '{rec['name']}' not found"}), 404
+            encoded_images.append({
+                'name': rec['name'],
+                'image': encoded_image
+            })
 
         return jsonify({'images': encoded_images})
-    except FileNotFoundError:
-        return jsonify({'error': 'Image file not found'}), 404
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 

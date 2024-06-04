@@ -14,7 +14,8 @@ CORS(app, resources={r'*': {'origins': '*'}})
 def read_image(file_path):
     try:
         with open(file_path, 'rb') as img_file:
-            return base64.b64encode(img_file.read()).decode('utf-8')
+            encoded_image = base64.b64encode(img_file.read()).decode('utf-8')
+            return encoded_image
     except FileNotFoundError:
         return None
 
@@ -35,7 +36,7 @@ def upload_file():
 @app.route('/result', methods=['GET'])
 def get_image():
     try:
-        image_paths = recommendations['path']
+        image_paths = get_recommend_hairstyle('image/test.jpg')
         encoded_images = []
 
         for rec in image_paths:
@@ -44,6 +45,7 @@ def get_image():
                 return jsonify({'error': f"Image file '{rec['name']}' not found"}), 404
             encoded_images.append({
                 'name': rec['name'],
+                'desc': rec['desc'],
                 'image': encoded_image
             })
 

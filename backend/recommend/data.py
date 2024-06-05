@@ -38,7 +38,7 @@ heart_face_recommendations: List[Dict[str, str]] = [
     {'name': "에그 펌", 'desc': '머리카락을 약간 곱슬하게 말아내어 부드럽고 우아한 웨이브를 연출합니다. 이 스타일은 자연스럽고 곡선적인 형태를 보이며, 고급스러운 분위기를 연출할 수 있습니다.', 'sex': 'male', 'path': './image/male_hairstyle/heart/egg_perm.jpg'},
     {'name': "애즈 컷", 'desc': '머리를 짧게 깎은 후 위쪽으로 스타일링하는 헤어컷으로, 전반적으로 길이가 짧고 균일하며, 옆부분이나 뒷부분을 살짝 길게 남겨 스타일을 연출합니다.', 'sex': 'male', 'path': './image/male_hairstyle/heart/adze_cut.jpg'},
     {'name': "리프 컷", 'desc': '층을 많이 내어 가볍고 자연스러운 느낌을 주는 헤어스타일로, 머리카락이 부드럽게 떨어져 볼륨감을 강조합니다. 얼굴을 작고 갸름하게 보이도록 도와줍니다.', 'sex': 'male', 'path': './image/male_hairstyle/heart/leaf_cut.jpg'},
-    {'name': "시스루 컷", 'desc': '남자 시스루컷은 앞머리를 가볍고 자연스럽게 내려 이마가 약간 비치게 하는 스타일로, 부드럽고 세련된 이미지를 연출합니다.', 'sex': 'male', 'path': './image/male_hairstyle/heart/see_through_cut.jpg'},
+    {'name': "시스루 컷", 'desc': '남자 시스루컷은 앞머리를 가볍고 자연스럽게 내려 이마가 약간 비치게 하는 스타일로, 부드럽고 세련된 이미지를 연출합니다.', 'sex': 'male', 'path': './image/male_hairstyle/heart/see_through.jpg'},
     {'name': "투 블럭 컷", 'desc': '단발머리 아래쪽 절반을 이발기로 다듬어 위쪽 절반을 그대로 남겨 턱이 생기도록 한 헤어스타일입니다. 앞머리와 윗머리는 남기고 옆 뒷머리를 짧게 치는 헤어스타일로, 머리가 두 부분으로 나뉜다고 해서 투 블록이라고 불립니다.', 'sex': 'male', 'path': './image/male_hairstyle/heart/two_block.jpg'},
     {'name': "볼륨 펌", 'desc': '머리카락에 볼륨과 높이를 주어 풍성하고 화려한 느낌을 연출하는 헤어스타일입니다. 볼륨컷은 자신감 있고 세련된 느낌을 주며, 다양한 머리 스타일과 잘 어울리는 헤어컷 중 하나입니다.', 'sex': 'male', 'path': './image/male_hairstyle/heart/volume_perm.jpg'},
     {'name': '롱 레이어드', 'desc': '양쪽으로 긴 레이어를 넣어 얼굴을 길게 보이도록 하는 스타일입니다.', 'sex': 'female', 'path': './image/female_hairstyle/heart/long layered_cut.jpg'},

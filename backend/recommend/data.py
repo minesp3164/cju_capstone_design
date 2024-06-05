@@ -112,7 +112,7 @@ square_face_recommendations: List[Dict[str, str]] = [
 
 
 oval_face_recommendations: List[Dict[str, str]] = [
-    {'name': "사이드 파티트", 'desc': '측면에 파트를 만들어 얼굴의 길이를 강조하고, 얼굴을 조금 더 길게 보이도록 도와줍니다.', 'sex': 'male', 'path': './image/male_hairstyle/oval/side_part.jpg'},
+    {'name': "사이드 파트", 'desc': '측면에 파트를 만들어 얼굴의 길이를 강조하고, 얼굴을 조금 더 길게 보이도록 도와줍니다.', 'sex': 'male', 'path': './image/male_hairstyle/oval/side_part.jpg'},
     {'name': "버즈 컷", 'desc': '반삭과도 같은 윗 기장감에 짧게 다듬은 옆,뒤로 형태를 완성합니다. 버즈컷은 모험심이 강하거나 그와 맞는 스타일을 갖춘 사람만이 소화해낼 수 있는 헤어컷입니다.', 'sex': 'male', 'path': './image/male_hairstyle/oval/buzz_cut.jpg'},
     {'name': "페이드 컷", 'desc': '머리 옆과 뒤를 점차 짧게 깎아 위쪽으로 갈수록 길어지게 하는 남성 헤어스타일로, 깔끔하고 세련된 느낌을 줍니다.', 'sex': 'male', 'path': './image/male_hairstyle/oval/fade_cut.jpg'},
     {'name': "아이비 리그 컷", 'desc': '고전적이고 우아한 느낌을 주는 헤어스타일로, 옆머리를 짧게 깎고 윗머리를 적당히 길게 남겨서 뒤로 정리하는 스타일입니다. 옆머리와 뒷머리 사이에 선명한 선을 만들어 시원한 느낌을 줍니다.', 'sex': 'male', 'path': './image/male_hairstyle/oval/ivy_league_cut.jpg'},
@@ -124,7 +124,7 @@ oval_face_recommendations: List[Dict[str, str]] = [
     {'name': "언더 컷", 'desc': '머리 전체를 일정한 길이로 깎은 후, 머리의 하부나 한쪽 옆부분을 매우 짧게 깎아 스타일링하는 헤어컷 스타일입니다. 이 스타일은 긴 윗머리와 짧은 옆머리의 대조가 독특하며, 현대적이고 개성 있는 이미지를 연출합니다.', 'sex': 'male', 'path': './image/male_hairstyle/oval/under_cut.jpg'},
     {'name': '롱 레이어드', 'desc': '양쪽으로 긴 레이어를 넣어 얼굴을 길게 보이도록 하는 스타일입니다.', 'sex': 'female', 'path': './image/female_hairstyle/oval/long_layered_cut.jpg'},
     {'name': "소프트 웨이브", 'desc': '부드러운 웨이브를 넣어서 얼굴의 각도를 부드럽게 만들어주고, 전체적인 룩을 부드럽고 여성스럽게 만들어줍니다.', 'sex': 'female', 'path': './image/female_hairstyle/oval/soft_wave.jpg'},
-    {'name': "사이드 파티트", 'desc': '측면에 파트를 만들어 얼굴의 길이를 강조하고, 얼굴을 조금 더 길게 보이도록 도와줍니다.', 'sex': 'female', 'path': './image/female_hairstyle/oval/side_part.jpg'},
+    {'name': "사이드 파트", 'desc': '측면에 파트를 만들어 얼굴의 길이를 강조하고, 얼굴을 조금 더 길게 보이도록 도와줍니다.', 'sex': 'female', 'path': './image/female_hairstyle/oval/side_part.jpg'},
     {'name': "레이어드 펌", 'desc': '레이어드 스타일에 파마를 넣어서 얼굴을 더욱 둥글고 부드럽게 만들어줍니다.', 'sex': 'female', 'path': './image/female_hairstyle/oval/layered_perm.jpg'},
     {'name': "클라우드 펌", 'desc': '부드럽고 우아한 웨이브를 연출하는 헤어스타일로, 공중에 떠 있는 구름처럼 부드러운 느낌을 줍니다.', 'sex': 'female', 'path': './image/female_hairstyle/oval/cloud_perm.jpg'},
     {'name': "커튼 뱅", 'desc': '얼굴 옆으로 자연스럽게 흘러내리는 긴 앞머리로, 얼굴형을 부드럽게 보완해 주며, 다양한 길이와 스타일에 잘 어울립니다.', 'sex': 'female', 'path': './image/female_hairstyle/oval/curtain_bangs.jpg'},

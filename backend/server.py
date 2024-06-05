@@ -21,27 +21,35 @@ def read_image(file_path):
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
+    global recommendations
     file = request.files['file']
     file_path = os.path.join('image', 'test.jpg')
     file.save(file_path)
 
-    try:
-        recommendations = get_recommend_hairstyle(file_path)
-        is_person = get_is_person(file_path)
+    recommendations = get_recommend_hairstyle(file_path)
+    is_person = get_is_person(file_path)
 
+    return jsonify({'recommendation': recommendations, 'person': is_person})
+
+
+@app.route('/result', methods=['GET'])
+def get_image():
+    global recommendations
+    try:
+        image_paths = get_recommend_hairstyle('image/test.jpg')
         encoded_images = []
-        for rec in recommendations:
+
+        for rec in image_paths:
             encoded_image = read_image(rec['path'])
             if encoded_image is None:
                 return jsonify({'error': f"Image file '{rec['name']}' not found"}), 404
             encoded_images.append({
-                'name': rec['name'],
-                'desc': rec['desc'],
                 'image': encoded_image
             })
 
-        return jsonify({'images': encoded_images, 'person': is_person})
+        return jsonify({'images': encoded_images})
     except Exception as e:
+        logging.error(f"Error in get_images: {e}")
         return jsonify({'error': str(e)}), 500
 
 

@@ -105,7 +105,7 @@ square_face_recommendations: List[Dict[str, str]] = [
     {'name': "사이드 파트", 'desc': '측면에 파트를 만들어 얼굴의 길이를 강조하고, 얼굴을 조금 더 길게 보이도록 도와줍니다.', 'sex': 'female', 'path': './image/female_hairstyle/square/side_part.jpg'},
     {'name': "비치 웨이브", 'desc': '해변에서 말린 듯한 자연스럽고 헐렁한 웨이브로, 편안하고 시원한 분위기를 연출하며, 여름철이나 휴양지에서 인기 있는 스타일입니다.', 'sex': 'female', 'path': './image/female_hairstyle/square/beach_wave_hair.jpg'},
     {'name': "커튼 뱅", 'desc': '얼굴 옆으로 자연스럽게 흘러내리는 긴 앞머리로, 얼굴형을 부드럽게 보완해 주며, 다양한 길이와 스타일에 잘 어울립니다.', 'sex': 'female', 'path': './image/female_hairstyle/square/curtain_bangs.jpg'},
-    {'name': "레이어드 컷", 'desc': '층을 내어 볼륨과 움직임을 주는 컷으로, 다양한 스타일링이 가능하고, 얼굴형에 맞춰 조절할 수 있습니다.', 'sex': 'female', 'path': './image/female_hairstyle/square/layerd_cut.jpg'},
+    {'name': "레이어드 컷", 'desc': '층을 내어 볼륨과 움직임을 주는 컷으로, 다양한 스타일링이 가능하고, 얼굴형에 맞춰 조절할 수 있습니다.', 'sex': 'female', 'path': './image/female_hairstyle/square/layered_cut.jpg'},
     {'name': "프라다 컷", 'desc': '깔끔하고 세련된 단발 스타일로, 엣지 있는 도시적인 느낌을 주며, 관리가 쉬워 바쁜 현대인에게 적합합니다.', 'sex': 'female', 'path': './image/female_hairstyle/square/prada_cut.jpg'},
     {'name': "스무스 컷", 'desc': '부드럽고 매끄러운 라인을 강조하는 컷으로, 단정하고 정교한 스타일을 연출하며, 직장이나 공식적인 자리에서도 잘 어울립니다.', 'sex': 'female', 'path': './image/female_hairstyle/square/smooth_cut.jpg'}
 ]

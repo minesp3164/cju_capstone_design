@@ -45,7 +45,7 @@ heart_face_recommendations: List[Dict[str, str]] = [
     {'name': "롱 스트레이트", 'desc': '약간의 웨이브를 넣은 스타일은 둥근 얼굴형에 잘 어울리며, 얼굴을 길어 보이게 해줄 수 있어요.', 'sex': 'female', 'path': './image/female_hairstyle/heart/long_straight_cut.jpg'},
     {'name': '레이어드 보브', 'desc': '턱선 길이의 보브 스타일에 여러 층을 추가하여 볼륨과 움직임을 더하는 헤어스타일입니다. 이 스타일은 얼굴을 작아 보이게 하며, 세련되고 현대적인 이미지를 연출합니다.', 'sex': 'female', 'path': './image/female_hairstyle/heart/layered_bob_cut.jpg'},
     {'name': "벌룬 펌", 'desc': '풍성하고 볼륨감 있는 웨이브를 연출하는 헤어스타일로, 얼굴을 작아 보이게 하고 부드러운 이미지를 강조합니다.', 'sex': 'female', 'path': './image/female_hairstyle/heart/balloon_perm.jpg'},
-    {'name': "보브 컷", 'desc': '어깨 라인을 기준으로 길이가 짧게 자른 헤어스타일로, 앞머리와 뒷머리의 길이가 비슷하게 유지됩니다. ', 'sex': 'female', 'path': './image/female_hairstyle/heart/bob_cut.jpg'},
+    {'name': "롱 보브 컷", 'desc': '어깨 라인을 기준으로 길이가 짧게 자른 헤어스타일로, 앞머리와 뒷머리의 길이가 비슷하게 유지됩니다. ', 'sex': 'female', 'path': './image/female_hairstyle/heart/long_bob_cut.jpg'},
     {'name': "보더 펌", 'desc': '부드럽고 자연스러운 웨이브를 연출하는 헤어스타일로, 헤어 끝에 경사를 주어 자연스러운 곡선을 형성합니다. 부드럽고 우아한 느낌을 주며, 머리카락을 풍성하게 보이게 합니다.', 'sex': 'female', 'path': './image/female_hairstyle/heart/boder.jpg'},
     {'name': "레아 펌", 'desc': '자연스러운 컬과 볼륨감을 강조한 헤어스타일로, 얼굴 윤곽을 부드럽게 보이게 하고 우아하면서도 캐주얼한 느낌을 줍니다.', 'sex': 'female', 'path': './image/female_hairstyle/heart/lea_perm.jpg'},
     {'name': "러플 펌", 'desc': '부드럽고 자연스러운 웨이브를 강조하는 헤어스타일로, 머리카락을 부드럽게 풀어 풍성한 볼륨을 연출합니다. ', 'sex': 'female', 'path': './image/female_hairstyle/heart/ruffle_perm.jpg'},

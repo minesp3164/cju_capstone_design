@@ -17,10 +17,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-image/*
 /result/
-backend/recommend/photo_composition/image/*
-backend/image
-backend/recommend/photo_composition/result/*
 *.pyc
 __pycache__/

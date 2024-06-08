@@ -1,6 +1,7 @@
 import os
 import base64
-from flask import Flask, request, jsonify
+import requests
+from flask import Flask, request, jsonify, logging
 from flask_cors import CORS
 from recommend.face_shape_classification import get_recommend_hairstyle, get_is_person
 
@@ -17,6 +18,11 @@ def read_image(file_path):
             return encoded_image
     except FileNotFoundError:
         return None
+
+
+def save_image(encoded_image, file_path):
+    with open(file_path, 'wb') as img_file:
+        img_file.write(base64.b64decode(encoded_image))
 
 
 @app.route('/upload', methods=['POST'])
@@ -51,6 +57,42 @@ def get_image():
     except Exception as e:
         logging.error(f"Error in get_images: {e}")
         return jsonify({'error': str(e)}), 500
+
+
+@app.route('/process_images', methods=['POST', 'GET'])
+def process_images():
+    url = 'http://43.202.169.27:5001/syn_upload'
+    file_path1 = os.path.join('image', 'test.jpg')
+    file_path2 = os.path.join('image', 'test2.jpg')
+    encoded_image1 = read_image(file_path1)
+    encoded_image2 = read_image(file_path2)
+
+    data = {
+        'file1': encoded_image1,
+        'file2': encoded_image2
+    }
+    headers = {'Content-Type': 'application/json'}
+    response = requests.post(url, json=data, headers=headers)
+    if response.status_code == 200:
+        return jsonify({'message': 'Images processed successfully'}), 200
+    else:
+        return jsonify({'error': 'Failed to process images'}), response.status_code
+
+
+@app.route('/get_processed_image', methods=['GET'])
+def get_processed_image():
+    url = 'http://43.202.169.27:5001/syn_result'
+    response = requests.get(url)
+    if response.status_code == 200:
+        data = response.json()
+        if 'image' in data:
+            file_path = os.path.join('image', 'hairstyle_syn.jpg')
+            save_image(data['image'], file_path)
+            return jsonify({'message': 'Processed image received and saved successfully'}), 200
+        else:
+            return jsonify({'error': 'No image found in response'}), 404
+    else:
+        return jsonify({'error': 'Failed to get processed image'}), response.status_code
 
 
 if __name__ == '__main__':

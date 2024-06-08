@@ -1,6 +1,7 @@
 import os
 import base64
 import requests
+from dotenv import load_dotenv
 from flask import Flask, request, jsonify, logging
 from flask_cors import CORS
 from recommend.face_shape_classification import get_recommend_hairstyle, get_is_person
@@ -10,6 +11,9 @@ app = Flask(__name__)
 CORS(app)
 CORS(app, resources={r'*': {'origins': '*'}})
 
+load_dotenv()
+upload_images = os.environ.get('UPLOAD_IMAGES')
+result_image = os.environ.get('RESULT_IMAGE')
 
 def read_image(file_path):
     try:
@@ -61,7 +65,7 @@ def get_image():
 
 @app.route('/process_images', methods=['POST', 'GET'])
 def process_images():
-    url = 'http://43.202.169.27:5001/syn_upload'
+    url = upload_images
     file_path1 = os.path.join('image', 'test.jpg')
     file_path2 = os.path.join('image', 'test2.jpg')
     encoded_image1 = read_image(file_path1)
@@ -81,7 +85,7 @@ def process_images():
 
 @app.route('/get_processed_image', methods=['GET'])
 def get_processed_image():
-    url = 'http://43.202.169.27:5001/syn_result'
+    url = result_image
     response = requests.get(url)
     if response.status_code == 200:
         data = response.json()

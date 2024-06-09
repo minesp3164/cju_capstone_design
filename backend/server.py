@@ -12,8 +12,7 @@ CORS(app)
 CORS(app, resources={r'*': {'origins': '*'}})
 
 load_dotenv()
-upload_images = os.environ.get('UPLOAD_IMAGES')
-result_image = os.environ.get('RESULT_IMAGE')
+upload = os.environ.get('UPLOAD_IMAGES')
 
 def read_image(file_path):
     try:
@@ -47,36 +46,28 @@ def get_image():
     global recommendations
     encoded_image = read_image(recommendations['path'])
     
+    
     if encoded_image is None:
         return jsonify({'error': f"Image file '{recommendations['name']}' not found"}), 404
 
     return jsonify({'image': encoded_image})
 
 
-@app.route('/process_images', methods=['POST', 'GET'])
-def process_images():
-    url = upload_images
+@app.route('/get_processed_image', methods=['GET','POST'])
+def get_processed_image():
+    url = upload
     file_path1 = os.path.join('image', 'test.jpg')
     file_path2 = os.path.join(recommendations['path'])
     encoded_image1 = read_image(file_path1)
     encoded_image2 = read_image(file_path2)
-
+    headers = {'Content-Type': 'application/json'}
     data = {
         'file1': encoded_image1,
         'file2': encoded_image2
     }
-    headers = {'Content-Type': 'application/json'}
     response = requests.post(url, json=data, headers=headers)
-    if response.status_code == 200:
-        return jsonify({'message': 'Images processed successfully'}), 200
-    else:
-        return jsonify({'error': 'Failed to process images'}), response.status_code
-
-
-@app.route('/get_processed_image', methods=['GET'])
-def get_processed_image():
-    url = result_image
     response = requests.get(url)
+    
     if response.status_code == 200:
         data = response.json()
         if 'image' in data:

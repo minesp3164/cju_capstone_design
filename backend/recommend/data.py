@@ -70,7 +70,7 @@ oblong_face_recommendations: List[Dict[str, str]] = [
     {'name': '롱 레이어드', 'desc': '양쪽으로 긴 레이어를 넣어 얼굴을 길게 보이도록 하는 스타일입니다.', 'sex': 'female', 'path': './image/female_hairstyle/oblong/long_layered_cut.jpg'},
     {'name': "사이드 스위프트", 'desc': '한쪽으로 가벼운 스위프트를 주면 얼굴의 각도를 조절하면서도 동시에 매력적인 스타일을 연출할 수 있습니다.', 'sex': 'female', 'path': './image/female_hairstyle/oblong/side_swift.jpg'},
     {'name': "소프트 웨이브", 'desc': '부드러운 웨이브를 넣어서 얼굴의 각도를 부드럽게 만들어주고, 전체적인 룩을 부드럽고 여성스럽게 만들어줍니다.', 'sex': 'female', 'path': './image/female_hairstyle/oblong/soft_wave.jpg'},
-    {'name': "롱 보브", 'desc': '길이가 있는 보브 컷은 머리카락이 얼굴을 감싸면서 얼굴을 좀 더 슬림하게 보이게 해줍니다.', 'sex': 'female', 'path': './image/female_hairstyle/oblong/long_bob.jpg'},
+    {'name': "롱 보브", 'desc': '길이가 있는 보브 컷은 머리카락이 얼굴을 감싸면서 얼굴을 좀 더 슬림하게 보이게 해줍니다.', 'sex': 'female', 'path': './image/female_hairstyle/oblong/long_bob_cut.jpg'},
     {'name': "벌룬 펌", 'desc': '풍성하고 볼륨감 있는 웨이브를 연출하는 헤어스타일로, 얼굴을 작아 보이게 하고 부드러운 이미지를 강조합니다.', 'sex': 'female', 'path': './image/female_hairstyle/oblong/balloon_perm.jpg'},
     {'name': "빌드 펌", 'desc': '볼륨을 높이고 곱슬을 부여하여 머리카락을 더 풍성하고 우아하게 연출하는 헤어스타일입니다. 긴 머리에서부터 짧은 머리까지 다양한 길이와 스타일에 적용할 수 있습니다', 'sex': 'female', 'path': './image/female_hairstyle/oblong/build_perm.jpg'},
     {'name': "다이앤 펌", 'desc': '부드럽고 우아한 곱슬을 연출하는 헤어스타일로, 풍성한 볼륨과 우아한 웨이브가 특징입니다. 자연스러운 곡선과 부드러운 느낌을 강조하여 로맨틱하고 우아한 분위기를 연출합니다.', 'sex': 'female', 'path': './image/female_hairstyle/oblong/diann_perm.jpg'},
@@ -87,7 +87,6 @@ oblong_face_recommendations: List[Dict[str, str]] = [
 
 
 square_face_recommendations: List[Dict[str, str]] = [
-    {'name': '롱 사이드', 'desc': '한쪽으로 스타일링한 파트가 얼굴의 길이를 강조하면서도 얼굴을 조금 더 길게 보이도록 도와줍니다.', 'sex': 'male', 'path': './image/male_hairstyle/square/long_side.jpg'},
     {'name': "사이드 스위프트", 'desc': '한쪽으로 가벼운 스위프트를 주면 얼굴의 각도를 조절하면서도 동시에 매력적인 스타일을 연출할 수 있습니다.', 'sex': 'male', 'path': './image/male_hairstyle/square/side_swift.jpg'},
     {'name': "롱 보브", 'desc': '길이가 있는 보브 컷은 머리카락이 얼굴을 감싸면서 얼굴을 좀 더 슬림하게 보이게 해줍니다.', 'sex': 'male', 'path': './image/male_hairstyle/square/long_bob.jpg'},
     {'name': "사이드 파트", 'desc': '측면에 파트를 만들어 얼굴의 길이를 강조하고, 얼굴을 조금 더 길게 보이도록 도와줍니다.', 'sex': 'male', 'path': './image/male_hairstyle/square/side_part.jpg'},
@@ -95,7 +94,7 @@ square_face_recommendations: List[Dict[str, str]] = [
     {'name': "크루 컷", 'desc': '머리카락을 짧게 자른 헤어스타일입니다. 대한민국에서는 주로 스포츠 머리라고 일컬어지고 있습니다', 'sex': 'male', 'path': './image/male_hairstyle/square/crew_cut.jpg'},
     {'name': "에드가 컷", 'desc': '짧고 직선으로 자른 앞머리와 약간 더 긴 윗머리, 그리고 짧은 옆머리와 뒷머리가 특징인 남성 헤어스타일입니다.', 'sex': 'male', 'path': './image/male_hairstyle/square/edgar_cut.jpg'},
     {'name': "페이드 컷", 'desc': '머리 옆과 뒤를 점차 짧게 깎아 위쪽으로 갈수록 길어지게 하는 남성 헤어스타일로, 깔끔하고 세련된 느낌을 줍니다.', 'sex': 'male', 'path': './image/male_hairstyle/square/fade_cut.jpg'},
-    {'name': "가일 컷", 'desc': '게임 "스트리트 파이터"의 캐릭터 가일에서 영감을 받은 헤어스타일로, 위쪽 머리를 길게 남기고 옆과 뒷머리를 짧게 깎아 세우는 스타일입니다.', 'sex': 'male', 'path': './image/male_hairstyle/square/Guile_cut.jpg'},
+    {'name': "가일 컷", 'desc': '게임 "스트리트 파이터"의 캐릭터 가일에서 영감을 받은 헤어스타일로, 위쪽 머리를 길게 남기고 옆과 뒷머리를 짧게 깎아 세우는 스타일입니다.', 'sex': 'male', 'path': './image/male_hairstyle/square/guile_cut.jpg'},
     {'name': "리프 컷", 'desc': '층을 많이 내어 가볍고 자연스러운 느낌을 주는 헤어스타일로, 머리카락이 부드럽게 떨어져 볼륨감을 강조합니다. 얼굴을 작고 갸름하게 보이도록 도와줍니다.', 'sex': 'male', 'path': './image/male_hairstyle/square/leaf_cut.jpg'},
     {'name': "시스루 컷", 'desc': '남자 시스루컷은 앞머리를 가볍고 자연스럽게 내려 이마가 약간 비치게 하는 스타일로, 부드럽고 세련된 이미지를 연출합니다.', 'sex': 'male', 'path': './image/male_hairstyle/square/see_through.jpg'},
     {'name': '롱 레이어드', 'desc': '양쪽으로 긴 레이어를 넣어 얼굴을 길게 보이도록 하는 스타일입니다.', 'sex': 'female', 'path': './image/female_hairstyle/square/long_layered_cut.jpg'},

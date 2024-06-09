@@ -66,7 +66,7 @@ def get_image():
 def process_images():
     url = upload_images
     file_path1 = os.path.join('image', 'test.jpg')
-    file_path2 = os.path.join('image', 'test2.jpg')
+    file_path2 = os.path.join(recommendations['path'])
     encoded_image1 = read_image(file_path1)
     encoded_image2 = read_image(file_path2)
 
@@ -91,7 +91,8 @@ def get_processed_image():
         if 'image' in data:
             file_path = os.path.join('image', 'hairstyle_syn.jpg')
             save_image(data['image'], file_path)
-            return jsonify({'message': 'Processed image received and saved successfully'}), 200
+            send_image = read_image('image/hairstyle_syn.jpg')
+            return jsonify({'image': send_image}), 200
         else:
             return jsonify({'error': 'No image found in response'}), 404
     else:

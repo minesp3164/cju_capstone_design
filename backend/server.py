@@ -44,9 +44,8 @@ def upload_file():
 
 @app.route('/result', methods=['GET'])
 def get_image():
-    global recommendations
     try:
-        image_paths = get_recommend_hairstyle('image/test.jpg')
+        image_paths = recommendations['path']
         encoded_images = []
 
         for rec in image_paths:
@@ -54,12 +53,12 @@ def get_image():
             if encoded_image is None:
                 return jsonify({'error': f"Image file '{rec['name']}' not found"}), 404
             encoded_images.append({
+                'name': rec['name'],
                 'image': encoded_image
             })
 
         return jsonify({'images': encoded_images})
     except Exception as e:
-        logging.error(f"Error in get_images: {e}")
         return jsonify({'error': str(e)}), 500
 
 

@@ -75,28 +75,12 @@ def get_recommend_hairstyle(image):
             recommends
         )
     )
-    # # is_person:bool = get_is_person(image)
-    #
-    # item_len = len(results)
-    #
-    # result = results[rand(item_len)]
-    # # result['is_person'] = is_person
-    # result['shape'] = shape_name
-    #
-    # return result
-
+    # is_person:bool = get_is_person(image)
 
     item_len = len(results)
-    selected_paths = set()
 
-    recommendations_list = []
-    while len(recommendations_list) < 3 and len(selected_paths) < item_len:
-        result = None
-        while result is None or result['path'] in selected_paths:
-            result = results[rand(item_len)]
-        selected_paths.add(result['path'])
-        result_copy = result.copy()
-        result_copy['shape'] = shape_name
-        recommendations_list.append(result_copy)
+    result = results[rand(item_len)]
+    # result['is_person'] = is_person
+    result['shape'] = shape_name
 
-    return recommendations_list
+    return result

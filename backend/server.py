@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 from flask import Flask, request, jsonify, logging
 from flask_cors import CORS
 from recommend.face_shape_classification import get_recommend_hairstyle, get_is_person
+from recommend.image_reszie import resize_and_convert_to_24bit
 
 
 app = Flask(__name__)
@@ -35,7 +36,6 @@ def upload_file():
     file = request.files['file']
     file_path = os.path.join('image', 'test.jpg')
     file.save(file_path)
-
     recommendations = get_recommend_hairstyle(file_path)
     is_person = get_is_person(file_path)
 
@@ -55,6 +55,7 @@ def get_image():
 
 @app.route('/get_processed_image', methods=['GET','POST'])
 def get_processed_image():
+    resize_and_convert_to_24bit('image/test.jpg')
     url = upload
     file_path1 = os.path.join('image', 'test.jpg')
     file_path2 = os.path.join('image', 'test2.jpg')

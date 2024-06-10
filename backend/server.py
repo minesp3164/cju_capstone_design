@@ -44,14 +44,22 @@ def upload_file():
 
 @app.route('/result', methods=['GET'])
 def get_image():
-    global recommendations
-    encoded_image = read_image(recommendations['path'])
-    
-    
-    if encoded_image is None:
-        return jsonify({'error': f"Image file '{recommendations['name']}' not found"}), 404
+    try:
+        image_paths = recommendations['path']
+        encoded_images = []
 
-    return jsonify({'image': encoded_image})
+        for rec in image_paths:
+            encoded_image = read_image(rec['path'])
+            if encoded_image is None:
+                return jsonify({'error': f"Image file '{rec['name']}' not found"}), 404
+            encoded_images.append({
+                'name': rec['name'],
+                'image': encoded_image
+            })
+
+        return jsonify({'images': encoded_images})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 
 @app.route('/get_processed_image', methods=['GET','POST'])
@@ -83,7 +91,9 @@ def get_processed_image_result():
         if 'image' in data:
             file_path = os.path.join('image', 'hairstyle_syn.jpg')
             save_image(data['image'], file_path)
-            return jsonify({'message': 'Processed image received and saved successfully'}), 200
+            syn_image = os.path.join('image', 'hairstyle_syn.jpg')
+            encoding_image = read_image(syn_image)
+            return jsonify({'image': encoding_image}), 200
         else:
             return jsonify({'error': 'No image found in response'}), 404
     else:

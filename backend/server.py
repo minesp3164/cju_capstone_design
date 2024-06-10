@@ -44,22 +44,13 @@ def upload_file():
 
 @app.route('/result', methods=['GET'])
 def get_image():
-    try:
-        image_paths = recommendations['path']
-        encoded_images = []
-
-        for rec in image_paths:
-            encoded_image = read_image(rec['path'])
-            if encoded_image is None:
-                return jsonify({'error': f"Image file '{rec['name']}' not found"}), 404
-            encoded_images.append({
-                'name': rec['name'],
-                'image': encoded_image
-            })
-
-        return jsonify({'images': encoded_images})
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
+    global recommendations
+    encoded_image = read_image(recommendations['path'])
+    
+    
+    if encoded_image is None:
+        return jsonify({'error': f"Image file '{recommendations['name']}' not found"}), 404
+    return jsonify({'images': encoded_image})
 
 
 @app.route('/get_processed_image', methods=['GET','POST'])

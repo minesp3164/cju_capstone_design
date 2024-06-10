@@ -1,10 +1,8 @@
-import React, { useRef } from "react";
+import React, {useRef, useState} from "react";
 import { useNavigate } from "react-router-dom";
 import WebcamCapture from "../component/WebcamCapture";
-import { Button, Tooltip } from "react-daisyui";
-import swal from "sweetalert";
+import { Button, Tooltip} from "react-daisyui";
 import axiosServer from "../component/Instance";
-import axios from "axios";
 
 
 
@@ -12,27 +10,33 @@ const UpLoad = () => {
   const [canNext, setCanNext] = React.useState(false);
   const [checked, setChecked] = React.useState("");
   const [selectedFile, setSelectedFile] = React.useState(null);
+  const [is_pictured , setIsPictured] = React.useState(false);
   const [showImage,setShowImage] = React.useState(null);
   const navigate = useNavigate();
+  const [alert, setAlert] = useState(false);
+  const [alertMessage , setAlertMessage] = useState("");
 
-  const goToMainPage = () =>{
+  const Alert = () => {
+    if (alert){
+      return (
+        <div role="alert" className="alert alert-error text-center  w-full h-full">
+          <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current  shrink-0 h-6 w-6" fill="none"
+               viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                  d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          <span className="font-bold">{alertMessage} 사진을 다시 올려주세요!!!</span>
+        </div>
+      );
+    }
+  };
+
+
+  const goToMainPage = () => {
     navigate("/");
-  }
+  };
 
   let data = {};
-  if(!localStorage.getItem("start")){
-    swal({
-      title:"에러",
-      text:"이전 단계는 모두 끝내고 오셨나요?",
-      icon:"warning",
-      button:"처음으로 돌아가기"
-    }).then((result) => {
-      goToMainPage()
-      localStorage.clear();
-    })
-    localStorage.clear();
-  }
-
   const onClick = (e) => {
     if (e.target.id === "사진") {
       if (checked !== "사진") {
@@ -40,6 +44,7 @@ const UpLoad = () => {
         setSelectedFile(null);
         setShowImage(null);
         setCanNext(false);
+        setIsPictured(false)
       }
     } else {
       if (checked !== "캠") {
@@ -47,12 +52,13 @@ const UpLoad = () => {
         setSelectedFile(null);
         setShowImage(null);
         setCanNext(false);
+        setIsPictured(false)
       }
     }
-  }
-
+  };
   const handleDataFromCapture = (data) => {
     setSelectedFile(data);
+    setIsPictured(true)
     setCanNext(true); // 다음 단계로 진행 가능하도록 설정
   };
 
@@ -73,7 +79,12 @@ const UpLoad = () => {
 
       </div>
     } else if (props.checked === "캠") {
-      return <WebcamCapture toUpload={handleDataFromCapture}/>
+      if(!is_pictured){
+        return <WebcamCapture toUpload={handleDataFromCapture}/>
+      }
+      else{
+        return null
+      }
     } else {
       return "위 중 하나 선택해주세요"
     }
@@ -94,8 +105,14 @@ const UpLoad = () => {
     else{
         return null
     }
-  }
+  };
 
+  const RePicture = () => {
+    if(is_pictured){
+      return <Button onClick={setIsPictured(false)}> 다시 찍기</Button>
+    }
+    return null
+  };
 
   const goToNextPage = () => {
     localStorage.setItem("upload","upload");
@@ -103,6 +120,7 @@ const UpLoad = () => {
     navigate('/result', {state: data});
 
   };
+
   const onChangeCaptureShow = () => {
     const file = selectedFile;
     if(file){
@@ -112,7 +130,8 @@ const UpLoad = () => {
       }
       reader.readAsDataURL(file);
     }
-  }
+  };
+
   const onChangeImageUpload = (e) => {
     setSelectedFile(e.target.files[0]);
     const file = e.target.files[0];
@@ -130,7 +149,7 @@ const UpLoad = () => {
     try {
       const formData = new FormData();
       formData.append("file", selectedFile);
-      const response = await axios.post('/upload', formData, {
+      await axiosServer.post('/upload', formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -138,24 +157,19 @@ const UpLoad = () => {
     ).then(response => {
           const recommendation = response.data.recommendation
           const is_person = response.data.person
-          data = [
+          console.log(response.data)
+          data =
           {
-            first: recommendation[0]
-          },
-          {
-            second: recommendation[1]
-          },
-          {
-            third: recommendation[2]
-          },
-          {
-            is_person: is_person
-          }
-        ];
-        goToNextPage()
+            recommendation : recommendation
+          };
+        if(is_person){
+          goToNextPage()
+        }else {
+          setAlert(true)
+          setAlertMessage("사람이거나 한명이 있어야합니다!!!")
+        }
         }
       );
-        // goToNextPage();
     } catch (error) {
       console.log(error);
     }
@@ -166,7 +180,7 @@ const UpLoad = () => {
     <div className="space-y-4 p-4 text-center items-center">
       <h2 className="text-2xl pb-12 text-white">업로드 할 파일 유형을 선택하세요</h2>
       <div className="flex lg:px-80 md:px-20 sm:px-28 justify-between items-stretch">
-        <Button id="사진" className="w-36 h-24 rounded-xl bg-gray-100 hover:bg-gray-200" onClick={onClick}>
+      <Button id="사진" className="w-36 h-24 rounded-xl bg-gray-100 hover:bg-gray-200" onClick={onClick}>
           <i id="사진" className="text-3xl fa-solid fa-image" onClick={onClick}/>
         </Button>
         <Button id="캠" className="w-36 h-24 rounded-xl bg-gray-100 hover:bg-gray-200" onClick={onClick}>
@@ -183,9 +197,13 @@ const UpLoad = () => {
         <ShowImages/>
       </div>
       <div className="pt-5">
+        <RePicture/>
         <Button className="w-36 h-16  font-medium"
           onClick={handleUpload} disabled={!canNext}>다음으로
         </Button>
+        <div className="pt-10">
+          <Alert/>
+        </div>
       </div>
     </div>
   );

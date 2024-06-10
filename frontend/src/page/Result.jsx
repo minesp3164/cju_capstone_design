@@ -1,20 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import swal from "sweetalert";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Button } from 'react-daisyui';
-import ImageDisplay from '../component/ImageDisplay';
+import { Button ,Alert} from 'react-daisyui';
 import axiosServer from "../component/Instance";
 
 const Result = () => {
-  const [images, setImages] = useState([]);
+  const [image, setImage] = useState("");
+
   const navigate = useNavigate();
   const location = useLocation();
-  const data = location.state
-  console.log(data)
+  const data = location.state.recommendation
   const goToMainPage = () => navigate("/");
   const goToUpLoadPage = () => navigate("/upLoad");
-
+  const goToDetailPage = () => navigate("/Process_Image");
   const checkPreviousSteps = () => {
     if (!localStorage.getItem("upload")) {
       if (localStorage.getItem("start")) {
@@ -38,11 +36,10 @@ const Result = () => {
       }
     }
   };
-
   const fetchImages = async () => {
     try {
-      const response = await axios.get('/result');
-      console.log(response.data);
+      const response = await axiosServer.get('/result');
+      setImage(response.data.image)
 
     } catch (error) {
       console.error('Error fetching images:', error);
@@ -55,22 +52,31 @@ const Result = () => {
   }, [goToMainPage, goToUpLoadPage]);
 
   return (
-    <div className="h-full w-full">
+    <div className="h-full w-full text-gray-100 ">
       <div className="text-center font-bold">
         <h2 className=''>
-          <div className='text-lg pt-1'>{}</div>
+          <div className='text-lg pt-1'> 당신의 얼굴형은 {data.shape} 입니다.</div>
         </h2>
         <h3 className='p-4'>
-          <div className='text-lg pt-1'>{}</div>
+          <div className='text-lg pt-1'>추천드리는 헤어스타일 {data.name}</div>
         </h3>
-        <h4 className=''>{}</h4>
+        <div><i className="fa-regular fa-circle-down" aria-hidden="true"></i>예시 사진<i
+          className="fa-regular fa-circle-down" aria-hidden="true"></i></div>
+        <div className="flex justify-center">
+          {image && <img
+            className="w-96 h-64"
+            src={`data:image/jpeg;base64,${image}`}
+            alt="image"/>}
+        </div>
       </div>
-      {/*<ImageDisplay images={images} />*/}
       <div className='flex justify-center pt-10'>
-        <Button className='font-bold w-[150px] h-[50px]' onClick={goToMainPage}>
-          처음으로 돌아가기
+        <Button className='font-bold text-xl w-36 h-16' onClick={goToDetailPage}>
+          합성하기
         </Button>
       </div>
+      { alert ? null : Alert()
+
+      }
     </div>
   );
 }

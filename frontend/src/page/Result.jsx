@@ -6,7 +6,6 @@ import axiosServer from "../component/Instance";
 
 const Result = () => {
   const [image, setImage] = useState("");
-
   const navigate = useNavigate();
   const location = useLocation();
   const data = location.state.recommendation
@@ -74,9 +73,7 @@ const Result = () => {
           합성하기
         </Button>
       </div>
-      { alert ? null : Alert()
-
-      }
+      { alert ? null : Alert()}
     </div>
   );
 }

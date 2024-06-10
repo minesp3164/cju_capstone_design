@@ -14,7 +14,6 @@ const WebcamCapture = ({ toUpload }) => {
     const fileName = "capture.jpg";
     const blobData = await (await fetch(data)).blob();
     const file = new File([blobData], fileName, { type: 'image/jpeg' });
-
     toUpload(file);
   }, [webcamRef, toUpload]);
 

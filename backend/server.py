@@ -12,8 +12,7 @@ CORS(app)
 CORS(app, resources={r'*': {'origins': '*'}})
 
 load_dotenv()
-upload_images = os.environ.get('UPLOAD_IMAGES')
-result_image = os.environ.get('RESULT_IMAGE')
+upload = os.environ.get('UPLOAD_IMAGES')
 
 def read_image(file_path):
     try:
@@ -44,54 +43,38 @@ def upload_file():
 
 @app.route('/result', methods=['GET'])
 def get_image():
-    try:
-        image_paths = recommendations['path']
-        encoded_images = []
+    global recommendations
+    encoded_image = read_image(recommendations['path'])
+    
+    
+    if encoded_image is None:
+        return jsonify({'error': f"Image file '{recommendations['name']}' not found"}), 404
 
-        for rec in image_paths:
-            encoded_image = read_image(rec['path'])
-            if encoded_image is None:
-                return jsonify({'error': f"Image file '{rec['name']}' not found"}), 404
-            encoded_images.append({
-                'name': rec['name'],
-                'image': encoded_image
-            })
-
-        return jsonify({'images': encoded_images})
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
+    return jsonify({'image': encoded_image})
 
 
-@app.route('/process_images', methods=['POST', 'GET'])
-def process_images():
-    url = upload_images
+@app.route('/get_processed_image', methods=['GET','POST'])
+def get_processed_image():
+    url = upload
     file_path1 = os.path.join('image', 'test.jpg')
-    file_path2 = os.path.join('image', 'test2.jpg')
+    file_path2 = os.path.join(recommendations['path'])
     encoded_image1 = read_image(file_path1)
     encoded_image2 = read_image(file_path2)
-
+    headers = {'Content-Type': 'application/json'}
     data = {
         'file1': encoded_image1,
         'file2': encoded_image2
     }
-    headers = {'Content-Type': 'application/json'}
     response = requests.post(url, json=data, headers=headers)
-    if response.status_code == 200:
-        return jsonify({'message': 'Images processed successfully'}), 200
-    else:
-        return jsonify({'error': 'Failed to process images'}), response.status_code
-
-
-@app.route('/get_processed_image', methods=['GET'])
-def get_processed_image():
-    url = result_image
     response = requests.get(url)
+    
     if response.status_code == 200:
         data = response.json()
         if 'image' in data:
             file_path = os.path.join('image', 'hairstyle_syn.jpg')
             save_image(data['image'], file_path)
-            return jsonify({'message': 'Processed image received and saved successfully'}), 200
+            send_image = read_image('image/hairstyle_syn.jpg')
+            return jsonify({'image': send_image}), 200
         else:
             return jsonify({'error': 'No image found in response'}), 404
     else:

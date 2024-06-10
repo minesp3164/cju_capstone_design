@@ -38,7 +38,8 @@ const Result = () => {
   const fetchImages = async () => {
     try {
       const response = await axiosServer.get('/result');
-      setImage(response.data.image)
+      console.log(response.data)
+      setImage(response.data.images)
 
     } catch (error) {
       console.error('Error fetching images:', error);

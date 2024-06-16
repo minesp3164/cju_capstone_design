@@ -31,7 +31,7 @@ const Final =() => {
         <img
           src={`data:image/jpeg;base64,${image}`}
           alt="Processed Image"
-          className="max-w-full h-auto"
+          className="w-96 h-96"
         />
       </div>
       <div className="flex justify-center pt-10">

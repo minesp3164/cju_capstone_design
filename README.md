@@ -3,7 +3,7 @@
 ### 캡스톤 진행 인원🧑‍🧒‍🧒
 | 이름  | 학번         |
 |-----|------------|
-| [이현동](https://github.com/minesp3164) | 2019011926 | 
+|[이현동](https://github.com/minesp3164) | 2019011926 | 
 |[박덕수](https://github.com/zopc1548)| 2019011309| 
 |[추병윤](https://github.com/cby0320)|2019011780|
 
@@ -11,11 +11,9 @@
 ---
 ⚙️ 개발
 -   작성 언어 
-       - JavaScript
-       - python 
+       - ![javascript](https://img.icons8.com/fluency/48/javascript.png) ![python](https://img.icons8.com/color/48/python--v1.png)
 -   프레임워크
-       - React.js
-       - tailwindcss
+       - ![React.js](https://img.icons8.com/office/48/react.png) ![tailwindcss](https://img.icons8.com/color/48/tailwindcss.png)
 -   작성하는데 사용한 모델
        - facebook/detr-resnet-50 : 사람 인원 수 분석 - [모델 보기](https://huggingface.co/facebook/detr-resnet-50)
        - rizvandwiki/gender-classification: 성별 분석 [모델 보기](https://huggingface.co/rizvandwiki/gender-classification)

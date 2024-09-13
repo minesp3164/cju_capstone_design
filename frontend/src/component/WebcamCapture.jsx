@@ -2,8 +2,8 @@ import Webcam from "react-webcam";
 import React from "react";
 
 const videoConstraints = {
-  width: 480,
-  height: 320,
+  width: 1024,
+  height: 1024,
   facingMode: "user"
 };
 
@@ -22,9 +22,10 @@ const WebcamCapture = ({ toUpload }) => {
       <Webcam
         className="border-2 border-gray-500"
         audio={false}
-        height={320}
+        height={480}
         width={480}
         ref={webcamRef}
+        screenshotQuality={1}
         screenshotFormat="image/jpeg"
         videoConstraints={videoConstraints}
       />

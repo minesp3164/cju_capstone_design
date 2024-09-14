@@ -55,10 +55,12 @@ const Result = () => {
     <div className="h-full w-full text-gray-100 ">
       <div className="text-center font-bold">
         <h2 className=''>
-          <div className='text-lg pt-1'> 당신의 얼굴형은 {data.shape} 입니다.</div>
+          <div className='text-lg pt-1'> 사용자의 얼굴형 </div>
+          <div className='text-2xl pt-1'>{data.shape}</div>
         </h2>
         <h3 className='p-4'>
-          <div className='text-lg pt-1'>추천드리는 헤어스타일 {data.name}</div>
+          <div className='text-lg pt-1'>추천드리는 헤어스타일 </div>
+          <div className='text-2xl pt-1'>{data.name}</div>
         </h3>
         <div><i className="fa-regular fa-circle-down" aria-hidden="true"></i>예시 사진<i
           className="fa-regular fa-circle-down" aria-hidden="true"></i></div>

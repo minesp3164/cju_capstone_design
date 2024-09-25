@@ -69,7 +69,7 @@ const UpLoad = () => {
       return <div className="pt-10">
         <label className="block mb-2 text-sm font-bold text-gray-300" for="image">정면을 보고 있으며 한 사람만 나와야 합니다</label>
         <Tooltip message="본인의 얼굴이 제대로 나오고 혼자 있는 사진을 첨부해주세요" position="bottom">
-          <Button className="w-32 h-16"
+          <Button className="w-[128px] h-[64px] text-black font-bold text-lg  bg-gray-50 hover:text-gray-600 active:text-gray-400"
             onClick={() => inputRef.current?.click()}
             >
               파일 업로드
@@ -94,12 +94,12 @@ const UpLoad = () => {
     if(selectedFile){
       if(checked === "사진"){
         console.log(showImage)
-        return <img src={showImage} alt="이미지" className="w-96 h-64 rounded-lg box-shadow-md"/>
+        return <img src={showImage} alt="이미지" className="w-[480px] h-[360px] rounded-lg box-shadow-md"/>
       }
       if(checked==="캠"){
         console.log(showImage)
         onChangeCaptureShow()
-        return <img src={showImage} alt="웹캠캡처" className="w-96 h-64"/>
+        return <img src={showImage} alt="웹캠캡처" className="w-[480px] h-[360px] rounded-lg box-shadow-md"/>
       }
     }
     else{
@@ -178,12 +178,12 @@ const UpLoad = () => {
 
   return (
     <div className="space-y-4 p-4 text-center items-center">
-      <h2 className="text-2xl pb-12 text-white">업로드 할 파일 유형을 선택하세요</h2>
+      <Button disabled="disabled" className="disabled:text-black font-bold text-2xl  disabled:bg-gray-50">업로드 할 파일 유형을 선택하세요</Button>
       <div className="flex lg:px-80 md:px-20 sm:px-28 justify-between items-stretch">
-      <Button id="사진" className="w-36 h-24 rounded-xl bg-gray-100 hover:bg-gray-200" onClick={onClick}>
-          <i id="사진" className="text-3xl fa-solid fa-image" onClick={onClick}/>
+        <Button id="사진" className="w-[128px] h-[64px] rounded-xl bg-gray-100 hover:bg-gray-200" onClick={onClick}>
+            <i id="사진" className="text-3xl fa-solid fa-image" onClick={onClick}/>
         </Button>
-        <Button id="캠" className="w-36 h-24 rounded-xl bg-gray-100 hover:bg-gray-200" onClick={onClick}>
+        <Button id="캠" className="w-[128px] h-[64px] rounded-xl bg-gray-100 hover:bg-gray-200" onClick={onClick}>
           <i id="캠" className="text-3xl fa-solid fa-video" onClick={onClick}/>
         </Button>
       </div>
@@ -198,7 +198,7 @@ const UpLoad = () => {
       </div>
       <div className="pt-5">
         <RePicture/>
-        <Button className="w-36 h-16  font-medium"
+        <Button className="w-[128px] h-[64px] text-black font-bold text-lg  bg-gray-50 hover:text-gray-600 active:text-gray-400"
           onClick={handleUpload} disabled={!canNext}>다음으로
         </Button>
         <div className="pt-10">

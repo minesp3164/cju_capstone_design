@@ -9,22 +9,24 @@ const HowToUse = () => {
     navigate('/upload')
   }
   return(
-    <div>
+    <div className="select-none">
       <div className="text-center text-2xl font-bold">
-        이 사이트는 사진을 통한 사람의 얼굴형 분석과 그에 맞는 헤어타일을 추천해드립니다.
+        이 사이트는 사진을 통한 여러분의 얼굴형 분석과 그에 맞는 헤어타일을 추천해드립니다.
       </div>
-      <div className="flex items-center justify-center font-bold w-full pb-10 pt-20">
-        <div className=" text-center py-5                            px-2 rounded-lg text-xl border-4 bg-gray-200 border-gray-50">
+      <div className="flex items-center justify-center font-bold w-full pb-10 pt-10">
+        <Button
+          disabled="disabled"
+          className="text-black font-bold text-2xl  bg-gray-50 disabled:bg-gray-50 disabled:text-black">
           이용방법
-        </div>
+        </Button>
       </div>
-      <ul className="text-xl font-bold text-center pb-32">
-        <li className="pb-10">사이트에 접속후 이용약관에 확인을 누르신후 다음으로 가시면 됩니다.</li>
-        <li className="pb-10">다음 사이트에선 이미지나 캠을 이용하여 사진을 보내거나 즉석해서 사진을 찍을 수 있습니다.</li>
+      <ul className="text-xl font-bold text-center pb-16">
+        <li className="pb-10">본인의 사진이나 캠을 이용하여 사진을 보내거나 즉석해서 사진을 찍을 수 있습니다.</li>
+        <li className="pb-10">캠을 이용하여 하실때에는 본인의 얼굴이 정중앙에 와주셔야하고 정면을 바라보아 주셔야 합성이 잘 될 수있습니다</li>
         <li>다음 사이트에선 이미지를 이용해 어울리는 헤어스타일을 찾으실 수 있습니다.</li>
       </ul>
       <div className="flex items-center justify-center font-bold w-full">
-        <Button className="font-bold border-2 rounded-lg border-gray-50 h-[75px] w-[100px] bg-gray-50 hover:bg-gray-100 hover:border-gray-100" onClick={returnToMain}>
+        <Button className="text-black font-bold text-2xl  bg-gray-50 hover:text-gray-600 active:text-gray-400" onClick={returnToMain}>
           시작하기
         </Button>
       </div>

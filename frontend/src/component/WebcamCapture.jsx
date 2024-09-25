@@ -1,5 +1,6 @@
 import Webcam from "react-webcam";
 import React from "react";
+import { Button } from "react-daisyui";
 
 const videoConstraints = {
   width: 1024,
@@ -29,7 +30,7 @@ const WebcamCapture = ({ toUpload }) => {
         screenshotFormat="image/jpeg"
         videoConstraints={videoConstraints}
       />
-      <button onClick={capture} className="h-full w-full border-2 bg-gray-200">캡처하기</button>
+      <Button onClick={capture} className="border-2 bg-gray-50 rounded-lg">캡처하기</Button>
       <p className="pt-10 text-xl"></p>
     </div>
   );

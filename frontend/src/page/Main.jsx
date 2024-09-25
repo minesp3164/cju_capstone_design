@@ -23,7 +23,7 @@ const Main = () =>{
       <div className="pt-20">
         <Button
           onClick={goTOStartPage}
-          className="text-2xl text-slate-700"
+          className="text-black font-bold text-2xl  bg-gray-50 hover:text-gray-600 active:text-gray-400"
         >
             시작하시려면 눌러주세요
           </Button>

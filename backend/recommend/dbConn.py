@@ -2,6 +2,8 @@ import os
 from dotenv import load_dotenv
 import pymysql
 
+from data import recommendations
+
 load_dotenv()
 HOST = os.environ.get('HOST')
 USER = os.environ.get('USER')
@@ -11,18 +13,17 @@ DB = os.environ.get('DB')
 conn = pymysql.connect(host=HOST, user=USER, password=PASSWORD, db=DB, charset='utf8')
 cur = conn.cursor()
 
-cur.execute("SELECT * FROM hairstyledata")
+for face_shape, hairstyles in recommendations.items():
+    for hairstyle in hairstyles:
+        name = hairstyle['name']
+        description = hairstyle['desc']
+        sex = hairstyle['sex']
+        path = hairstyle['path'] if hairstyle['path'] else None
 
-while (True):
-    row = cur.fetchone()
-    if row == None:
-        break
-    id = row[0]
-    name = row[1]
-    desc = row[2]
-    sex = row[3]
-    path = row[4]
-    faceshape = row[5]
-    print(id, name, desc, sex, path, faceshape)
+        cur.execute('''
+            INSERT INTO hairstyledata (name, description, sex, path, face_shape)
+            VALUES (%s, %s, %s, %s, %s)
+        ''', (name, description, sex, path, face_shape))
 
+conn.commit()
 conn.close()

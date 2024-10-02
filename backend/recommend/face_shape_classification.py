@@ -3,7 +3,7 @@ import random
 from transformers import pipeline
 from gender_classification import get_gender
 from transformers import DetrImageProcessor, DetrForObjectDetection
-from dbConn import connect_database, execute_query
+from dbConn import execute_query
 import torch
 
 from PIL import Image
@@ -68,7 +68,6 @@ def get_recommend_hairstyle(image):
     shape_name = shape[face_name]
 
     # DB 연결
-    conn = connect_database()
     query = "SELECT * FROM hairstyledata WHERE face_shape = %s AND sex = %s"
     params = (face_name, gender)
     results = execute_query(query, params)

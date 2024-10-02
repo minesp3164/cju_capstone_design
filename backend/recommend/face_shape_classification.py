@@ -1,10 +1,9 @@
-from typing import Dict, List
 import random
 
 from transformers import pipeline
-from .data import recommendations
-from .gender_classification import get_gender
+from gender_classification import get_gender
 from transformers import DetrImageProcessor, DetrForObjectDetection
+from dbConn import connect_database, execute_query
 import torch
 
 from PIL import Image
@@ -68,19 +67,15 @@ def get_recommend_hairstyle(image):
     print(f'gender: {gender}')
     shape_name = shape[face_name]
 
-    recommends: List[Dict[str, str]] = recommendations[face_name]
-    results = list(
-        filter(
-            lambda rec: rec['sex'] == gender or rec['sex'] == 'common',
-            recommends
-        )
-    )
-    # is_person:bool = get_is_person(image)
+    # DB 연결
+    conn = connect_database()
+    query = "SELECT * FROM hairstyledata WHERE face_shape = %s AND sex = %s"
+    params = (face_name, gender)
+    results = execute_query(query, params)
 
     item_len = len(results)
 
     result = results[rand(item_len)]
-    # result['is_person'] = is_person
-    result['shape'] = shape_name
+    result['face_shape'] = shape_name
 
     return result

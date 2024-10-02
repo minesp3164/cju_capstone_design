@@ -13,7 +13,7 @@ def connect_database():
         conn = pymysql.connect(host=HOST, user=USER, password=PASSWORD, db=DB, charset='utf8', cursorclass=pymysql.cursors.DictCursor)
         return conn
     except Exception as e:
-        print(e)
+        print(f"Error connecting to database: {e}")
         return None
 
 def execute_query(query, params=None):
@@ -26,7 +26,7 @@ def execute_query(query, params=None):
             result = cursor.fetchall()
             return result
     except Exception as e:
-        print(e)
+        print(f"Error executing query: {e}")
         return None
     finally:
         conn.close()

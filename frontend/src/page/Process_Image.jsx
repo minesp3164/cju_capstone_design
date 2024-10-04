@@ -25,7 +25,7 @@ const Process_Image = () => {
   }, []);
 
   return (
-    <div>
+    <div className='text-gray-50'>
       <div className="flex justify-center">
         <Loading className="w-[500px] h-[1000px] loading-spinner"></Loading>
       </div>

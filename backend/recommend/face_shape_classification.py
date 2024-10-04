@@ -1,9 +1,9 @@
 import random
 
 from transformers import pipeline
-from gender_classification import get_gender
+from recommend.gender_classification import get_gender
 from transformers import DetrImageProcessor, DetrForObjectDetection
-from dbConn import execute_query
+from recommend.dbConn import execute_query
 import torch
 
 from PIL import Image

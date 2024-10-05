@@ -23,30 +23,31 @@ const Final =() => {
   }, []);
 
     const shareToKakao = () => {
-    if (window.Kakao) {
-      window.Kakao.Link.sendDefault({
-        objectType: 'feed',
-        content: {
-          title: 'Recommended Hairstyle',
-          description: 'Check out this recommended hairstyle for you!',
-          imageUrl: imageUrl, // 서버에서 받은 이미지 URL
-          link: {
-            mobileWebUrl: imageUrl,
-            webUrl: imageUrl,
-          },
-        },
-        buttons: [
-          {
-            title: 'View Image',
+      if (window.Kakao) {
+        let imageUrl;
+        window.Kakao.Link.sendDefault({
+          objectType: 'feed',
+          content: {
+            title: 'Recommended Hairstyle',
+            description: 'Check out this recommended hairstyle for you!',
+            imageUrl: imageUrl, // 서버에서 받은 이미지 URL
             link: {
               mobileWebUrl: imageUrl,
               webUrl: imageUrl,
             },
           },
-        ],
-      });
-    }
-  };
+          buttons: [
+            {
+              title: 'View Image',
+              link: {
+                mobileWebUrl: imageUrl,
+                webUrl: imageUrl,
+              },
+            },
+          ],
+        });
+      }
+    };
 
   return (
     <div className="h-full w-full text-gray-100">

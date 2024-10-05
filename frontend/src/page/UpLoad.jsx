@@ -98,7 +98,12 @@ const UpLoad = () => {
       if(checked==="캠"){
         console.log(showImage)
         onChangeCaptureShow()
-        return <img src={showImage} alt="웹캠캡처" className="w-[512px] h-[512px] pb-10 rounded-lg box-shadow-md"/>
+        return (
+        <div>
+          <img src={showImage} alt="웹캠캡처" className="w-[512px] h-[360px] rounded-lg box-shadow-md"/>
+          <ReCaptureButton/>
+        </div>
+        )
       }
     }
     else{
@@ -171,7 +176,7 @@ const UpLoad = () => {
     setSelectedFile(null);
   }
   const ReCaptureButton = () => {
-    if(checked ==="캠"){return<Button className="w-[128px] h-[64px] font-bold text-lg "onClick={handleRepicture} disabled={!isPictured}>다시 찍기</Button>}
+    if(checked ==="캠"){return<Button className="w-[512px] h-[64px] font-bold text-lg "onClick={handleRepicture} disabled={!isPictured}>다시 찍기</Button>}
     return null
   }
 
@@ -194,9 +199,8 @@ const UpLoad = () => {
         <ShowImages/>
       </div>
       <div>
-        <ReCaptureButton/>
       </div>
-      <div className="pt-5">
+      <div className="">
         <Button className="w-[128px] h-[64px] text-black font-bold text-lg"
           onClick={handleUpload} disabled={!canNext}>다음으로
         </Button>

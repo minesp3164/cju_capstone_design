@@ -10,7 +10,7 @@ const UpLoad = () => {
   const [canNext, setCanNext] = React.useState(false);
   const [checked, setChecked] = React.useState("");
   const [selectedFile, setSelectedFile] = React.useState(null);
-  const [is_pictured , setIsPictured] = React.useState(false);
+  const [isPictured , setIsPictured] = React.useState(false);
   const [showImage,setShowImage] = React.useState(null);
   const navigate = useNavigate();
   const [alert, setAlert] = useState(false);
@@ -79,10 +79,9 @@ const UpLoad = () => {
 
       </div>
     } else if (props.checked === "캠") {
-      if(!is_pictured){
-        return <WebcamCapture toUpload={handleDataFromCapture}/>
-      }
-      else{
+      if(!isPictured){
+        return <WebcamCapture toUpload={handleDataFromCapture} isPicktured={isPictured}/>
+      } else{
         return null
       }
     } else {
@@ -99,21 +98,13 @@ const UpLoad = () => {
       if(checked==="캠"){
         console.log(showImage)
         onChangeCaptureShow()
-        return <img src={showImage} alt="웹캠캡처" className="w-[512px] h-[512  px] rounded-lg box-shadow-md"/>
+        return <img src={showImage} alt="웹캠캡처" className="w-[512px] h-[512px] pb-10 rounded-lg box-shadow-md"/>
       }
     }
     else{
         return null
     }
   };
-
-  const RePicture = () => {
-    if(is_pictured){
-      return <Button onClick={setIsPictured(false)}> 다시 찍기</Button>
-    }
-    return null
-  };
-
   const goToNextPage = () => {
     localStorage.setItem("upload","upload");
     console.log(data)
@@ -174,6 +165,11 @@ const UpLoad = () => {
       console.log(error);
     }
   };
+  const handleRepicture = () =>{
+    setIsPictured(false);
+    setShowImage(null);
+    setSelectedFile(null);
+  }
 
 
   return (
@@ -190,15 +186,15 @@ const UpLoad = () => {
       <div className="flex justify-center pb-10">
         <Item checked={checked} onChange={onChangeImageUpload}/>
       </div>
-      <div className="text-gray-50">
-        <i className="fa-regular fa-circle-down"/>올라갈 사진<i className="fa-regular fa-circle-down"/>
-      </div>
+
       <div className="flex justify-center items-center">
         <ShowImages/>
       </div>
+      <div>
+        <Button className="w-[128px] h-[64px] "onClick={handleRepicture} disabled={!isPictured}>다시 찍기</Button>
+      </div>
       <div className="pt-5">
-        <RePicture/>
-        <Button className="w-[128px] h-[64px] text-black font-bold text-lg  bg-gray-50 hover:text-gray-600 active:text-gray-400"
+        <Button className="w-[128px] h-[64px] text-black font-bold text-lg"
           onClick={handleUpload} disabled={!canNext}>다음으로
         </Button>
         <div className="pt-10">

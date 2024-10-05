@@ -8,16 +8,20 @@ const videoConstraints = {
   facingMode: "user"
 };
 
-const WebcamCapture = ({ toUpload }) => {
+const WebcamCapture = ({ toUpload , isPicktured}) => {
   const webcamRef = React.useRef(null);
   const capture = React.useCallback(async () => {
+    isPicktured = true;
     const data = webcamRef.current.getScreenshot();
     const fileName = "capture.jpg";
     const blobData = await (await fetch(data)).blob();
     const file = new File([blobData], fileName, { type: 'image/jpeg' });
     toUpload(file);
-  }, [webcamRef, toUpload]);
-
+  }, [webcamRef, toUpload, isPicktured]);
+  const Picture = (isPicktured) =>{
+    if(isPicktured) return       <Button onClick={capture} className="border-2 bg-gray-50 rounded-lg">캡처하기</Button>
+    else   return <Button onClick={capture} className="border-2 bg-gray-50 rounded-lg">다시찍기</Button>
+  }
   return (
     <div className="flex flex-col align-center pt-20">
       <Webcam
@@ -31,7 +35,7 @@ const WebcamCapture = ({ toUpload }) => {
         screenshotFormat="image/jpeg"
         videoConstraints={videoConstraints}
       />
-      <Button onClick={capture} className="border-2 bg-gray-50 rounded-lg">캡처하기</Button>
+      <Picture isPicktured={isPicktured}/>
     </div>
   );
 };

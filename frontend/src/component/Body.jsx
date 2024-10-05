@@ -6,12 +6,13 @@ import Result from "../page/Result";
 import HowToUse from "../page/HowToUse";
 import Process_Image from "../page/Process_Image";
 import Final from "../page/Final";
-
+import {Left, Right} from "../component/Side"
 const Body = () =>{
 
   return (
     <div>
-      <div className="pb-96">
+      <div className="h-screen w-full grid grid-cols-3  pb-96">
+        <Left/>
         <Routes>
           <Route path="/howToUse" element={<HowToUse/>} />
           <Route path="/" element={<Main/>}/>
@@ -20,6 +21,7 @@ const Body = () =>{
           <Route path="/process_image" element={<Process_Image/>}/>
           <Route path="/final" element={<Final/>}/>
         </Routes>
+        <Right/>
       </div>
     </div>
   )

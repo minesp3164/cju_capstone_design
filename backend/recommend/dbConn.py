@@ -10,7 +10,7 @@ DB = os.environ.get('DB')
 
 def connect_database():
     try:
-        conn = pymysql.connect(host=HOST, user=USER, password=PASSWORD, db=DB, charset='utf8', cursorclass=pymysql.cursors.DictCursor)
+        conn = pymysql.connect(host=HOST, user=USER, password=PASSWORD, db=DB, charset='utf8mb4', cursorclass=pymysql.cursors.DictCursor)
         return conn
     except Exception as e:
         print(f"Error connecting to database: {e}")

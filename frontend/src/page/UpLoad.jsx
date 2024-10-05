@@ -85,7 +85,7 @@ const UpLoad = () => {
         return null
       }
     } else {
-      return "위 중 하나 선택해주세요"
+      return <span className="text-xl font-bold">위 중 하나 선택해주세요</span>
     }
   };
 
@@ -183,7 +183,7 @@ const UpLoad = () => {
   return (
     <div className="space-y-4 p-4 text-center items-center">
       <Button disabled="disabled" className="disabled:text-black font-bold text-2xl  disabled:bg-gray-50">업로드 할 파일 유형을 선택하세요</Button>
-      <div className="flex pt-4 justify-between items-stretch">
+      <div className="flex pt-6 justify-between items-stretch">
         <Button id="사진" className="w-[128px] h-[64px] rounded-xl bg-gray-100 hover:bg-gray-200" onClick={onClick}>
             <i id="사진" className="text-3xl fa-solid fa-image" onClick={onClick}/>
         </Button>

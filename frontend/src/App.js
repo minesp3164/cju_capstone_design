@@ -9,7 +9,6 @@ const App = () => {
       <div className="rootDiv">
         <Header/>
         <Body/>
-        <Footer/>
       </div>
   );
 }

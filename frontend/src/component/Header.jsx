@@ -7,7 +7,7 @@ const Header = () =>{
     navigate('/')
   }
   return(
-    <div className="py-5 flex justify-center w-full">
+    <div className="pt-5 flex justify-center w-full">
       <div className="text-center lg:text-8xl sm:text-6xl pb-32 py-5 flex flex-col gap-y-[20px]">
         <button 
           onClick={toMainPage}

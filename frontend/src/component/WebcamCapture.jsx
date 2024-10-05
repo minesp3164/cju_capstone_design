@@ -26,12 +26,12 @@ const WebcamCapture = ({ toUpload }) => {
         height={480}
         width={480}
         ref={webcamRef}
+        mirrored={true}
         screenshotQuality={1}
         screenshotFormat="image/jpeg"
         videoConstraints={videoConstraints}
       />
       <Button onClick={capture} className="border-2 bg-gray-50 rounded-lg">캡처하기</Button>
-      <p className="pt-10 text-xl"></p>
     </div>
   );
 };

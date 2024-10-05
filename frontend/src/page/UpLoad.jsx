@@ -170,7 +170,10 @@ const UpLoad = () => {
     setShowImage(null);
     setSelectedFile(null);
   }
-
+  const ReCaptureButton = () => {
+    if(checked ==="캠"){return<Button className="w-[128px] h-[64px] font-bold text-lg "onClick={handleRepicture} disabled={!isPictured}>다시 찍기</Button>}
+    return null
+  }
 
   return (
     <div className="space-y-4 p-4 text-center items-center">
@@ -191,7 +194,7 @@ const UpLoad = () => {
         <ShowImages/>
       </div>
       <div>
-        <Button className="w-[128px] h-[64px] "onClick={handleRepicture} disabled={!isPictured}>다시 찍기</Button>
+        <ReCaptureButton/>
       </div>
       <div className="pt-5">
         <Button className="w-[128px] h-[64px] text-black font-bold text-lg"

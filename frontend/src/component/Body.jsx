@@ -7,11 +7,12 @@ import HowToUse from "../page/HowToUse";
 import Process_Image from "../page/Process_Image";
 import Final from "../page/Final";
 import {Left, Right} from "../component/Side"
-const Body = () =>{
 
+
+const Body = () =>{
   return (
     <div>
-      <div className="h-screen w-full grid grid-cols-3  pb-96">
+      <div className="h-full w-full  pb-32">
         <Left/>
         <Routes>
           <Route path="/howToUse" element={<HowToUse/>} />

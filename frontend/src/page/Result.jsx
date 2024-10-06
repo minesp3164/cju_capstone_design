@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Button ,Alert} from 'react-daisyui';
 import axiosServer from "../component/Instance";
 
+
 const Result = () => {
   const [image, setImage] = useState("");
   const navigate = useNavigate();
@@ -35,6 +36,7 @@ const Result = () => {
       }
     }
   };
+
   const fetchImages = async () => {
     try {
       const response = await axiosServer.get('/result');
@@ -56,17 +58,19 @@ const Result = () => {
       <div className="text-center font-bold">
         <div className=''>
           <div className='text-2xl p-2'> 사용자의 얼굴형 </div>
-          <Button disabled="disabled" className='text-2xl disabled:bg-gray-50 disabled:text-black'>{data.shape}</Button>
+          <Button disabled="disabled" className='text-2xl disabled:bg-gray-50 disabled:text-black'>{data.face_shape}</Button>
         </div>
         <div className='p-4'>
           <div className='text-2xl p-2'>추천드리는 헤어스타일 </div>
           <Button  disabled="disabled" className='text-2xl disabled:bg-gray-50 disabled:text-black'>{data.name}</Button>
         </div>
-        <div><i className="fa-regular fa-circle-down" aria-hidden="true"></i>예시 사진<i
-          className="fa-regular fa-circle-down" aria-hidden="true"></i></div>
+        <div className="pb-2">
+          <i className="fa-regular fa-circle-down" aria-hidden="true"/> 합성될 헤어스타일 <i
+          className="fa-regular fa-circle-down" aria-hidden="true"/>
+        </div>
         <div className="flex justify-center">
           {image && <img
-            className="w-96 h-64"
+            className="w-[384px] h-[384px] border-2 border-black rounded-lg"
             src={`data:image/jpeg;base64,${image}`}
             alt="image"/>}
         </div>

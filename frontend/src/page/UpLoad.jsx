@@ -93,14 +93,14 @@ const UpLoad = () => {
     if(selectedFile){
       if(checked === "사진"){
         console.log(showImage)
-        return <img src={showImage} alt="이미지" className="w-[512px] h-[360px] rounded-lg box-shadow-md"/>
+        return <img src={showImage} alt="이미지" className="w-[512px] h-[360px] border-2 border-gray-500 rounded-lg box-shadow-md"/>
       }
       if(checked==="캠"){
         console.log(showImage)
         onChangeCaptureShow()
         return (
         <div>
-          <img src={showImage} alt="웹캠캡처" className="w-[512px] h-[360px] rounded-lg box-shadow-md"/>
+          <img src={showImage} alt="웹캠캡처" className="w-[512px] h-[360px] border-2 border-gray-500 rounded-lg box-shadow-md"/>
           <ReCaptureButton/>
         </div>
         )
@@ -181,7 +181,7 @@ const UpLoad = () => {
   }
 
   return (
-    <div className="space-y-4 p-4 text-center items-center">
+    <div className="space-y-4 px-[320px] text-center items-center">
       <Button disabled="disabled" className="disabled:text-black font-bold text-2xl  disabled:bg-gray-50">업로드 할 파일 유형을 선택하세요</Button>
       <div className="flex pt-6 justify-between items-stretch">
         <Button id="사진" className="w-[128px] h-[64px] rounded-xl bg-gray-100 hover:bg-gray-200" onClick={onClick}>

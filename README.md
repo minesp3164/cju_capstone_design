@@ -14,6 +14,9 @@
        - ![javascript](https://img.icons8.com/fluency/48/javascript.png) ![python](https://img.icons8.com/color/48/python--v1.png)
 -   프레임워크
        - ![React.js](https://img.icons8.com/office/48/react.png) ![tailwindcss](https://img.icons8.com/color/48/tailwindcss.png)
+-  DB
+    - ![Mariadb](https://img.icons8.com/color/48/maria-db.png)
+
 -   작성하는데 사용한 모델
        - facebook/detr-resnet-50 : 사람 인원 수 분석 - [모델 보기](https://huggingface.co/facebook/detr-resnet-50)
        - rizvandwiki/gender-classification: 성별 분석 [모델 보기](https://huggingface.co/rizvandwiki/gender-classification)
@@ -25,3 +28,4 @@
 ### 사진을 통한 얼굴형 분석
 ### 얼굴형에 따른 헤어스타일 추천
 ### 헤어스타일과 사용자 이미지 합성
+### 태그를 이용하여 다른 헤어스타일 추천

@@ -1,6 +1,8 @@
 import os
 import base64
 import requests
+import threading
+from datetime import datetime
 from dotenv import load_dotenv
 from flask import Flask, request, jsonify, logging
 from flask_cors import CORS
@@ -16,6 +18,7 @@ load_dotenv()
 upload = os.environ.get('UPLOAD_IMAGES')
 result = os.environ.get('RESULT_IMAGE')
 
+
 def read_image(file_path):
     try:
         with open(file_path, 'rb') as img_file:
@@ -30,12 +33,24 @@ def save_image(encoded_image, file_path):
         img_file.write(base64.b64decode(encoded_image))
 
 
+def delete_image(file_path):
+    os.remove(file_path)
+
+
+def save_image_filename():
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    file_name = f"user_{timestamp}.jpg"
+    return file_name
+
+
 @app.route('/upload', methods=['POST'])
 def upload_file():
-    global recommendations
+    global recommendations, file_name
     file = request.files['file']
-    file_path = os.path.join('image', 'test.jpg')
+    file_name = save_image_filename()
+    file_path = os.path.join('image', file_name)
     file.save(file_path)
+    threading.Timer(3600, delete_image, [file_path]).start()
     recommendations = get_recommend_hairstyle(file_path)
     is_person = get_is_person(file_path)
 
@@ -55,10 +70,11 @@ def get_image():
 
 @app.route('/get_processed_image', methods=['GET','POST'])
 def get_processed_image():
-    resize_and_convert_to_24bit('image/test.jpg')
+    global recommendations, file_name
+    file_path1 = os.path.join('image', file_name)
+    file_path2 = recommendations.get('path')
+    resize_and_convert_to_24bit(file_path1)
     url = upload
-    file_path1 = os.path.join('image', 'test.jpg')
-    file_path2 = os.path.join('image', 'test2.jpg')
     encoded_image1 = read_image(file_path1)
     encoded_image2 = read_image(file_path2)
     headers = {'Content-Type': 'application/json'}

@@ -76,5 +76,18 @@ def get_recommend_hairstyle(image):
 
     result = results[rand(item_len)]
     result['face_shape'] = shape_name
+    
+    # 랜덤으로 가져온 헤어스타일 태그 result에 리스트형태로 저장
+    tag_query = """
+        SELECT t.name AS Tag_Name
+        FROM hairstyletags ht
+        JOIN tags t ON ht.tag_id = t.id
+        WHERE ht.hairstyle_id = %s
+    """
+
+    tag_params = (result['id'])
+    tag_results = execute_query(tag_query, tag_params)
+
+    result['tags'] = [tag['Tag_Name'] for tag in tag_results]
 
     return result

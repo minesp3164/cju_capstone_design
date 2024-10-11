@@ -8,6 +8,7 @@ from flask import Flask, request, jsonify, logging
 from flask_cors import CORS
 from recommend.face_shape_classification import get_recommend_hairstyle, get_is_person
 from recommend.image_reszie import resize_and_convert_to_24bit
+from recommend.knn import knn_model
 
 
 app = Flask(__name__)
@@ -92,8 +93,12 @@ def get_processed_image():
 
 @app.route('/get_processed_image_result', methods=['GET','POST'])
 def get_processed_image_result():
+    global recommendations
     url = result
     response = requests.get(url)
+
+    knn_result = knn_model(recommendations['face_shape'], recommendations['sex'], recommendations['tags'])
+
     if response.status_code == 200:
         data = response.json()
         if 'image' in data:

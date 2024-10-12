@@ -6,7 +6,7 @@ from datetime import datetime
 from dotenv import load_dotenv
 from flask import Flask, request, jsonify, logging
 from flask_cors import CORS
-from recommend.face_shape_classification import get_recommend_hairstyle, get_is_person
+from recommend.face_shape_classification import get_recommend_hairstyle, get_is_person, get_recommend_hairstyle_id
 from recommend.image_reszie import resize_and_convert_to_24bit
 from recommend.knn import knn_model
 
@@ -62,8 +62,7 @@ def upload_file():
 def get_image():
     global recommendations
     encoded_image = read_image(recommendations['path'])
-    
-    
+
     if encoded_image is None:
         return jsonify({'error': f"Image file '{recommendations['name']}' not found"}), 404
     return jsonify({'images': encoded_image})
@@ -98,6 +97,7 @@ def get_processed_image_result():
     response = requests.get(url)
 
     knn_result = knn_model(recommendations['face_shape'], recommendations['sex'], recommendations['tags'])
+    knn_recommendations = get_recommend_hairstyle_id(knn_result)
 
     if response.status_code == 200:
         data = response.json()
@@ -106,7 +106,7 @@ def get_processed_image_result():
             save_image(data['image'], file_path)
             syn_image = os.path.join('image', 'hairstyle_syn.jpg')
             encoding_image = read_image(syn_image)
-            return jsonify({'image': encoding_image}), 200
+            return jsonify({'image': encoding_image, 'recommendations': knn_recommendations}), 200
         else:
             return jsonify({'error': 'No image found in response'}), 404
     else:

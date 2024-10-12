@@ -91,3 +91,12 @@ def get_recommend_hairstyle(image):
     result['tags'] = [tag['Tag_Name'] for tag in tag_results]
 
     return result
+
+
+# 3개의 id값으로 헤어스타일
+def get_recommend_hairstyle_id(hairstyle_id):
+    query = "SELECT * FROM hairstyledata WHERE id IN (%s, %s, %s)"
+    params = tuple(hairstyle_id)
+    results = execute_query(query, params)
+
+    return results

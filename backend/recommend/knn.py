@@ -1,4 +1,4 @@
-from dbConn import execute_query
+from recommend.dbConn import execute_query
 from sklearn.neighbors import NearestNeighbors
 import pandas as pd
 

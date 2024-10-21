@@ -44,6 +44,17 @@ def save_image_filename():
     return file_name
 
 
+def process_knn_recommendations(recommendations):
+    knn_result = knn_model(recommendations['face_shape'], recommendations['sex'],recommendations['tags'])
+    knn_recommendations = get_recommend_hairstyle_id(knn_result)
+
+    for recommendation in knn_recommendations:
+        image_path = recommendation.get('path')
+        recommendation['image'] = read_image(image_path)
+
+    return knn_recommendations
+
+
 @app.route('/upload', methods=['POST'])
 def upload_file():
     global recommendations, file_name
@@ -96,12 +107,7 @@ def get_processed_image_result():
     url = result
     response = requests.get(url)
 
-    knn_result = knn_model(recommendations['face_shape'], recommendations['sex'], recommendations['tags'])
-    knn_recommendations = get_recommend_hairstyle_id(knn_result)
-
-    for recommendation in knn_recommendations:
-        image_path = recommendation.get('path')
-        recommendation['image'] = read_image(image_path)
+    knn_recommendations = process_knn_recommendations(recommendations)
 
     if response.status_code == 200:
         data = response.json()
@@ -148,12 +154,7 @@ def get_processed_image_result_knn():
     url = result
     response = requests.get(url)
 
-    knn_result = knn_model(select_knn_recommendation['face_shape'], select_knn_recommendation['sex'], select_knn_recommendation['tags'])
-    knn_recommendations = get_recommend_hairstyle_id(knn_result)
-
-    for recommendation in knn_recommendations:
-        image_path = recommendation.get('path')
-        recommendation['image'] = read_image(image_path)
+    knn_recommendations = process_knn_recommendations(select_knn_recommendation)
 
     if response.status_code == 200:
         data = response.json()

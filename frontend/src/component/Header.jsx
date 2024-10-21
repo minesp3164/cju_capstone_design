@@ -8,10 +8,10 @@ const Header = () =>{
   }
   return(
     <div className="pt-5 flex justify-center w-full">
-      <div className="text-center text-9xl pb-32 py-5 flex flex-col gap-y-[20px]">
+      <div className="text-center text-9xl pb-16 py-5 flex flex-col gap-y-[20px]">
         <button 
           onClick={toMainPage}
-          className="text-white font-poet transition duration-150 hover:text-violet-200"
+          className="text-violet-300 font-poet transition duration-150 hover:text-violet-200"
         >
           StarTip
         </button>

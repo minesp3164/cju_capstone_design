@@ -1,16 +1,15 @@
+import ReactAudioPlayer from "react-audio-player";
+
 const BackgroundAudio = () => {
-    useEffect(() => {
-        const audio = new Audio();
-        audio.src = backgroundMusic; // 기본 MP3 파일 경로
-        audio.loop = true;
-        audio.volume = 0.5;
-
-        audio.play();
-
-        return () => {
-            audio.pause();
-        };
-    }, []);
-
-    return null;
+  return (
+    <ReactAudioPlayer
+      src={require('../assets/audio/backgroundAudio.mp3')}
+      autoPlay
+      loop
+      volume={0.5}
+      style={{ display: 'none' }}
+    />
+  );
 };
+
+export default BackgroundAudio;

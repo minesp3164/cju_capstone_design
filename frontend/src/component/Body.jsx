@@ -13,6 +13,7 @@ const Body = () => {
   return (
     <div>
       <div className="h-[960px] flex items-center justify-center ">
+        <BackgroundAudio/>
         <Routes>
             <Route path="/howToUse" element={<HowToUse/>} />
             <Route path="/test" element={<BackgroundTest/>}/>

@@ -6,7 +6,7 @@ import './input.css';
 
 const App = () => {
   return (
-      <div className="rootDiv">
+      <div className="rootDiv bg-background-image bg-cover bg-center">
         <Header/>
         <Body/>
       </div>

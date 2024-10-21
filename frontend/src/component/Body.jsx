@@ -6,26 +6,25 @@ import Result from "../page/Result";
 import HowToUse from "../page/HowToUse";
 import Process_Image from "../page/Process_Image";
 import Final from "../page/Final";
-import {Left, Right} from "../component/Side"
+import BackgroundTest from "../page/backgroundTest";
+import BackgroundAudio from "./BackgroundAudio";
 
-
-const Body = () =>{
+const Body = () => {
   return (
     <div>
-      <div className="h-full w-full  pb-32">
-        <Left/>
+      <div className="h-[960px] flex items-center justify-center ">
         <Routes>
-          <Route path="/howToUse" element={<HowToUse/>} />
-          <Route path="/" element={<Main/>}/>
-          <Route path="/upLoad" element={<UpLoad/>}/>
-          <Route path="/result" element={<Result/>}/>
-          <Route path="/process_image" element={<Process_Image/>}/>
-          <Route path="/final" element={<Final/>}/>
+            <Route path="/howToUse" element={<HowToUse/>} />
+            <Route path="/test" element={<BackgroundTest/>}/>
+            <Route path="/" element={<Main/>}/>
+            <Route path="/upLoad" element={<UpLoad/>}/>
+            <Route path="/result" element={<Result/>}/>
+            <Route path="/processImage" element={<Process_Image/>}/>
+            <Route path="/final" element={<Final/>}/>
         </Routes>
-        <Right/>
       </div>
     </div>
-  )
+  );
 }
 
 export default Body;

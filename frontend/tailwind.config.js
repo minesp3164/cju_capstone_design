@@ -8,6 +8,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+          'background-image': "url('./assets/images/backgroundfile.png')",
+      },
       colors: {
         'a-color': '#e6f4f1',
         'b-color': '#e9c47e',

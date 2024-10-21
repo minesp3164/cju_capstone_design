@@ -68,15 +68,16 @@ const UpLoad = () => {
     if (props.checked === "사진") {
       return <div className="pt-10">
         <label className="block mb-2 text-sm font-bold text-gray-300" for="image">정면을 보고 있으며 한 사람만 나와야 합니다</label>
-        <Tooltip message="본인의 얼굴이 제대로 나오고 혼자 있는 사진을 첨부해주세요" position="bottom">
-          <Button className="w-[128px] h-[64px] text-black font-bold text-lg  bg-gray-50 hover:text-gray-600 active:text-gray-400"
-            onClick={() => inputRef.current?.click()}
-            >
-              파일 업로드
-            </Button>
-            <input type="file" id="image" accept="image/*" onChange={props.onChange} style={{ display: "none" }} ref={inputRef} />
-        </Tooltip>
-
+        <div className=" flex justify-center items-center">
+          <Tooltip message="본인의 얼굴이 제대로 나오고 혼자 있는 사진을 첨부해주세요" position="bottom">
+            <Button className="w-[128px] h-[64px] text-black font-bold text-lg  bg-gray-50 hover:text-gray-600 active:text-gray-400"
+              onClick={() => inputRef.current?.click()}
+              >
+                파일 업로드
+              </Button>
+              <input type="file" id="image" accept="image/*" onChange={props.onChange} style={{ display: "none" }} ref={inputRef} />
+          </Tooltip>
+        </div>
       </div>
     } else if (props.checked === "캠") {
       if(!isPictured){
@@ -181,8 +182,10 @@ const UpLoad = () => {
   }
 
   return (
-    <div className="space-y-4 px-[320px] text-center items-center">
-      <Button disabled="disabled" className="disabled:text-black font-bold text-2xl  disabled:bg-gray-50">업로드 할 파일 유형을 선택하세요</Button>
+    <div className="w-full p-20  bg-white bg-opacity-80  rounded-lg shadow-lg max-w-screen-xl max-h-screen-lg">
+      <div className=" flex justify-center items-center">
+        <Button disabled="disabled" className="disabled:text-black font-bold text-2xl  disabled:bg-gray-50">업로드 할 파일 유형을 선택하세요</Button>
+      </div>
       <div className="flex pt-6 justify-between items-stretch">
         <Button id="사진" className="w-[128px] h-[64px] rounded-xl bg-gray-100 hover:bg-gray-200" onClick={onClick}>
             <i id="사진" className="text-3xl fa-solid fa-image" onClick={onClick}/>
@@ -191,17 +194,15 @@ const UpLoad = () => {
           <i id="캠" className="text-3xl fa-solid fa-video" onClick={onClick}/>
         </Button>
       </div>
-      <div className="flex justify-center pb-10">
+      <div className="flex justify-center items-center pb-10">
         <Item checked={checked} onChange={onChangeImageUpload}/>
       </div>
 
       <div className="flex justify-center items-center">
         <ShowImages/>
       </div>
-      <div>
-      </div>
-      <div className="">
-        <Button className="w-[128px] h-[64px] text-black font-bold text-lg"
+      <div className="flex justify-center items-center">
+        <Button className="w-[128px] h-[64px] text-black font-bold text-lg "
           onClick={handleUpload} disabled={!canNext}>다음으로
         </Button>
         <div className="pt-10">

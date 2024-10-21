@@ -99,4 +99,7 @@ def get_recommend_hairstyle_id(hairstyle_id):
     params = tuple(hairstyle_id)
     results = execute_query(query, params)
 
+    for result in results:
+        result['face_shape'] = shape[result['face_shape']]
+
     return results

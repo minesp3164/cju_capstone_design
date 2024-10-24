@@ -2,6 +2,7 @@ import React from "react";
 import {useNavigate} from "react-router-dom";
 import { Button } from "react-daisyui";
 
+
 const Main = () =>{
   const navigate = useNavigate();
   const goTOStartPage = () =>{

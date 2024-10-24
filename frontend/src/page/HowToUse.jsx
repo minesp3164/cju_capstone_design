@@ -9,7 +9,7 @@ const HowToUse = () => {
     navigate('/upload')
   }
   return(
-    <div className="select-none">
+    <div className="w-full p-10 bg-white bg-opacity-90  rounded-lg shadow-lg max-w-screen-xl max-h-screen-lg">
       <div className="text-center text-2xl font-bold">
         이 사이트는 사진을 통한 여러분의 얼굴형 분석과 그에 맞는 헤어타일을 추천해드립니다.
       </div>

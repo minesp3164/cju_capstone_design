@@ -184,8 +184,8 @@ const UpLoad = () => {
   return (
     <div className="w-full p-20 bg-white bg-opacity-90  rounded-lg shadow-lg max-w-screen-xl max-h-screen-lg">
       <div className=" flex justify-center items-center">
-        <Button disabled="disabled" className="disabled:text-black font-bold text-2xl disabled:bg-gray-50">업로드 할 파일 유형을
-          선택하세요</Button>
+        <p  className="text-black font-bold text-2xl ">업로드 할 파일 유형을
+          선택하세요</p>
       </div>
       <div className="flex justify-center p-10">
         <Button id="사진" className="w-[128px] h-[64px] rounded-xl bg-gray-100 hover:bg-gray-200 mr-10" onClick={onClick}>

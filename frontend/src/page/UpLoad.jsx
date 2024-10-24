@@ -182,16 +182,17 @@ const UpLoad = () => {
   }
 
   return (
-    <div className="w-full p-20  bg-white bg-opacity-80  rounded-lg shadow-lg max-w-screen-xl max-h-screen-lg">
+    <div className="w-full p-20 bg-white bg-opacity-90  rounded-lg shadow-lg max-w-screen-xl max-h-screen-lg">
       <div className=" flex justify-center items-center">
-        <Button disabled="disabled" className="disabled:text-black font-bold text-2xl  disabled:bg-gray-50">업로드 할 파일 유형을 선택하세요</Button>
+        <Button disabled="disabled" className="disabled:text-black font-bold text-2xl disabled:bg-gray-50">업로드 할 파일 유형을
+          선택하세요</Button>
       </div>
-      <div className="flex pt-6 justify-between items-stretch">
-        <Button id="사진" className="w-[128px] h-[64px] rounded-xl bg-gray-100 hover:bg-gray-200" onClick={onClick}>
-            <i id="사진" className="text-3xl fa-solid fa-image" onClick={onClick}/>
+      <div className="flex justify-center p-10">
+        <Button id="사진" className="w-[128px] h-[64px] rounded-xl bg-gray-100 hover:bg-gray-200 mr-10" onClick={onClick}>
+          <i id="사진" className="text-3xl fa-solid fa-image"/>
         </Button>
         <Button id="캠" className="w-[128px] h-[64px] rounded-xl bg-gray-100 hover:bg-gray-200" onClick={onClick}>
-          <i id="캠" className="text-3xl fa-solid fa-video" onClick={onClick}/>
+          <i id="캠" className="text-3xl fa-solid fa-camera"></i>
         </Button>
       </div>
       <div className="flex justify-center items-center pb-10">
@@ -203,7 +204,7 @@ const UpLoad = () => {
       </div>
       <div className="flex justify-center items-center">
         <Button className="w-[128px] h-[64px] text-black font-bold text-lg "
-          onClick={handleUpload} disabled={!canNext}>다음으로
+                onClick={handleUpload} disabled={!canNext}>다음으로
         </Button>
         <div className="pt-10">
           <Alert/>

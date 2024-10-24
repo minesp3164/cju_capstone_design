@@ -1,34 +1,32 @@
-import React from "react";
-import devData from "../data/devData.json";
+import React, { useState, useEffect } from "react";
+import AudioPlayer from 'react-h5-audio-player';
+import backgroundAudio2 from '../assets/audio/backgroundAudio2.mp3';
+import 'react-h5-audio-player/lib/styles.css';
+
+const audioTracks = [backgroundAudio2];
 
 const Footer = () => {
+  const [muted, setMuted] = useState(false);
+  const [currentTrack, setCurrentTrack] = useState(null);
+
+  useEffect(() => {
+    setMuted(true);
+    const randomIndex = Math.floor(Math.random() * audioTracks.length);
+    setCurrentTrack(audioTracks[randomIndex]);
+  }, []);
+
   return (
-    <div className="fixed bottom-0 w-full">
-      <div className="relative h-32 md:mx-auto bg-stone-800 items-center" >
-        <div className="absolute grid gird-cols-2 bottom-0 inset-x-10 inset-y-5 items-center">
-          <div id="팀 로고" className="text-xl font-bold text-slate-50">
-            사진의 마술사
-          </div>
-          <div className="h-16">
-            <div className="text-sm text-right">
-              <div className="text-xl text-stone-200">참여한 개발자</div>
-              {devData.users.map(
-                user => (
-                  <div>
-                  <ul className="px-2 text-stone-400">{user.name}
-                    <a href={user.gitAddr}><i className="fa-brands fa-github"/></a>
-                  </ul>
-                  </div>  
-                ))}
-            </div>
-          </div>
-          <div className= "col-span-2 px-40 bottom-0 text-stone-300">
-            projected by CJU
-          </div>
-        </div>
-      </div>
+    <div className="flex justify-center items-center">
+      {currentTrack && (
+        <AudioPlayer
+          src={currentTrack}
+          autoPlay={true}
+          loop
+          muted={muted}
+        />
+      )}
     </div>
-  )
+  );
 }
 
 export default Footer;

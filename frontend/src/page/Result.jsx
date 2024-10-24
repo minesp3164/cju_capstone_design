@@ -54,18 +54,18 @@ const Result = () => {
   }, [goToMainPage, goToUpLoadPage]);
 
   return (
-    <div className="h-full w-full text-gray-100 ">
+    <div className="w-full p-10 bg-white bg-opacity-90 rounded-lg shadow-2lg max-w-screen-xl max-h-screen-lg  ">
       <div className="text-center font-bold">
         <div className=''>
-          <div className='text-2xl p-2'> 사용자의 얼굴형 </div>
+          <div className='text-2xl p-2 font-black'> 사용자의 얼굴형 </div>
           <Button disabled="disabled" className='text-2xl disabled:bg-gray-50 disabled:text-black'>{data.face_shape}</Button>
         </div>
         <div className='p-4'>
-          <div className='text-2xl p-2'>추천드리는 헤어스타일 </div>
+          <div className='text-2xl p-2 font-black'>추천드리는 헤어스타일 </div>
           <Button  disabled="disabled" className='text-2xl disabled:bg-gray-50 disabled:text-black'>{data.name}</Button>
         </div>
         <div className="pb-2">
-          <i className="fa-regular fa-circle-down" aria-hidden="true"/> 합성될 헤어스타일 <i
+          <i className="fa-regular fa-circle-down" aria-hidden="true"/> 미용 예상 결과물 <i
           className="fa-regular fa-circle-down" aria-hidden="true"/>
         </div>
         <div className="flex justify-center">
@@ -76,8 +76,8 @@ const Result = () => {
         </div>
       </div>
       <div className='flex justify-center pt-10'>
-        <Button className='font-bold text-2xl' onClick={goToDetailPage}>
-          합성하기
+        <Button className='w-[190px] h-[70px] font-bold text-4xl' onClick={goToDetailPage}>
+          미용하기
         </Button>
       </div>
       { alert ? null : Alert()}

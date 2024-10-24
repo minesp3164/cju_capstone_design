@@ -7,13 +7,11 @@ import HowToUse from "../page/HowToUse";
 import Process_Image from "../page/Process_Image";
 import Final from "../page/Final";
 import BackgroundTest from "../page/backgroundTest";
-import BackgroundAudio from "./BackgroundAudio";
 
 const Body = () => {
   return (
     <div>
       <div className="h-[960px] flex items-center justify-center ">
-        <BackgroundAudio/>
         <Routes>
             <Route path="/howToUse" element={<HowToUse/>} />
             <Route path="/test" element={<BackgroundTest/>}/>

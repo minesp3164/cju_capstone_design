@@ -9,6 +9,7 @@ const App = () => {
       <div className="rootDiv bg-background-image bg-cover bg-center">
         <Header/>
         <Body/>
+        <Footer/>
       </div>
   );
 }

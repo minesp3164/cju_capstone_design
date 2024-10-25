@@ -38,10 +38,10 @@ def delete_image(file_path):
     os.remove(file_path)
 
 
-def save_image_filename():
+def save_image_username():
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    file_name = f"user_{timestamp}.jpg"
-    return file_name
+    user_path = f"user_{timestamp}.jpg"
+    return user_path
 
 
 def process_knn_recommendations(recommendations):
@@ -57,10 +57,10 @@ def process_knn_recommendations(recommendations):
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
-    global recommendations, file_name
+    global recommendations, user_path
     file = request.files['file']
-    file_name = save_image_filename()
-    file_path = os.path.join('image', file_name)
+    user_path = save_image_username()
+    file_path = os.path.join('image', user_path)
     file.save(file_path)
     threading.Timer(3600, delete_image, [file_path]).start()
     recommendations = get_recommend_hairstyle(file_path)
@@ -81,17 +81,24 @@ def get_image():
 
 @app.route('/get_processed_image', methods=['GET','POST'])
 def get_processed_image():
-    global recommendations, file_name
-    file_path1 = os.path.join('image', file_name)
+    global recommendations, user_path, hairstyle_name
+    file_path1 = os.path.join('image', user_path)
     file_path2 = recommendations.get('path')
     resize_and_convert_to_24bit(file_path1)
     url = upload
     encoded_image1 = read_image(file_path1)
     encoded_image2 = read_image(file_path2)
+
+    user_name = os.path.splitext(user_path)[0]
+    hairstyle_name = os.path.basename(file_path2)
+    hairstyle_name = os.path.splitext(hairstyle_name)[0]
+
     headers = {'Content-Type': 'application/json'}
     data = {
         'file1': encoded_image1,
-        'file2': encoded_image2
+        'file2': encoded_image2,
+        'user_name': user_name,
+        'hairstyle_name': hairstyle_name
     }
     response = requests.post(url, json=data, headers=headers)
 
@@ -103,18 +110,20 @@ def get_processed_image():
 
 @app.route('/get_processed_image_result', methods=['GET','POST'])
 def get_processed_image_result():
-    global recommendations, knn_recommendations
+    global recommendations, knn_recommendations, hairstyle_name
     url = result
     response = requests.get(url)
+
+    user_name = os.path.splitext(user_path)[0]
 
     knn_recommendations = process_knn_recommendations(recommendations)
 
     if response.status_code == 200:
         data = response.json()
         if 'image' in data:
-            file_path = os.path.join('image', 'hairstyle_syn.jpg')
+            file_path = os.path.join('image', f'{user_name}_{hairstyle_name}.jpg')
             save_image(data['image'], file_path)
-            syn_image = os.path.join('image', 'hairstyle_syn.jpg')
+            syn_image = os.path.join('image', f'{user_name}_{hairstyle_name}.jpg')
             encoding_image = read_image(syn_image)
             return jsonify({'image': encoding_image, 'recommendations': knn_recommendations}), 200
         else:
@@ -125,20 +134,27 @@ def get_processed_image_result():
 
 @app.route('/get_processed_image_knn', methods=['POST'])
 def get_processed_image_knn():
-    global knn_recommendations, select_knn_recommendation, file_name
+    global knn_recommendations, select_knn_recommendation, user_path, hairstyle_name
     data = request.json
     index = data['id']
     select_knn_recommendation = knn_recommendations[index]
 
+    file_path1 = os.path.join('image', user_path)
+    file_path2 = select_knn_recommendation.get('path')
     url = upload
-    file_path1 = os.path.join('image', file_name)
-    file_path2 = select_knn_recommendation['path']
     encoded_image1 = read_image(file_path1)
     encoded_image2 = read_image(file_path2)
+
+    user_name = os.path.splitext(user_path)[0]
+    hairstyle_name = os.path.basename(file_path2)
+    hairstyle_name = os.path.splitext(hairstyle_name)[0]
+
     headers = {'Content-Type': 'application/json'}
     data = {
         'file1': encoded_image1,
-        'file2': encoded_image2
+        'file2': encoded_image2,
+        'user_name': user_name,
+        'hairstyle_name': hairstyle_name
     }
     response = requests.post(url, json=data, headers=headers)
 
@@ -150,18 +166,20 @@ def get_processed_image_knn():
 
 @app.route('/get_processed_image_result_knn', methods=['GET','POST'])
 def get_processed_image_result_knn():
-    global knn_recommendations, select_knn_recommendation
+    global knn_recommendations, select_knn_recommendation, user_path, hairstyle_name
     url = result
     response = requests.get(url)
+
+    user_name = os.path.splitext(user_path)[0]
 
     knn_recommendations = process_knn_recommendations(select_knn_recommendation)
 
     if response.status_code == 200:
         data = response.json()
         if 'image' in data:
-            file_path = os.path.join('image', 'hairstyle_syn.jpg')
+            file_path = os.path.join('image', f'{user_name}_{hairstyle_name}.jpg')
             save_image(data['image'], file_path)
-            syn_image = os.path.join('image', 'hairstyle_syn.jpg')
+            syn_image = os.path.join('image', f'{user_name}_{hairstyle_name}.jpg')
             encoding_image = read_image(syn_image)
             return jsonify({'image': encoding_image, 'recommendations': knn_recommendations}), 200
         else:

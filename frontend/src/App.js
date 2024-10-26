@@ -10,6 +10,7 @@ const BackgroundWrapper = ({ setBackgroundClass }) => {
 
   let backgroundClass = 'bg-default';
 
+
   if (location.pathname === '/') {
     backgroundClass = 'bg-background-main-image';
   } else {
@@ -21,12 +22,21 @@ const BackgroundWrapper = ({ setBackgroundClass }) => {
   return null;
 };
 
+
 const App = () => {
   const [backgroundClass, setBackgroundClass] = React.useState('bg-default');
+  const location = useLocation();
+  const ShowHeader = () =>{
+    if (location.pathname === '/') {
+      return null;
+    } else {
+      return <Header/>;
+    }
 
+  }
   return (
     <div className={`rootDiv ${backgroundClass} bg-cover`}>
-      <Header />
+      <ShowHeader/>
       <BackgroundWrapper setBackgroundClass={setBackgroundClass} />
       <Body />
     </div>

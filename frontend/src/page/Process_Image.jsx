@@ -27,7 +27,7 @@ const Process_Image = () => {
   return (
     <div className='text-gray-50'>
       <div className="flex justify-center">
-        <Loading className="w-[500px] h-[1000px] loading-spinner"></Loading>
+        <Loading className="w-[350px] h-[700px] loading-spinner"></Loading>
       </div>
       <div className="flex justify-center">
         <p className="font-bold text-5xl">3~5 분정도 소요됩니다.</p>

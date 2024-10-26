@@ -125,7 +125,7 @@ def get_processed_image_result():
             save_image(data['image'], file_path)
             syn_image = os.path.join('image', f'{user_name}_{hairstyle_name}.jpg')
             encoding_image = read_image(syn_image)
-            return jsonify({'image': encoding_image, 'recommendations': knn_recommendations}), 200
+            return jsonify({'image': encoding_image, 'recommendations': recommendations, 'knn_recommendations': knn_recommendations}), 200
         else:
             return jsonify({'error': 'No image found in response'}), 404
     else:
@@ -181,7 +181,7 @@ def get_processed_image_result_knn():
             save_image(data['image'], file_path)
             syn_image = os.path.join('image', f'{user_name}_{hairstyle_name}.jpg')
             encoding_image = read_image(syn_image)
-            return jsonify({'image': encoding_image, 'recommendations': knn_recommendations}), 200
+            return jsonify({'image': encoding_image, 'recommendations': select_knn_recommendation, 'knn_recommendations': knn_recommendations}), 200
         else:
             return jsonify({'error': 'No image found in response'}), 404
     else:

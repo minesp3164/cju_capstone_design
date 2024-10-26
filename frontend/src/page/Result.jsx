@@ -12,7 +12,7 @@ const Result = () => {
   const data = location.state.recommendation
   const goToMainPage = () => navigate("/");
   const goToUpLoadPage = () => navigate("/upLoad");
-  const goToDetailPage = () => navigate("/Process_Image");
+  const goToDetailPage = () => navigate("/processImage");
   const checkPreviousSteps = () => {
     if (!localStorage.getItem("upload")) {
       if (localStorage.getItem("start")) {
@@ -58,11 +58,11 @@ const Result = () => {
       <div className="text-center font-bold">
         <div className=''>
           <div className='text-2xl p-2 font-black'> 사용자의 얼굴형 </div>
-          <Button disabled="disabled" className='text-2xl disabled:bg-gray-50 disabled:text-black'>{data.face_shape}</Button>
+          <Button disabled="disabled" className='text-2xl disabled:bg-gray-200 disabled:text-black'>{data.face_shape}</Button>
         </div>
         <div className='p-4'>
           <div className='text-2xl p-2 font-black'>추천드리는 헤어스타일 </div>
-          <Button  disabled="disabled" className='text-2xl disabled:bg-gray-50 disabled:text-black'>{data.name}</Button>
+          <Button  disabled="disabled" className='text-2xl disabled:bg-gray-200 disabled:text-black'>{data.name}</Button>
         </div>
         <div className="pb-2">
           <i className="fa-regular fa-circle-down" aria-hidden="true"/> 미용 예상 결과물 <i
@@ -76,7 +76,7 @@ const Result = () => {
         </div>
       </div>
       <div className='flex justify-center pt-10'>
-        <Button className='w-[190px] h-[70px] font-bold text-4xl' onClick={goToDetailPage}>
+        <Button className='w-[190px] h-[70px] font-bold bg-gray-800 text-white hover:bg-gray-900 text-4xl' onClick={goToDetailPage}>
           미용하기
         </Button>
       </div>

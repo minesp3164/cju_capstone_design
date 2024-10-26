@@ -67,10 +67,9 @@ const UpLoad = () => {
 
     if (props.checked === "사진") {
       return <div className="pt-10">
-        <label className="block mb-2 text-sm font-bold text-gray-300" for="image">정면을 보고 있으며 한 사람만 나와야 합니다</label>
         <div className=" flex justify-center items-center">
           <Tooltip message="본인의 얼굴이 제대로 나오고 혼자 있는 사진을 첨부해주세요" position="bottom">
-            <Button className="w-[128px] h-[64px] text-black font-bold text-lg  bg-gray-50 hover:text-gray-600 active:text-gray-400"
+            <Button className="w-[128px] h-[64px] bg-gray-800 text-white hover:bg-gray-900 font-bold text-lg"
               onClick={() => inputRef.current?.click()}
               >
                 파일 업로드
@@ -188,10 +187,10 @@ const UpLoad = () => {
           선택하세요</p>
       </div>
       <div className="flex justify-center p-10">
-        <Button id="사진" className="w-[128px] h-[64px] rounded-xl bg-gray-100 hover:bg-gray-200 mr-10" onClick={onClick}>
+        <Button id="사진" className="w-[128px] h-[64px] rounded-xl bg-gray-800 text-white hover:bg-gray-900 mr-10" onClick={onClick}>
           <i id="사진" className="text-3xl fa-solid fa-image"/>
         </Button>
-        <Button id="캠" className="w-[128px] h-[64px] rounded-xl bg-gray-100 hover:bg-gray-200" onClick={onClick}>
+        <Button id="캠" className="w-[128px] h-[64px] rounded-xl bg-gray-800 text-white hover:bg-gray-900" onClick={onClick}>
           <i id="캠" className="text-3xl fa-solid fa-camera"></i>
         </Button>
       </div>
@@ -202,8 +201,8 @@ const UpLoad = () => {
       <div className="flex justify-center items-center">
         <ShowImages/>
       </div>
-      <div className="flex justify-center items-center">
-        <Button className="w-[128px] h-[64px] text-black font-bold text-lg "
+      <div className="flex justify-center  items-center pt-5">
+        <Button className="w-[128px] h-[64px] bg-gray-800 text-white hover:bg-gray-900 font-bold text-lg "
                 onClick={handleUpload} disabled={!canNext}>다음으로
         </Button>
         <div className="pt-10">

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import dataJson from '../assets/data/finaldata.json';
-import instance from "../component/Instance";
 import {Button} from "react-daisyui";
 import axiosServer from "../component/Instance";
 
@@ -12,14 +11,16 @@ const Final = () => {
   const goToMainPage = () => navigate("/");
 
   const fetchData = async () => {
-    try{
+    try {
       const response = await axiosServer.get('/get_processed_image_result')
       console.log(response.data);
-      if(response.data){
+      if (response.data) {
         setData(response.data);
       }
-    }catch(error){
+    } catch (error) {
       console.log(error)
+    }
+  }
   useEffect(() => {
     setData(dataJson);
     fetchData()
@@ -31,7 +32,7 @@ const Final = () => {
       }
     } else {
     }
-    }, []);
+  }, []);
   if (!data) {
     return <div>Loading...</div>;
   }
@@ -61,11 +62,11 @@ const Final = () => {
         titleImageText: 'Cheese cake',
         titleImageCategory: 'Cake',
         items: [
-          { item: 'Cake1', itemOp: '1000원' },
-          { item: 'Cake2', itemOp: '2000원' },
-          { item: 'Cake3', itemOp: '3000원' },
-          { item: 'Cake4', itemOp: '4000원' },
-          { item: 'Cake5', itemOp: '5000원' },
+          {item: 'Cake1', itemOp: '1000원'},
+          {item: 'Cake2', itemOp: '2000원'},
+          {item: 'Cake3', itemOp: '3000원'},
+          {item: 'Cake4', itemOp: '4000원'},
+          {item: 'Cake5', itemOp: '5000원'},
         ],
         sum: 'Total',
         sumOp: '15000원',
@@ -94,11 +95,11 @@ const Final = () => {
     });
   };
 
-  const goToProcessImage = (id) =>{
-    navigate("/process_Image",{state:{from: '/final', id: id }})
+  const goToProcessImage = (id) => {
+    navigate("/process_Image", {state: {from: '/final', id: id}})
   }
 
-  const renderImage = (imageData, index,id) => {
+  const renderImage = (imageData, index, id) => {
     return imageData ? (
       <img
         key={index}
@@ -111,9 +112,9 @@ const Final = () => {
   };
 
 
-
   return (
-    <div className="bg-white pb-10 bg-opacity-90  rounded-lg shadow-lg max-w-screen-xl max-h-screen-lg  w-full text-gray-100">
+    <div
+      className="bg-white pb-10 bg-opacity-90  rounded-lg shadow-lg max-w-screen-xl max-h-screen-lg  w-full text-gray-100">
       <div className="text-center text-2xl">
         합성된 이미지
       </div>
@@ -135,16 +136,14 @@ const Final = () => {
       <div className="flex justify-center pt-5 text-black font-bold text-2xl">
         {data.recommendations && data.recommendations.length > 0 ? (
           <p>다른 헤어스타일로 미용 해보기</p>
-        ) : (
-          null
-        )}
+        ) : null}
       </div>
       <div className="flex justify-center pt-10 pb-2 ">
-        {data.recommendations.map((rec, index) => renderImage(rec.image, index,rec.id))}
+        {data.recommendations.map((rec, index) => renderImage(rec.image, index, rec.id))}
       </div>
       <div className="flex justify-center">
         <Button className="bg-gray-800 hover:bg-gray-900 text-white" onClick={goToMainPage}>
-        처음으로 돌아가기
+          처음으로 돌아가기
         </Button>
       </div>
     </div>

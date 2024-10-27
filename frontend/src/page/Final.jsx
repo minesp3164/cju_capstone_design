@@ -11,29 +11,27 @@ const Final = () => {
 
   const goToMainPage = () => navigate("/");
 
+  const fetchData = async () => {
+    try{
+      const response = await axiosServer.get('/get_processed_image_result')
+      console.log(response.data);
+      if(response.data){
+        setData(response.data);
+      }
+    }catch(error){
+      console.log(error)
   useEffect(() => {
     setData(dataJson);
-    const fetchData = async () => {
-      try{
-        const response = await axiosServer.get('/get_processed_image_result')
-        console.log(response.data);
-        if(response.data){
-          setData(response.data);
-        }
-      }catch(error){
-        console.log(error)
-
-
+    fetchData()
     const kakaoKey = process.env.REACT_APP_KAKAO_API_KEY;
     if (kakaoKey) {
-      // Kakao 객체가 존재하고 초기화가 안된 경우에만 초기화
       if (window.Kakao && !window.Kakao.isInitialized()) {
         window.Kakao.init(kakaoKey);
       } else {
       }
     } else {
     }
-  }, []);
+    }, []);
   if (!data) {
     return <div>Loading...</div>;
   }

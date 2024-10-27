@@ -44,7 +44,7 @@ const Process_Image = () => {
 
   useEffect(() => {
     processImages();
-  }, [location]); // location 추가
+  }, [location]);
 
   return (
     <div className='text-gray-50'>

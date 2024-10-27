@@ -20,7 +20,7 @@ const Process_Image = () => {
       if (location.state?.from === '/result') {
         address = '/get_processed_image';
       } else if (location.state?.from === '/final') {
-        address = '/get_processed_image_result_knn';
+        address = '/get_processed_image_knn';
         if (location.state.id) {
           postData.id = location.state.id; // id가 있을 경우에만 추가
         } else {

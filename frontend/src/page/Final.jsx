@@ -20,6 +20,16 @@ const Final = () => {
     } catch (error) {
       console.log(error)
     }
+    try {
+      const response = await axiosServer.get('/get_processed_image_result_knn')
+      console.log("n번째 실행 입니다")
+      console.log(response.data);
+      if (response.data) {
+        setData(response.data);
+      }
+    }catch(error){
+      console.error(error)
+    }
   }
   useEffect(() => {
     setData(dataJson);
@@ -115,7 +125,7 @@ const Final = () => {
 
   return (
     <div
-      className="bg-white pb-10 bg-opacity-90  rounded-lg shadow-lg max-w-screen-xl max-h-screen-lg  w-full text-gray-100">
+      className="bg-white pb-2 bg-opacity-90  rounded-lg shadow-lg max-w-screen-xl max-h-screen-lg  w-full text-gray-100">
       <div className="text-center text-2xl">
         합성된 이미지
       </div>
@@ -143,7 +153,7 @@ const Final = () => {
         {data.knn_recommendations.map((rec, index) => renderImage(rec.image, index, rec.id))}
       </div>
       <div className="flex justify-center">
-        <Button className="bg-gray-800 hover:bg-gray-900 text-white" onClick={goToMainPage}>
+        <Button className="bg-gray-800 hover:bg-gray-900 text-white text-2xl font-bold" onClick={goToMainPage}>
           처음으로 돌아가기
         </Button>
       </div>

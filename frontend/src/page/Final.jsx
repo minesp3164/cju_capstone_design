@@ -97,7 +97,7 @@ const Final = () => {
   };
 
   const goToProcessImage = (id) => {
-    navigate("/process_Image", {state: {from: '/final', id: id}})
+    navigate("/process_Image", {state: {from: '/final', id: id+1}})
   }
 
   const renderImage = (imageData, index) => {

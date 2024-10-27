@@ -37,19 +37,20 @@ const Final = () => {
     return <div>Loading...</div>;
   }
 
+
   const shareToKakao = () => {
     if (!window.Kakao) {
       console.error("Kakao SDK not loaded");
       return;
     }
-
+    console.log(window.Kakao)
     window.Kakao.Share.createDefaultButton({
       container: '#kakaotalk-sharing-btn',
       objectType: 'feed',
       content: {
-        title: data.image.title,
-        description: data.image.description,
-        imageUrl: data.image.image,
+        title: data.recommendation.name,
+        description: data.recommendation.description,
+        imageUrl: null  ,
         link: {
           mobileWebUrl: 'https://developers.kakao.com',
           webUrl: 'https://developers.kakao.com',
@@ -103,7 +104,7 @@ const Final = () => {
     return imageData ? (
       <img
         key={index}
-        className="w-[384px] h-[384px] border-2 border-black rounded-lg"
+        className="w-[384px] h-[384px] border-2 mr-2 border-black rounded-lg"
         src={`data:image/jpeg;base64,${imageData}`}
         alt={`image-${index + 1}`}
         onClick={() => goToProcessImage(id)}
@@ -119,10 +120,10 @@ const Final = () => {
         합성된 이미지
       </div>
       <div className="flex justify-center pt-10">
-        {data.image && (
+        {data.recommendations && (
           <img
             className="w-[384px] h-[384px] border-2 border-black rounded-lg"
-            src={`data:image/jpeg;base64,${data.image.image}`}
+            src={`data:image/jpeg;base64,${data.recommendations.image_syn}`}
             alt="합성된 이미지"
           />
         )}
@@ -134,12 +135,12 @@ const Final = () => {
         </button>
       </div>
       <div className="flex justify-center pt-5 text-black font-bold text-2xl">
-        {data.recommendations && data.recommendations.length > 0 ? (
+        {data.knn_recommendations && data.knn_recommendations.length > 0 ? (
           <p>다른 헤어스타일로 미용 해보기</p>
         ) : null}
       </div>
       <div className="flex justify-center pt-10 pb-2 ">
-        {data.recommendations.map((rec, index) => renderImage(rec.image, index, rec.id))}
+        {data.knn_recommendations.map((rec, index) => renderImage(rec.image, index, rec.id))}
       </div>
       <div className="flex justify-center">
         <Button className="bg-gray-800 hover:bg-gray-900 text-white" onClick={goToMainPage}>

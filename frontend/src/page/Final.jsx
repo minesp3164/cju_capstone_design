@@ -12,7 +12,7 @@ const Final = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axiosServer.get('/get_processed_image_result')
+        const response = await axiosServer.get('/get_processed_image_result')
       console.log(response.data);
       if (response.data) {
         setData(response.data);

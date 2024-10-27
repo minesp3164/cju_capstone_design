@@ -13,6 +13,16 @@ const Final = () => {
 
   useEffect(() => {
     setData(dataJson);
+    const fetchData = async () => {
+      try{
+        const response = await axiosServer.get('/get_processed_image_result')
+        console.log(response.data);
+        if(response.data){
+          setData(response.data);
+        }
+      }catch(error){
+        console.log(error)
+
 
     const kakaoKey = process.env.REACT_APP_KAKAO_API_KEY;
     if (kakaoKey) {

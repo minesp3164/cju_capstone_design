@@ -18,7 +18,7 @@ const Process_Image = () => {
       let address;
       console.log(location)
       if (location.state?.from === '/result') {
-        address = '/get_processed_image_result';
+        address = '/get_processed_image';
       } else if (location.state?.from === '/final') {
         address = '/get_processed_image_result_knn';
         if (location.state.id) {

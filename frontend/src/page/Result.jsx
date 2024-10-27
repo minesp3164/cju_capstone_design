@@ -12,7 +12,7 @@ const Result = () => {
   const data = location.state.recommendation
   const goToMainPage = () => navigate("/");
   const goToUpLoadPage = () => navigate("/upLoad");
-  const goToDetailPage = () => navigate("/processImage");
+  const goToDetailPage = () => navigate("/process_Image",{state: {from: '/result'}});
   const checkPreviousSteps = () => {
     if (!localStorage.getItem("upload")) {
       if (localStorage.getItem("start")) {

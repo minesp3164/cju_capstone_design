@@ -18,7 +18,7 @@ const Body = () => {
           <Route path="/" element={<Main />} />
           <Route path="/upLoad" element={<UpLoad />} />
           <Route path="/result" element={<Result />} />
-          <Route path="/processImage" element={<Process_Image />} />
+          <Route path="/process_Image" element={<Process_Image />} />
           <Route path="/final" element={<Final />} />
         </Routes>
       </div>

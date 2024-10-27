@@ -1,28 +1,50 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Loading } from 'react-daisyui';
 import axiosServer from "../component/Instance";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Process_Image = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const [error, setError] = useState(null); // 에러 상태 추가
 
-  const nextPage = (image) => {
-    navigate("/final", { state: { image } });
-  }
+  const nextPage = (data) => {
+    navigate("/final", { state: { data } });
+  };
 
   const processImages = async () => {
     try {
-      const response = await axiosServer.post('/get_processed_image');
+      const postData = {};
+      let address;
+      console.log(location)
+      if (location.state?.from === '/result') {
+        address = '/get_processed_image_result';
+      } else if (location.state?.from === '/final') {
+        address = '/get_processed_image_result_knn';
+        if (location.state.id) {
+          postData.id = location.state.id; // id가 있을 경우에만 추가
+        } else {
+          console.warn("ID가 없습니다.");
+          return;
+        }
+      } else {
+        console.warn("이전 페이지에 대한 정보가 없습니다.");
+        return;
+      }
+
+      console.log(address, postData.id);
+      const response = await axiosServer.post(address, postData);
       console.log(response.data);
       nextPage(response.data);
     } catch (error) {
       console.error(error.response?.data?.error || error.message);
+      setError(error.response?.data?.error || "서버 오류가 발생했습니다."); // 에러 메시지 설정
     }
-  }
+  };
 
   useEffect(() => {
     processImages();
-  }, []);
+  }, [location]); // location 추가
 
   return (
     <div className='text-gray-50'>

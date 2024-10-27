@@ -26,7 +26,7 @@ const HowToUse = () => {
         <li>다음 사이트에선 이미지를 이용해 어울리는 헤어스타일을 찾으실 수 있습니다.</li>
       </ul>
       <div className="flex items-center justify-center font-bold w-full">
-        <Button className="text-black font-bold text-2xl  bg-gray-50 hover:text-gray-600 active:text-gray-400" onClick={returnToMain}>
+        <Button className="text-white font-bold text-2xl  bg-gray-800 hover:bg-gray-900" onClick={returnToMain}>
           시작하기
         </Button>
       </div>

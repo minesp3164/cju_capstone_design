@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import dataJson from '../assets/data/finaldata.json';
 import instance from "../component/Instance";
 import {Button} from "react-daisyui";
+import axiosServer from "../component/Instance";
 
 const Final = () => {
   const [data, setData] = useState(null);
@@ -85,20 +86,24 @@ const Final = () => {
     });
   };
 
-  const renderImage = (imageData, index) => {
+  const goToProcessImage = (id) =>{
+    navigate("/process_Image",{state:{from: '/final', id: id }})
+  }
+
+  const renderImage = (imageData, index,id) => {
     return imageData ? (
       <img
         key={index}
         className="w-[384px] h-[384px] border-2 border-black rounded-lg"
         src={`data:image/jpeg;base64,${imageData}`}
         alt={`image-${index + 1}`}
+        onClick={() => goToProcessImage(id)}
       />
     ) : null;
   };
 
-  const imageOnClick = (index) =>{
-    instance()
-  }
+
+
   return (
     <div className="bg-white pb-10 bg-opacity-90  rounded-lg shadow-lg max-w-screen-xl max-h-screen-lg  w-full text-gray-100">
       <div className="text-center text-2xl">
@@ -120,10 +125,14 @@ const Final = () => {
         </button>
       </div>
       <div className="flex justify-center pt-5 text-black font-bold text-2xl">
-        <p>다른 헤어스타일으로 미용 해보기</p>
+        {data.recommendations && data.recommendations.length > 0 ? (
+          <p>다른 헤어스타일로 미용 해보기</p>
+        ) : (
+          null
+        )}
       </div>
       <div className="flex justify-center pt-10 pb-2 ">
-        {data.recommendations.map((rec, index) => renderImage(rec.image, index))}
+        {data.recommendations.map((rec, index) => renderImage(rec.image, index,rec.id))}
       </div>
       <div className="flex justify-center">
         <Button className="bg-gray-800 hover:bg-gray-900 text-white" onClick={goToMainPage}>

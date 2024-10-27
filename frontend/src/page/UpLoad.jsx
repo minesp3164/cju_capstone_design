@@ -181,7 +181,7 @@ const UpLoad = () => {
   }
 
   return (
-    <div className="w-full p-20 bg-white bg-opacity-90  rounded-lg shadow-lg max-w-screen-xl max-h-screen-lg">
+    <div className="w-full py-20 bg-white bg-opacity-90  rounded-lg max-w-screen-xl ">
       <div className=" flex justify-center items-center">
         <p  className="text-black font-bold text-2xl ">업로드 할 파일 유형을
           선택하세요</p>

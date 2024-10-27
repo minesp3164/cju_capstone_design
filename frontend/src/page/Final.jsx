@@ -100,14 +100,14 @@ const Final = () => {
     navigate("/process_Image", {state: {from: '/final', id: id}})
   }
 
-  const renderImage = (imageData, index, id) => {
+  const renderImage = (imageData, index) => {
     return imageData ? (
       <img
         key={index}
         className="w-[384px] h-[384px] border-2 mr-2 border-black rounded-lg"
         src={`data:image/jpeg;base64,${imageData}`}
         alt={`image-${index + 1}`}
-        onClick={() => goToProcessImage(id)}
+        onClick={() => goToProcessImage(index)}
       />
     ) : null;
   };
@@ -140,7 +140,7 @@ const Final = () => {
         ) : null}
       </div>
       <div className="flex justify-center pt-10 pb-2 ">
-        {data.knn_recommendations.map((rec, index) => renderImage(rec.image, index, rec.id))}
+        {data.knn_recommendations.map((rec, index) => renderImage(rec.image, index))}
       </div>
       <div className="flex justify-center">
         <Button className="bg-gray-800 hover:bg-gray-900 text-white text-2xl font-bold" onClick={goToMainPage}>

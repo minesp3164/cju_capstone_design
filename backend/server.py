@@ -164,22 +164,5 @@ def get_processed_image_result():
         return jsonify({'error': 'Failed to get processed image'}), response.status_code
 
 
-@app.route('/get_share_url', methods=['GET'])
-def get_share_url():
-    file_name = 'hairstyle_syn.jpg'
-    file_path = os.path.join('image', file_name)
-
-    if not os.path.exists(file_path):
-        return jsonify({'error': 'Image not found'}), 404
-
-    image_url = request.host_url + 'image/' + file_name
-    return jsonify({'image_url': image_url})
-
-
-# 이미지 파일을 제공하는 API
-@app.route('/image/<path:filename>')
-def serve_image(filename):
-    return send_from_directory('image', filename)
-
 if __name__ == '__main__':
     app.run(debug=True, port=5000, host='0.0.0.0')

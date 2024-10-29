@@ -1,0 +1,18 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json"},
+    { "path": "./tsconfig.node.json"}
+  ],
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "esModuleInterop": true,           // 추가: ES 모듈 상호 운용성
+    "skipLibCheck": true,
+    "strict": true,
+    "jsx": "react-jsx",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+}

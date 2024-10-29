@@ -24,14 +24,14 @@ const Final = () => {
   useEffect(() => {
     setData(dataJson);
     fetchData()
-    const kakaoKey = process.env.REACT_APP_KAKAO_API_KEY;
-    if (kakaoKey) {
-      if (window.Kakao && !window.Kakao.isInitialized()) {
-        window.Kakao.init(kakaoKey);
-      } else {
-      }
-    } else {
-    }
+    // const kakaoKey = process.env.REACT_APP_KAKAO_API_KEY;
+    // if (kakaoKey) {
+    //   if (window.Kakao && !window.Kakao.isInitialized()) {
+    //     window.Kakao.init(kakaoKey);
+    //   } else {
+    //   }
+    // } else {
+    // }
   }, []);
   if (!data) {
     return <div>Loading...</div>;
@@ -101,14 +101,18 @@ const Final = () => {
   }
 
   const renderImage = (imageData, index) => {
+    console.log(imageData)
     return imageData ? (
-      <img
-        key={index}
-        className="w-[384px] h-[384px] border-2 mr-2 border-black rounded-lg"
-        src={`data:image/jpeg;base64,${imageData}`}
-        alt={`image-${index + 1}`}
-        onClick={() => goToProcessImage(index)}
-      />
+      <div>
+        <p className="text-black text-center font-bold">{imageData.name}</p>
+        <img
+          key={index}
+          className="w-[384px] h-[384px] border-2 mr-2 border-black rounded-lg"
+          src={`data:image/jpeg;base64,${imageData.image}`}
+          alt={`image-${index + 1}`}
+          onClick={() => goToProcessImage(index)}
+        />
+      </div>
     ) : null;
   };
 
@@ -136,11 +140,11 @@ const Final = () => {
       </div>
       <div className="flex justify-center pt-5 text-black font-bold text-2xl">
         {data.knn_recommendations && data.knn_recommendations.length > 0 ? (
-          <p>다른 헤어스타일로 미용 해보기</p>
+          <Button disabled={true} className="disabled:text-black disabled:font-bold disabled:bg-white">다른 헤어스타일로 미용 해보기</Button>
         ) : null}
       </div>
       <div className="flex justify-center pt-10 pb-2 ">
-        {data.knn_recommendations.map((rec, index) => renderImage(rec.image, index))}
+        {data.knn_recommendations.map((rec, index) => renderImage(rec, index))}
       </div>
       <div className="flex justify-center">
         <Button className="bg-gray-800 hover:bg-gray-900 text-white text-2xl font-bold" onClick={goToMainPage}>

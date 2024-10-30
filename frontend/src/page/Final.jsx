@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import dataJson from '../assets/data/finaldata.json';
-import {Button} from "react-daisyui";
+import {Button, Tooltip} from "react-daisyui";
 import axiosServer from "../component/Instance";
 
 const Final = () => {
@@ -12,144 +12,84 @@ const Final = () => {
 
   const fetchData = async () => {
     try {
-        const response = await axiosServer.get('/get_processed_image_result')
+      const response = await axiosServer.get('/get_processed_image_result');
       console.log(response.data);
       if (response.data) {
         setData(response.data);
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
+
   useEffect(() => {
     setData(dataJson);
-    fetchData()
-    // const kakaoKey = process.env.REACT_APP_KAKAO_API_KEY;
-    // if (kakaoKey) {
-    //   if (window.Kakao && !window.Kakao.isInitialized()) {
-    //     window.Kakao.init(kakaoKey);
-    //   } else {
-    //   }
-    // } else {
-    // }
+    fetchData();
   }, []);
+
   if (!data) {
     return <div>Loading...</div>;
   }
 
-
-  const shareToKakao = () => {
-    if (!window.Kakao) {
-      console.error("Kakao SDK not loaded");
-      return;
-    }
-    console.log(window.Kakao)
-    window.Kakao.Share.createDefaultButton({
-      container: '#kakaotalk-sharing-btn',
-      objectType: 'feed',
-      content: {
-        title: data.recommendation.name,
-        description: data.recommendation.description,
-        imageUrl: null  ,
-        link: {
-          mobileWebUrl: 'https://developers.kakao.com',
-          webUrl: 'https://developers.kakao.com',
-        },
-      },
-      itemContent: {
-        profileText: 'Kakao',
-        profileImageUrl: 'https://mud-kage.kakao.com/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
-        titleImageUrl: 'https://mud-kage.kakao.com/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
-        titleImageText: 'Cheese cake',
-        titleImageCategory: 'Cake',
-        items: [
-          {item: 'Cake1', itemOp: '1000원'},
-          {item: 'Cake2', itemOp: '2000원'},
-          {item: 'Cake3', itemOp: '3000원'},
-          {item: 'Cake4', itemOp: '4000원'},
-          {item: 'Cake5', itemOp: '5000원'},
-        ],
-        sum: 'Total',
-        sumOp: '15000원',
-      },
-      social: {
-        likeCount: 10,
-        commentCount: 20,
-        sharedCount: 30,
-      },
-      buttons: [
-        {
-          title: '웹으로 이동',
-          link: {
-            mobileWebUrl: 'https://developers.kakao.com',
-            webUrl: 'https://developers.kakao.com',
-          },
-        },
-        {
-          title: '앱으로 이동',
-          link: {
-            mobileWebUrl: 'https://developers.kakao.com',
-            webUrl: 'https://developers.kakao.com',
-          },
-        },
-      ],
-    });
+  const goToProcessImage = (id) => {
+    navigate("/process_Image", { state: { from: '/final', id: id + 1 } });
   };
 
-  const goToProcessImage = (id) => {
-    navigate("/process_Image", {state: {from: '/final', id: id+1}})
-  }
-
-  const renderImage = (imageData, index) => {
-    console.log(imageData)
-    return imageData ? (
-      <div>
-        <p className="text-black text-center font-bold">{imageData.name}</p>
+  const renderImage = (imageData, index) => (
+    <div key={index} className="text-center mx-2">
+      <p className="text-black text-center">
+        {imageData.name}
+      </p>
+      <Tooltip message={`${imageData.name}으로 미용해보기`}>
         <img
-          key={index}
-          className="w-[384px] h-[384px] border-2 mr-2 border-black rounded-lg"
+          className="w-48 h-48 border-2 border-gray-800 rounded-lg cursor-pointer"
           src={`data:image/jpeg;base64,${imageData.image}`}
           alt={`image-${index + 1}`}
           onClick={() => goToProcessImage(index)}
         />
-      </div>
-    ) : null;
-  };
-
+      </Tooltip>
+    </div>
+  );
 
   return (
     <div
-      className="bg-white pb-4 bg-opacity-90  rounded-lg shadow-lg max-w-screen-xl max-h-screen-lg  w-full text-gray-100">
-      <div className="text-center text-2xl">
-        합성된 이미지
+      className="bg-white pb-4 bg-opacity-90  rounded-lg shadow-lg max-w-screen-lg max-h-screen-lg w-screen text-gray-100">
+      <div className="text-center font-bold text-black text-2xl pt-6">
+        미용 완료된 사진
       </div>
-      <div className="flex justify-center pt-10">
+
+      <div className="flex justify-center items-center space-x-4 mb-8">
         {data.recommendations && (
           <img
-            className="w-[384px] h-[384px] border-2 border-black rounded-lg"
+            className="w-96 h-96 border-2 border-gray-800 rounded-lg"
             src={`data:image/jpeg;base64,${data.recommendations.image_syn}`}
             alt="합성된 이미지"
           />
         )}
-        <button id="kakaotalk-sharing-btn" onClick={shareToKakao}>
-          <img
-            src="https://developers.kakao.com/assets/img/about/logos/kakaotalksharing/kakaotalk_sharing_btn_medium.png"
-            alt="카카오톡 공유 보내기 버튼"
-          />
-        </button>
       </div>
-      <div className="flex justify-center pt-5 text-black font-bold text-2xl">
-        {data.knn_recommendations && data.knn_recommendations.length > 0 ? (
-          <Button disabled={true} className="disabled:text-black disabled:font-bold disabled:bg-white">다른 헤어스타일로 미용 해보기</Button>
-        ) : null}
-      </div>
-      <div className="flex justify-center pt-10 pb-2 ">
-        {data.knn_recommendations.map((rec, index) => renderImage(rec, index))}
-      </div>
-      <div className="flex justify-center">
-        <Button className="bg-gray-800 hover:bg-gray-900 text-white text-2xl font-bold" onClick={goToMainPage}>
+
+      <div className="flex justify-center pb-2">
+        <Button
+          className="bg-gray-800 hover:bg-gray-900 text-white text-2xl font-bold px-8 "
+          onClick={goToMainPage}
+        >
           처음으로 돌아가기
         </Button>
+      </div>
+
+      <div className="text-center mb-8">
+        {data.knn_recommendations && data.knn_recommendations.length > 0 && (
+          <Button
+            disabled={true}
+            className="disabled:text-gray-800 disabled:font-bold disabled:bg-white text-xl mt-10"
+          >
+            다른 헤어스타일로 미용 해 보실래요?
+          </Button>
+        )}
+      </div>
+
+      <div className="flex justify-center space-x-4 mb-8">
+        {data.knn_recommendations && data.knn_recommendations.map((rec, index) => renderImage(rec, index))}
       </div>
     </div>
   );
